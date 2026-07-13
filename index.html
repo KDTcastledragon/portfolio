@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CastleChat 실시간 채팅 프로젝트 포트폴리오">
-    <title>CastleChat Portfolio</title>
+    <meta name="description" content="프로젝트 포트폴리오">
+    <title>이성룡 Portfolio</title>
     <style>
         :root {
             --page: #07110d;
@@ -68,10 +68,6 @@
         [tabindex]:focus-visible {
             outline: 3px solid rgb(88 214 141 / 0.72);
             outline-offset: 4px;
-        }
-
-        .view[hidden] {
-            display: none;
         }
 
         .site-header {
@@ -148,12 +144,25 @@
             text-transform: uppercase;
         }
 
+        .hero-topline {
+            margin: 0 0 12px;
+            color: var(--muted);
+            font-size: clamp(19px, 1.9vw, 27px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
         .hero h1 {
             max-width: 760px;
-            margin: 20px 0 24px;
-            font-size: clamp(52px, 7vw, 104px);
-            line-height: 0.96;
-            letter-spacing: -0.075em;
+            margin: 0 0 26px;
+            font-size: clamp(38px, 4.5vw, 60px);
+            line-height: 1.16;
+            letter-spacing: -0.055em;
+            word-break: keep-all;
+        }
+
+        .hero-accent {
+            color: var(--accent);
         }
 
         .hero-description {
@@ -263,37 +272,142 @@
             line-height: 1.6;
         }
 
-        .architecture-view {
-            min-height: 100dvh;
-            padding: 18px;
-        }
-
-        .architecture-page {
-            width: min(100%, var(--content));
-            margin: 0 auto;
-        }
-
-        .architecture-header {
+        .panel-actions {
             display: flex;
-            gap: 24px;
-            align-items: center;
-            justify-content: space-between;
-            min-height: 68px;
-            padding: 10px 2px 16px;
+            gap: 10px;
+            margin-top: 26px;
         }
 
-        .back-link {
-            display: inline-flex;
-            gap: 9px;
-            align-items: center;
-            color: var(--muted);
+        .panel-actions .button {
+            flex: 1;
+            padding: 0 12px;
             font-size: 14px;
-            font-weight: 700;
-            text-decoration: none;
         }
 
-        .back-link:hover {
+        #copyLinkButton {
+            min-width: 128px;
+        }
+
+        dialog.modal {
+            width: min(calc(100% - 40px), var(--content));
+            max-height: calc(100dvh - 48px);
+            padding: 0;
+            overflow: auto;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
             color: var(--text);
+            background: var(--page);
+        }
+
+        dialog.modal::backdrop {
+            background: rgb(2 9 6 / 0.74);
+        }
+
+        dialog.modal[open] {
+            animation: modal-in 200ms ease;
+        }
+
+        @keyframes modal-in {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+        }
+
+        dialog.modal.modal-narrow {
+            width: min(calc(100% - 40px), 1020px);
+        }
+
+        .modal-inner {
+            padding: 22px clamp(16px, 2.6vw, 30px) 28px;
+        }
+
+        .modal-header {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .modal-header .architecture-state {
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .dialog-close {
+            display: grid;
+            flex: none;
+            width: 40px;
+            height: 40px;
+            place-items: center;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            color: var(--muted);
+            background: var(--surface);
+            font-size: 22px;
+            line-height: 1;
+            cursor: pointer;
+            transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease;
+        }
+
+        .dialog-close:hover {
+            border-color: #47705b;
+            color: var(--text);
+            background: var(--surface-soft);
+        }
+
+        .stack-groups {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .stack-group {
+            padding: 18px 20px 10px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: var(--surface);
+        }
+
+        .stack-group h3 {
+            margin: 0 0 6px;
+            color: var(--accent);
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .stack-item {
+            display: flex;
+            gap: 14px;
+            align-items: baseline;
+            justify-content: space-between;
+            padding: 11px 0;
+            border-top: 1px solid var(--line-soft);
+        }
+
+        .stack-name {
+            font-size: 15px;
+            font-weight: 750;
+            white-space: nowrap;
+        }
+
+        .stack-version {
+            margin-left: 8px;
+            color: var(--accent);
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .stack-note {
+            color: var(--muted);
+            font-size: 12.5px;
+            line-height: 1.5;
+            text-align: right;
         }
 
         .architecture-heading {
@@ -561,7 +675,7 @@
             line-height: 1.6;
         }
 
-        .architecture-note + .architecture-note {
+        .architecture-note+.architecture-note {
             border-left: 1px solid var(--line-soft);
         }
 
@@ -627,6 +741,7 @@
         }
 
         @media (max-width: 720px) {
+
             .site-header,
             .hero {
                 width: min(calc(100% - 28px), 1280px);
@@ -646,7 +761,7 @@
             }
 
             .hero h1 {
-                font-size: clamp(46px, 15vw, 72px);
+                font-size: clamp(32px, 9vw, 46px);
             }
 
             .hero-actions,
@@ -654,17 +769,18 @@
                 width: 100%;
             }
 
-            .architecture-view {
-                padding: 12px;
+            dialog.modal,
+            dialog.modal.modal-narrow {
+                width: calc(100% - 20px);
+                max-height: calc(100dvh - 24px);
             }
 
-            .architecture-header {
-                align-items: flex-start;
+            .panel-actions {
                 flex-direction: column;
             }
 
-            .architecture-state {
-                align-self: flex-start;
+            .stack-groups {
+                grid-template-columns: 1fr;
             }
 
             .architecture-toolbar {
@@ -680,7 +796,7 @@
                 grid-template-columns: 1fr;
             }
 
-            .architecture-note + .architecture-note {
+            .architecture-note+.architecture-note {
                 border-top: 1px solid var(--line-soft);
                 border-left: 0;
             }
@@ -696,6 +812,7 @@
             *::after {
                 scroll-behavior: auto !important;
                 transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
             }
         }
     </style>
@@ -703,72 +820,70 @@
 
 <body>
     <main>
-        <section id="landingView" class="view landing" aria-labelledby="portfolioTitle">
+        <section id="landingView" class="landing" aria-labelledby="portfolioTitle">
             <header class="site-header">
                 <a class="brand" href="#" aria-label="CastleChat 포트폴리오 홈">
                     <span class="brand-mark" aria-hidden="true">CC</span>
                     <span>CastleChat</span>
                 </a>
-                <span class="header-status">
-                    <span class="status-indicator" aria-hidden="true"></span>
-                    PORTFOLIO IN PROGRESS
-                </span>
             </header>
 
             <div class="hero">
                 <div>
-                    <span class="hero-kicker">Realtime messaging architecture</span>
-                    <h1 id="portfolioTitle">빠르게 보이고,<br>끝까지 저장되는 채팅.</h1>
-                    <p class="hero-description">
-                        WebSocket, gRPC, Kafka, Redis를 역할별로 분리해 실시간 응답 경로와 데이터 영속화 경로를 설계한
-                        채팅 웹 프로젝트입니다.
+                    <p class="hero-topline">멀티 프로세스 기반의</p>
+                    <h1 id="portfolioTitle">대규모 메시지 처리 지향<br><span class="hero-accent">웹 채팅, CastleChat</span></h1>
+                    <p class="hero-description">메시지 유실 없는 Kafka 전송 파이프라인과 Redis 실시간 읽음 동기화를 5개 프로세스 아키텍처로 직접 설계하고 구현했습니다.
                     </p>
+
                     <div class="hero-actions">
-                        <a class="button button-primary" href="#architecture">아키텍처 보기</a>
-                        <span class="button" aria-disabled="true">서비스 배포 준비 중</span>
+                        <a class="button button-primary" href="https://www.naver.com" target="_blank"
+                            rel="noopener">배포 링크</a>
+                        <button class="button" type="button" id="copyLinkButton">링크 복사</button>
                     </div>
                 </div>
 
-                <aside class="hero-panel" aria-labelledby="principleTitle">
-                    <h2 id="principleTitle" class="panel-heading">하나의 비동기 전략으로 퉁치지 않았습니다.</h2>
+                <aside class="hero-panel" aria-label="설계 핵심 요약">
+                    <h2 class="panel-heading">설계 핵심</h2>
                     <div class="principle-list">
                         <div class="principle">
                             <span class="principle-index">01</span>
                             <div>
-                                <strong>메시지 상태 변경</strong>
-                                <p>보존과 방 단위 순서가 중요해 Kafka durable event pipeline을 사용합니다.</p>
+                                <strong>5개 프로세스 분리</strong>
+                                <p>도메인 · 게이트웨이 · 엔진 · 워커 · AI를 독립 프로세스로 격리해 장애와 배포 영향 범위를 좁혔습니다.</p>
                             </div>
                         </div>
                         <div class="principle">
                             <span class="principle-index">02</span>
                             <div>
-                                <strong>읽음 위치 갱신</strong>
-                                <p>중간 이력보다 최댓값이 중요해 Redis 최신값 병합과 scheduled write-behind를 사용합니다.</p>
+                                <strong>Kafka durable 파이프라인</strong>
+                                <p>전송 응답 전에 durable ACK를 보장하고, DB 쓰기는 전용 워커로 분리했습니다.</p>
                             </div>
                         </div>
                         <div class="principle">
                             <span class="principle-index">03</span>
                             <div>
-                                <strong>프로세스 책임 분리</strong>
-                                <p>실시간 연결, 비즈니스 처리, DB 영속화, AI 호출의 장애와 부하를 분리합니다.</p>
+                                <strong>Redis write-behind 읽음 동기화</strong>
+                                <p>읽음 위치는 Redis에 원자적으로 병합하고 주기 배치로 DB에 반영합니다.</p>
                             </div>
                         </div>
+                    </div>
+                    <div class="panel-actions">
+                        <button class="button button-primary" type="button" data-open="architectureDialog">아키텍처
+                            보기</button>
+                        <button class="button" type="button" data-open="stackDialog">기술 스택 보기</button>
                     </div>
                 </aside>
             </div>
         </section>
 
-        <section id="architectureView" class="view architecture-view" aria-labelledby="architectureTitle" hidden>
-            <div class="architecture-page">
-                <header class="architecture-header">
+        <dialog id="architectureDialog" class="modal" aria-labelledby="architectureTitle">
+            <div class="modal-inner">
+                <header class="modal-header">
                     <div>
-                        <a class="back-link" href="#" aria-label="포트폴리오 홈으로 돌아가기">
-                            <span aria-hidden="true">←</span>
-                            프로젝트 소개
-                        </a>
-                        <h2 id="architectureTitle" class="architecture-heading" tabindex="-1">CastleChat Logical Architecture</h2>
+                        <h2 id="architectureTitle" class="architecture-heading">CastleChat Logical Architecture</h2>
+                        <span class="architecture-state">CURRENT CODE + NGINX TARGET</span>
                     </div>
-                    <span class="architecture-state">CURRENT CODE + NGINX TARGET</span>
+                    <button class="dialog-close" type="button" data-close aria-label="닫기">&times;</button>
                 </header>
 
                 <div class="architecture-shell">
@@ -783,38 +898,45 @@
 
                     <div class="architecture-canvas" role="img"
                         aria-label="React Client가 Nginx Reverse Proxy를 통해 Domain Service, WebSocket Gateway, AI Assistant Service에 접근하며, WebSocket Gateway는 gRPC로 Channel Engine을 호출하고 Channel Engine은 Kafka를 거쳐 Event Persist Worker와 MariaDB로 메시지를 영속화하는 구조">
-                        <svg class="architecture-lines" viewBox="0 0 1400 650" preserveAspectRatio="none" aria-hidden="true">
+                        <svg class="architecture-lines" viewBox="0 0 1400 650" preserveAspectRatio="none"
+                            aria-hidden="true">
                             <defs>
-                                <marker id="arrowCall" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6"
-                                    orient="auto-start-reverse">
+                                <marker id="arrowCall" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6"
+                                    markerHeight="6" orient="auto-start-reverse">
                                     <path d="M 0 0 L 10 5 L 0 10 z" fill="#6f887b"></path>
                                 </marker>
-                                <marker id="arrowEvent" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6"
-                                    orient="auto">
+                                <marker id="arrowEvent" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6"
+                                    markerHeight="6" orient="auto">
                                     <path d="M 0 0 L 10 5 L 0 10 z" fill="#58d68d"></path>
                                 </marker>
-                                <marker id="arrowDb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6"
-                                    orient="auto-start-reverse">
+                                <marker id="arrowDb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6"
+                                    markerHeight="6" orient="auto-start-reverse">
                                     <path d="M 0 0 L 10 5 L 0 10 z" fill="#8fb3a0"></path>
                                 </marker>
                             </defs>
 
-                            <path class="flow-call" d="M 135 280 L 215 280" marker-start="url(#arrowCall)" marker-end="url(#arrowCall)"></path>
+                            <path class="flow-call" d="M 135 280 L 215 280" marker-start="url(#arrowCall)"
+                                marker-end="url(#arrowCall)"></path>
                             <text class="flow-label" x="163" y="265">HTTPS / WSS</text>
 
-                            <path class="flow-call" d="M 345 260 C 390 250, 395 112, 445 112" marker-end="url(#arrowCall)"></path>
+                            <path class="flow-call" d="M 345 260 C 390 250, 395 112, 445 112"
+                                marker-end="url(#arrowCall)"></path>
                             <text class="flow-label" x="365" y="172">REST</text>
 
-                            <path class="flow-call" d="M 345 280 L 445 280" marker-start="url(#arrowCall)" marker-end="url(#arrowCall)"></path>
+                            <path class="flow-call" d="M 345 280 L 445 280" marker-start="url(#arrowCall)"
+                                marker-end="url(#arrowCall)"></path>
                             <text class="flow-label" x="375" y="264">WSS</text>
 
-                            <path class="flow-call" d="M 345 300 C 390 310, 395 448, 445 448" marker-end="url(#arrowCall)"></path>
+                            <path class="flow-call" d="M 345 300 C 390 310, 395 448, 445 448"
+                                marker-end="url(#arrowCall)"></path>
                             <text class="flow-label" x="365" y="400">REST</text>
 
-                            <path class="flow-call" d="M 595 280 L 715 280" marker-start="url(#arrowCall)" marker-end="url(#arrowCall)"></path>
+                            <path class="flow-call" d="M 595 280 L 715 280" marker-start="url(#arrowCall)"
+                                marker-end="url(#arrowCall)"></path>
                             <text class="flow-label" x="630" y="264">gRPC unary</text>
 
-                            <path class="flow-event" d="M 875 260 C 920 245, 930 112, 960 112" marker-end="url(#arrowEvent)"></path>
+                            <path class="flow-event" d="M 875 260 C 920 245, 930 112, 960 112"
+                                marker-end="url(#arrowEvent)"></path>
                             <text class="flow-label event-label" x="897" y="180">roomId key</text>
 
                             <path class="flow-event" d="M 1030 150 L 1030 240" marker-end="url(#arrowEvent)"></path>
@@ -823,13 +945,16 @@
                             <path class="flow-db" d="M 1105 280 L 1192 280" marker-end="url(#arrowDb)"></path>
                             <text class="flow-label" x="1120" y="264">DB write</text>
 
-                            <path class="flow-db" d="M 595 112 L 1180 112 C 1240 112, 1240 228, 1260 240" marker-start="url(#arrowDb)" marker-end="url(#arrowDb)"></path>
+                            <path class="flow-db" d="M 595 112 L 1180 112 C 1240 112, 1240 228, 1260 240"
+                                marker-start="url(#arrowDb)" marker-end="url(#arrowDb)"></path>
                             <text class="flow-label" x="785" y="96">HTTP CRUD · attachment · snapshot query</text>
 
-                            <path class="flow-db" d="M 875 300 C 985 360, 1115 360, 1192 300" marker-start="url(#arrowDb)" marker-end="url(#arrowDb)"></path>
+                            <path class="flow-db" d="M 875 300 C 985 360, 1115 360, 1192 300"
+                                marker-start="url(#arrowDb)" marker-end="url(#arrowDb)"></path>
                             <text class="flow-label" x="940" y="370">sync CRUD · validation · read flush</text>
 
-                            <path class="flow-db" d="M 595 448 L 1165 448 C 1225 448, 1235 335, 1260 320" marker-start="url(#arrowDb)" marker-end="url(#arrowDb)"></path>
+                            <path class="flow-db" d="M 595 448 L 1165 448 C 1225 448, 1235 335, 1260 320"
+                                marker-start="url(#arrowDb)" marker-end="url(#arrowDb)"></path>
                             <text class="flow-label" x="790" y="432">recent message read only</text>
 
                             <path class="flow-shared" d="M 505 150 C 505 330, 610 485, 725 505"></path>
@@ -838,7 +963,8 @@
                             <path class="flow-shared" d="M 595 448 C 650 448, 680 485, 725 505"></path>
                             <text class="flow-label" x="610" y="492">shared state</text>
 
-                            <path class="flow-external" d="M 595 470 C 710 520, 875 520, 955 505" marker-end="url(#arrowDb)"></path>
+                            <path class="flow-external" d="M 595 470 C 710 520, 875 520, 955 505"
+                                marker-end="url(#arrowDb)"></path>
                             <text class="flow-label" x="730" y="540">Gemini HTTPS API</text>
                         </svg>
 
@@ -919,7 +1045,8 @@
                             </li>
                             <li class="mobile-flow-group">
                                 <strong>Realtime Message Flow</strong>
-                                <p>Nginx ↔ WebSocket Gateway ↔ gRPC ↔ Channel Engine<br>Channel Engine → Kafka → Event Persist Worker → MariaDB</p>
+                                <p>Nginx ↔ WebSocket Gateway ↔ gRPC ↔ Channel Engine<br>Channel Engine → Kafka → Event
+                                    Persist Worker → MariaDB</p>
                             </li>
                             <li class="mobile-flow-group">
                                 <strong>Realtime State</strong>
@@ -927,7 +1054,8 @@
                             </li>
                             <li class="mobile-flow-group">
                                 <strong>AI Assist Flow</strong>
-                                <p>Nginx → AI Assistant Service ↔ MariaDB Read Only<br>AI Assistant Service → Gemini API</p>
+                                <p>Nginx → AI Assistant Service ↔ MariaDB Read Only<br>AI Assistant Service → Gemini API
+                                </p>
                             </li>
                         </ol>
                     </div>
@@ -944,37 +1072,137 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </dialog>
+
+        <dialog id="stackDialog" class="modal modal-narrow" aria-labelledby="stackTitle">
+            <div class="modal-inner">
+                <header class="modal-header">
+                    <div>
+                        <h2 id="stackTitle" class="architecture-heading">Tech Stack</h2>
+                        <span class="architecture-state">REACT 19 · SPRING BOOT 3.5 · JAVA 17</span>
+                    </div>
+                    <button class="dialog-close" type="button" data-close aria-label="닫기">&times;</button>
+                </header>
+
+                <div class="stack-groups">
+                    <section class="stack-group" aria-label="프론트엔드 기술">
+                        <h3>Frontend</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">React<span class="stack-version">19.1</span></span>
+                            <span class="stack-note">SPA · 함수형 컴포넌트</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">Redux Toolkit<span class="stack-version">2.x</span></span>
+                            <span class="stack-note">채팅창 전역 상태 관리</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">TanStack Query<span class="stack-version">5.x</span></span>
+                            <span class="stack-note">서버 상태 캐싱 · 동기화</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">WebSocket</span>
+                            <span class="stack-note">단일 연결 멀티플렉싱</span>
+                        </div>
+                    </section>
+
+                    <section class="stack-group" aria-label="백엔드 기술">
+                        <h3>Backend</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">Java<span class="stack-version">17</span></span>
+                            <span class="stack-note">백엔드 공통 런타임</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">Spring Boot<span class="stack-version">3.5</span></span>
+                            <span class="stack-note">5개 서비스 공통 프레임워크</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">gRPC<span class="stack-version">1.63</span></span>
+                            <span class="stack-note">게이트웨이 ↔ 엔진 내부 호출</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">MyBatis</span>
+                            <span class="stack-note">SQL 매퍼 · XML 쿼리 관리</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">Write-Behind Flush Worker</span>
+                            <span class="stack-note">읽음 위치 주기 배치 반영</span>
+                        </div>
+                    </section>
+
+                    <section class="stack-group" aria-label="데이터와 메시징 기술">
+                        <h3>Data &amp; Messaging</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">Apache Kafka</span>
+                            <span class="stack-note">durable ACK · DLT 재처리</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">Redis</span>
+                            <span class="stack-note">세션 · 방 멤버 · 읽음 위치</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">MariaDB</span>
+                            <span class="stack-note">메시지 · 도메인 영속화</span>
+                        </div>
+                    </section>
+
+                    <section class="stack-group" aria-label="인프라와 모니터링 기술">
+                        <h3>Infra &amp; Monitoring</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">Nginx</span>
+                            <span class="stack-note">리버스 프록시 · 단일 진입점</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">Docker</span>
+                            <span class="stack-note">인프라 컨테이너 구성</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">Prometheus</span>
+                            <span class="stack-note">메트릭 수집</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">Grafana</span>
+                            <span class="stack-note">모니터링 대시보드</span>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </dialog>
     </main>
 
     <script>
-        const landingView = document.getElementById("landingView");
-        const architectureView = document.getElementById("architectureView");
-        const architectureTitle = document.getElementById("architectureTitle");
+        const DEPLOY_URL = "https://www.naver.com";
+        const copyLinkButton = document.getElementById("copyLinkButton");
 
-        function syncViewWithHash() {
-            const architectureOpen = window.location.hash === "#architecture";
+        copyLinkButton.addEventListener("click", async () => {
+            let copied = true;
 
-            landingView.hidden = architectureOpen;
-            architectureView.hidden = !architectureOpen;
-            document.title = architectureOpen
-                ? "CastleChat Architecture"
-                : "CastleChat Portfolio";
-
-            if (architectureOpen) {
-                window.scrollTo(0, 0);
-                requestAnimationFrame(() => architectureTitle.focus({ preventScroll: true }));
+            try {
+                await navigator.clipboard.writeText(DEPLOY_URL);
+            } catch {
+                const helper = document.createElement("textarea");
+                helper.value = DEPLOY_URL;
+                document.body.appendChild(helper);
+                helper.select();
+                copied = document.execCommand("copy");
+                helper.remove();
             }
-        }
 
-        window.addEventListener("hashchange", syncViewWithHash);
-        window.addEventListener("keydown", event => {
-            if (event.key === "Escape" && window.location.hash === "#architecture") {
-                window.location.hash = "";
-            }
+            copyLinkButton.textContent = copied ? "복사 완료!" : "복사 실패";
+            setTimeout(() => {
+                copyLinkButton.textContent = "링크 복사";
+            }, 1600);
         });
 
-        syncViewWithHash();
+        document.querySelectorAll("[data-open]").forEach(button => {
+            button.addEventListener("click", () => document.getElementById(button.dataset.open).showModal());
+        });
+
+        document.querySelectorAll("dialog.modal").forEach(modal => {
+            modal.querySelector("[data-close]").addEventListener("click", () => modal.close());
+            modal.addEventListener("click", event => {
+                if (event.target === modal) modal.close();
+            });
+        });
     </script>
 </body>
 
