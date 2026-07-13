@@ -4,13 +4,978 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CastleChat 실시간 채팅 프로젝트 포트폴리오">
     <title>CastleChat Portfolio</title>
+    <style>
+        :root {
+            --page: #07110d;
+            --surface: #0c1913;
+            --surface-strong: #10231a;
+            --surface-soft: #13281e;
+            --line: #294437;
+            --line-soft: #1b3026;
+            --text: #f4f8f5;
+            --muted: #9eb2a7;
+            --accent: #58d68d;
+            --accent-strong: #32b873;
+            --accent-soft: #153d29;
+            --radius: 14px;
+            --content: 1480px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            background: var(--page);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-width: 320px;
+            min-height: 100dvh;
+            margin: 0;
+            color: var(--text);
+            background-color: var(--page);
+            font-family: Pretendard, "Noto Sans KR", "Segoe UI", sans-serif;
+        }
+
+        body::before {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            content: "";
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgb(88 214 141 / 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgb(88 214 141 / 0.035) 1px, transparent 1px);
+            background-size: 32px 32px;
+            mask-image: linear-gradient(to bottom, black, transparent 88%);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button:focus-visible,
+        a:focus-visible,
+        [tabindex]:focus-visible {
+            outline: 3px solid rgb(88 214 141 / 0.72);
+            outline-offset: 4px;
+        }
+
+        .view[hidden] {
+            display: none;
+        }
+
+        .site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: min(calc(100% - 40px), var(--content));
+            height: 72px;
+            margin: 0 auto;
+            border-bottom: 1px solid var(--line-soft);
+        }
+
+        .brand {
+            display: inline-flex;
+            gap: 12px;
+            align-items: center;
+            font-weight: 800;
+            letter-spacing: -0.035em;
+            text-decoration: none;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 34px;
+            height: 34px;
+            place-items: center;
+            border: 1px solid var(--accent);
+            border-radius: 10px;
+            color: var(--accent);
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 13px;
+        }
+
+        .header-status {
+            display: inline-flex;
+            gap: 8px;
+            align-items: center;
+            color: var(--muted);
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 12px;
+        }
+
+        .status-indicator {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 5px rgb(88 214 141 / 0.12);
+        }
+
+        .landing {
+            min-height: 100dvh;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.72fr);
+            gap: clamp(44px, 7vw, 120px);
+            align-items: center;
+            width: min(calc(100% - 40px), 1280px);
+            min-height: calc(100dvh - 72px);
+            margin: 0 auto;
+            padding: 72px 0 88px;
+        }
+
+        .hero-kicker,
+        .section-kicker,
+        .node-type {
+            color: var(--accent);
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            max-width: 760px;
+            margin: 20px 0 24px;
+            font-size: clamp(52px, 7vw, 104px);
+            line-height: 0.96;
+            letter-spacing: -0.075em;
+        }
+
+        .hero-description {
+            max-width: 640px;
+            margin: 0;
+            color: var(--muted);
+            font-size: clamp(17px, 1.5vw, 21px);
+            line-height: 1.75;
+            word-break: keep-all;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 38px;
+        }
+
+        .button {
+            display: inline-flex;
+            min-height: 48px;
+            padding: 0 20px;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            color: var(--text);
+            background: var(--surface);
+            font-size: 15px;
+            font-weight: 750;
+            text-decoration: none;
+            transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+        }
+
+        .button:hover {
+            border-color: #47705b;
+            background: var(--surface-soft);
+        }
+
+        .button:active {
+            transform: translateY(1px);
+        }
+
+        .button-primary {
+            border-color: var(--accent);
+            color: #04120a;
+            background: var(--accent);
+        }
+
+        .button-primary:hover {
+            border-color: #7ce5a7;
+            background: #7ce5a7;
+        }
+
+        .button[aria-disabled="true"] {
+            cursor: not-allowed;
+            color: #71847a;
+            background: #0a1510;
+        }
+
+        .hero-panel {
+            padding: clamp(26px, 3vw, 38px);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgb(12 25 19 / 0.94);
+        }
+
+        .panel-heading {
+            margin: 0 0 26px;
+            font-size: 20px;
+            letter-spacing: -0.035em;
+        }
+
+        .principle-list {
+            display: grid;
+            margin: 0;
+        }
+
+        .principle {
+            display: grid;
+            grid-template-columns: 34px 1fr;
+            gap: 14px;
+            padding: 18px 0;
+            border-top: 1px solid var(--line-soft);
+        }
+
+        .principle:first-child {
+            border-top: 0;
+        }
+
+        .principle-index {
+            color: var(--accent);
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 13px;
+        }
+
+        .principle strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+
+        .principle p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .architecture-view {
+            min-height: 100dvh;
+            padding: 18px;
+        }
+
+        .architecture-page {
+            width: min(100%, var(--content));
+            margin: 0 auto;
+        }
+
+        .architecture-header {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 68px;
+            padding: 10px 2px 16px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            gap: 9px;
+            align-items: center;
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: var(--text);
+        }
+
+        .architecture-heading {
+            margin: 4px 0 0;
+            font-size: clamp(24px, 2.6vw, 38px);
+            line-height: 1.1;
+            letter-spacing: -0.05em;
+        }
+
+        .architecture-state {
+            flex: none;
+            padding: 8px 12px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: var(--muted);
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 11px;
+        }
+
+        .architecture-shell {
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgb(8 19 14 / 0.96);
+        }
+
+        .architecture-toolbar {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 48px;
+            padding: 9px 16px;
+            border-bottom: 1px solid var(--line-soft);
+            background: var(--surface);
+        }
+
+        .architecture-summary {
+            margin: 0;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+            justify-content: flex-end;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .legend-item {
+            display: inline-flex;
+            gap: 7px;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .legend-line {
+            width: 24px;
+            height: 2px;
+            background: #6f887b;
+        }
+
+        .legend-line.event {
+            background: var(--accent);
+        }
+
+        .legend-line.shared {
+            height: 0;
+            border-top: 2px dashed #47705b;
+            background: transparent;
+        }
+
+        .architecture-canvas {
+            position: relative;
+            height: clamp(480px, calc(100dvh - 268px), 620px);
+            min-height: 480px;
+            isolation: isolate;
+        }
+
+        .architecture-canvas::after {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            content: "";
+            background-image:
+                linear-gradient(rgb(88 214 141 / 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgb(88 214 141 / 0.03) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+
+        .architecture-lines {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .flow-call,
+        .flow-event,
+        .flow-db,
+        .flow-shared,
+        .flow-external {
+            fill: none;
+            vector-effect: non-scaling-stroke;
+        }
+
+        .flow-call {
+            stroke: #6f887b;
+            stroke-width: 1.7;
+        }
+
+        .flow-event {
+            stroke: var(--accent);
+            stroke-width: 2.2;
+        }
+
+        .flow-db {
+            stroke: #8fb3a0;
+            stroke-width: 1.45;
+        }
+
+        .flow-shared {
+            stroke: #47705b;
+            stroke-width: 1.35;
+            stroke-dasharray: 7 7;
+        }
+
+        .flow-external {
+            stroke: #8fb3a0;
+            stroke-width: 1.5;
+            stroke-dasharray: 3 5;
+        }
+
+        .flow-label {
+            fill: #a9bbb1;
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 12px;
+            font-weight: 700;
+            paint-order: stroke;
+            stroke: #08130e;
+            stroke-width: 7px;
+            stroke-linejoin: round;
+        }
+
+        .flow-label.event-label {
+            fill: var(--accent);
+        }
+
+        .architecture-node {
+            position: absolute;
+            display: flex;
+            width: clamp(128px, 11.5vw, 174px);
+            min-height: 82px;
+            padding: 13px 14px;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: #0d1c15;
+            box-shadow: 0 12px 32px rgb(0 0 0 / 0.18);
+            transform: translate(-50%, -50%);
+        }
+
+        .architecture-node strong {
+            margin-top: 6px;
+            font-size: clamp(13px, 1.08vw, 16px);
+            line-height: 1.25;
+            letter-spacing: -0.025em;
+        }
+
+        .architecture-node small {
+            display: block;
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.4;
+        }
+
+        .architecture-node.primary-node {
+            border-color: #3e8b63;
+            background: var(--surface-strong);
+        }
+
+        .architecture-node.event-node {
+            border-color: var(--accent-strong);
+            background: var(--accent-soft);
+        }
+
+        .architecture-node.infrastructure-node {
+            background: #0a1610;
+        }
+
+        .node-client {
+            left: 6%;
+            top: 43%;
+        }
+
+        .node-nginx {
+            left: 20%;
+            top: 43%;
+        }
+
+        .node-domain {
+            left: 36%;
+            top: 17%;
+        }
+
+        .node-gateway {
+            left: 36%;
+            top: 43%;
+        }
+
+        .node-ai {
+            left: 36%;
+            top: 69%;
+        }
+
+        .node-engine {
+            left: 56%;
+            top: 43%;
+        }
+
+        .node-kafka {
+            left: 72%;
+            top: 17%;
+        }
+
+        .node-worker {
+            left: 72%;
+            top: 43%;
+        }
+
+        .node-redis {
+            left: 56%;
+            top: 78%;
+            width: clamp(190px, 18vw, 270px);
+        }
+
+        .node-gemini {
+            left: 72%;
+            top: 78%;
+        }
+
+        .node-db {
+            left: 90%;
+            top: 43%;
+        }
+
+        .architecture-footnotes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 1px solid var(--line-soft);
+        }
+
+        .architecture-note {
+            padding: 14px 18px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .architecture-note + .architecture-note {
+            border-left: 1px solid var(--line-soft);
+        }
+
+        .architecture-note strong {
+            color: var(--text);
+        }
+
+        .mobile-architecture {
+            display: none;
+        }
+
+        @media (max-width: 1100px) {
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+                padding-top: 62px;
+            }
+
+            .hero-panel {
+                max-width: 720px;
+            }
+
+            .architecture-canvas {
+                height: auto;
+                min-height: 0;
+                padding: 18px;
+            }
+
+            .architecture-lines,
+            .architecture-node {
+                display: none;
+            }
+
+            .mobile-architecture {
+                display: grid;
+                gap: 12px;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            .mobile-flow-group {
+                padding: 18px;
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                background: var(--surface);
+            }
+
+            .mobile-flow-group strong {
+                display: block;
+                margin-bottom: 8px;
+                color: var(--accent);
+                font-size: 13px;
+            }
+
+            .mobile-flow-group p {
+                margin: 0;
+                color: var(--muted);
+                font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+                font-size: 12px;
+                line-height: 1.8;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .site-header,
+            .hero {
+                width: min(calc(100% - 28px), 1280px);
+            }
+
+            .site-header {
+                height: 64px;
+            }
+
+            .header-status {
+                display: none;
+            }
+
+            .hero {
+                gap: 36px;
+                padding: 52px 0 64px;
+            }
+
+            .hero h1 {
+                font-size: clamp(46px, 15vw, 72px);
+            }
+
+            .hero-actions,
+            .button {
+                width: 100%;
+            }
+
+            .architecture-view {
+                padding: 12px;
+            }
+
+            .architecture-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .architecture-state {
+                align-self: flex-start;
+            }
+
+            .architecture-toolbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .legend {
+                justify-content: flex-start;
+            }
+
+            .architecture-footnotes {
+                grid-template-columns: 1fr;
+            }
+
+            .architecture-note + .architecture-note {
+                border-top: 1px solid var(--line-soft);
+                border-left: 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <h1>CastleChat</h1>
-    <p>실시간 채팅 프로젝트 포트폴리오입니다.</p>
-    <div>디스크립션 * k8s 구현 준비 중....</div>
+    <main>
+        <section id="landingView" class="view landing" aria-labelledby="portfolioTitle">
+            <header class="site-header">
+                <a class="brand" href="#" aria-label="CastleChat 포트폴리오 홈">
+                    <span class="brand-mark" aria-hidden="true">CC</span>
+                    <span>CastleChat</span>
+                </a>
+                <span class="header-status">
+                    <span class="status-indicator" aria-hidden="true"></span>
+                    PORTFOLIO IN PROGRESS
+                </span>
+            </header>
+
+            <div class="hero">
+                <div>
+                    <span class="hero-kicker">Realtime messaging architecture</span>
+                    <h1 id="portfolioTitle">빠르게 보이고,<br>끝까지 저장되는 채팅.</h1>
+                    <p class="hero-description">
+                        WebSocket, gRPC, Kafka, Redis를 역할별로 분리해 실시간 응답 경로와 데이터 영속화 경로를 설계한
+                        채팅 웹 프로젝트입니다.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#architecture">아키텍처 보기</a>
+                        <span class="button" aria-disabled="true">서비스 배포 준비 중</span>
+                    </div>
+                </div>
+
+                <aside class="hero-panel" aria-labelledby="principleTitle">
+                    <h2 id="principleTitle" class="panel-heading">하나의 비동기 전략으로 퉁치지 않았습니다.</h2>
+                    <div class="principle-list">
+                        <div class="principle">
+                            <span class="principle-index">01</span>
+                            <div>
+                                <strong>메시지 상태 변경</strong>
+                                <p>보존과 방 단위 순서가 중요해 Kafka durable event pipeline을 사용합니다.</p>
+                            </div>
+                        </div>
+                        <div class="principle">
+                            <span class="principle-index">02</span>
+                            <div>
+                                <strong>읽음 위치 갱신</strong>
+                                <p>중간 이력보다 최댓값이 중요해 Redis 최신값 병합과 scheduled write-behind를 사용합니다.</p>
+                            </div>
+                        </div>
+                        <div class="principle">
+                            <span class="principle-index">03</span>
+                            <div>
+                                <strong>프로세스 책임 분리</strong>
+                                <p>실시간 연결, 비즈니스 처리, DB 영속화, AI 호출의 장애와 부하를 분리합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="architectureView" class="view architecture-view" aria-labelledby="architectureTitle" hidden>
+            <div class="architecture-page">
+                <header class="architecture-header">
+                    <div>
+                        <a class="back-link" href="#" aria-label="포트폴리오 홈으로 돌아가기">
+                            <span aria-hidden="true">←</span>
+                            프로젝트 소개
+                        </a>
+                        <h2 id="architectureTitle" class="architecture-heading" tabindex="-1">CastleChat Logical Architecture</h2>
+                    </div>
+                    <span class="architecture-state">CURRENT CODE + NGINX TARGET</span>
+                </header>
+
+                <div class="architecture-shell">
+                    <div class="architecture-toolbar">
+                        <p class="architecture-summary">Nginx Docker reverse proxy를 기준으로 정리한 요청·이벤트·저장 흐름입니다.</p>
+                        <div class="legend" aria-label="연결선 범례">
+                            <span class="legend-item"><span class="legend-line"></span>요청·응답</span>
+                            <span class="legend-item"><span class="legend-line event"></span>Kafka 이벤트</span>
+                            <span class="legend-item"><span class="legend-line shared"></span>공유 Redis</span>
+                        </div>
+                    </div>
+
+                    <div class="architecture-canvas" role="img"
+                        aria-label="React Client가 Nginx Reverse Proxy를 통해 Domain Service, WebSocket Gateway, AI Assistant Service에 접근하며, WebSocket Gateway는 gRPC로 Channel Engine을 호출하고 Channel Engine은 Kafka를 거쳐 Event Persist Worker와 MariaDB로 메시지를 영속화하는 구조">
+                        <svg class="architecture-lines" viewBox="0 0 1400 650" preserveAspectRatio="none" aria-hidden="true">
+                            <defs>
+                                <marker id="arrowCall" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6"
+                                    orient="auto-start-reverse">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#6f887b"></path>
+                                </marker>
+                                <marker id="arrowEvent" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6"
+                                    orient="auto">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#58d68d"></path>
+                                </marker>
+                                <marker id="arrowDb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6"
+                                    orient="auto-start-reverse">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#8fb3a0"></path>
+                                </marker>
+                            </defs>
+
+                            <path class="flow-call" d="M 135 280 L 215 280" marker-start="url(#arrowCall)" marker-end="url(#arrowCall)"></path>
+                            <text class="flow-label" x="163" y="265">HTTPS / WSS</text>
+
+                            <path class="flow-call" d="M 345 260 C 390 250, 395 112, 445 112" marker-end="url(#arrowCall)"></path>
+                            <text class="flow-label" x="365" y="172">REST</text>
+
+                            <path class="flow-call" d="M 345 280 L 445 280" marker-start="url(#arrowCall)" marker-end="url(#arrowCall)"></path>
+                            <text class="flow-label" x="375" y="264">WSS</text>
+
+                            <path class="flow-call" d="M 345 300 C 390 310, 395 448, 445 448" marker-end="url(#arrowCall)"></path>
+                            <text class="flow-label" x="365" y="400">REST</text>
+
+                            <path class="flow-call" d="M 595 280 L 715 280" marker-start="url(#arrowCall)" marker-end="url(#arrowCall)"></path>
+                            <text class="flow-label" x="630" y="264">gRPC unary</text>
+
+                            <path class="flow-event" d="M 875 260 C 920 245, 930 112, 960 112" marker-end="url(#arrowEvent)"></path>
+                            <text class="flow-label event-label" x="897" y="180">roomId key</text>
+
+                            <path class="flow-event" d="M 1030 150 L 1030 240" marker-end="url(#arrowEvent)"></path>
+                            <text class="flow-label event-label" x="1042" y="200">consume</text>
+
+                            <path class="flow-db" d="M 1105 280 L 1192 280" marker-end="url(#arrowDb)"></path>
+                            <text class="flow-label" x="1120" y="264">DB write</text>
+
+                            <path class="flow-db" d="M 595 112 L 1180 112 C 1240 112, 1240 228, 1260 240" marker-start="url(#arrowDb)" marker-end="url(#arrowDb)"></path>
+                            <text class="flow-label" x="785" y="96">HTTP CRUD · attachment · snapshot query</text>
+
+                            <path class="flow-db" d="M 875 300 C 985 360, 1115 360, 1192 300" marker-start="url(#arrowDb)" marker-end="url(#arrowDb)"></path>
+                            <text class="flow-label" x="940" y="370">sync CRUD · validation · read flush</text>
+
+                            <path class="flow-db" d="M 595 448 L 1165 448 C 1225 448, 1235 335, 1260 320" marker-start="url(#arrowDb)" marker-end="url(#arrowDb)"></path>
+                            <text class="flow-label" x="790" y="432">recent message read only</text>
+
+                            <path class="flow-shared" d="M 505 150 C 505 330, 610 485, 725 505"></path>
+                            <path class="flow-shared" d="M 505 320 C 540 420, 630 485, 725 505"></path>
+                            <path class="flow-shared" d="M 795 320 L 795 485"></path>
+                            <path class="flow-shared" d="M 595 448 C 650 448, 680 485, 725 505"></path>
+                            <text class="flow-label" x="610" y="492">shared state</text>
+
+                            <path class="flow-external" d="M 595 470 C 710 520, 875 520, 955 505" marker-end="url(#arrowDb)"></path>
+                            <text class="flow-label" x="730" y="540">Gemini HTTPS API</text>
+                        </svg>
+
+                        <article class="architecture-node infrastructure-node node-client">
+                            <span class="node-type">Frontend</span>
+                            <strong>React Client</strong>
+                            <small>HTTP · WebSocket</small>
+                        </article>
+
+                        <article class="architecture-node infrastructure-node node-nginx">
+                            <span class="node-type">Docker</span>
+                            <strong>Nginx Reverse Proxy</strong>
+                            <small>route · TLS termination</small>
+                        </article>
+
+                        <article class="architecture-node primary-node node-domain">
+                            <span class="node-type">Process 01</span>
+                            <strong>Domain Service</strong>
+                            <small>REST · upload · snapshot query</small>
+                        </article>
+
+                        <article class="architecture-node primary-node node-gateway">
+                            <span class="node-type">Process 02</span>
+                            <strong>WebSocket Gateway</strong>
+                            <small>session · routing · broadcast</small>
+                        </article>
+
+                        <article class="architecture-node primary-node node-ai">
+                            <span class="node-type">Process 05</span>
+                            <strong>AI Assistant Service</strong>
+                            <small>context query · reply suggestion</small>
+                        </article>
+
+                        <article class="architecture-node primary-node node-engine">
+                            <span class="node-type">Process 03</span>
+                            <strong>Channel Engine</strong>
+                            <small>validation · orchestration · publish</small>
+                        </article>
+
+                        <article class="architecture-node event-node node-kafka">
+                            <span class="node-type">Event Log</span>
+                            <strong>Kafka</strong>
+                            <small>durable ACK · retry · DLT</small>
+                        </article>
+
+                        <article class="architecture-node primary-node node-worker">
+                            <span class="node-type">Process 04</span>
+                            <strong>Event Persist Worker</strong>
+                            <small>idempotent message DB write</small>
+                        </article>
+
+                        <article class="architecture-node infrastructure-node node-redis">
+                            <span class="node-type">Shared State</span>
+                            <strong>Redis</strong>
+                            <small>Spring Session · room member · LRM · dirty read position</small>
+                        </article>
+
+                        <article class="architecture-node infrastructure-node node-gemini">
+                            <span class="node-type">External API</span>
+                            <strong>Gemini</strong>
+                            <small>LLM message recommendation</small>
+                        </article>
+
+                        <article class="architecture-node infrastructure-node node-db">
+                            <span class="node-type">Primary DB</span>
+                            <strong>MariaDB</strong>
+                            <small>domain · room · message persistence</small>
+                        </article>
+
+                        <ol class="mobile-architecture" aria-label="모바일 아키텍처 흐름">
+                            <li class="mobile-flow-group">
+                                <strong>Entry</strong>
+                                <p>React Client ↔ Nginx Reverse Proxy</p>
+                            </li>
+                            <li class="mobile-flow-group">
+                                <strong>REST Domain Flow</strong>
+                                <p>Nginx → Domain Service ↔ MariaDB<br>Domain Service ↔ Redis Shared Session</p>
+                            </li>
+                            <li class="mobile-flow-group">
+                                <strong>Realtime Message Flow</strong>
+                                <p>Nginx ↔ WebSocket Gateway ↔ gRPC ↔ Channel Engine<br>Channel Engine → Kafka → Event Persist Worker → MariaDB</p>
+                            </li>
+                            <li class="mobile-flow-group">
+                                <strong>Realtime State</strong>
+                                <p>Channel Engine ↔ Redis<br>Channel Engine ↔ MariaDB</p>
+                            </li>
+                            <li class="mobile-flow-group">
+                                <strong>AI Assist Flow</strong>
+                                <p>Nginx → AI Assistant Service ↔ MariaDB Read Only<br>AI Assistant Service → Gemini API</p>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="architecture-footnotes">
+                        <div class="architecture-note">
+                            <strong>Kafka event pipeline.</strong>
+                            SEND·DELETE·REACT는 상태 변화 보존과 방 단위 순서가 중요해 durable ACK 이후 응답하고 DB 쓰기는 별도 프로세스로 격리합니다.
+                        </div>
+                        <div class="architecture-note">
+                            <strong>Redis scheduled write-behind.</strong>
+                            READ는 중간 이벤트보다 최신 LRM이 중요해 원자적으로 최댓값만 병합하고 dirty 위치를 주기적으로 DB에 반영합니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const landingView = document.getElementById("landingView");
+        const architectureView = document.getElementById("architectureView");
+        const architectureTitle = document.getElementById("architectureTitle");
+
+        function syncViewWithHash() {
+            const architectureOpen = window.location.hash === "#architecture";
+
+            landingView.hidden = architectureOpen;
+            architectureView.hidden = !architectureOpen;
+            document.title = architectureOpen
+                ? "CastleChat Architecture"
+                : "CastleChat Portfolio";
+
+            if (architectureOpen) {
+                window.scrollTo(0, 0);
+                requestAnimationFrame(() => architectureTitle.focus({ preventScroll: true }));
+            }
+        }
+
+        window.addEventListener("hashchange", syncViewWithHash);
+        window.addEventListener("keydown", event => {
+            if (event.key === "Escape" && window.location.hash === "#architecture") {
+                window.location.hash = "";
+            }
+        });
+
+        syncViewWithHash();
+    </script>
 </body>
 
 </html>
