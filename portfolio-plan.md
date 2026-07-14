@@ -1,6 +1,15 @@
 # CastleChat Portfolio Plan
 
-## Goal
+## 2026-07-14 Goal
+
+- Reframe the site as a multi-project portfolio rather than a CastleChat-only landing page.
+- Keep the fixed header and CastleChat project box in the original dark-green theme.
+- Keep every area outside the header and project box pure white.
+- Change only the requested project-box placement and dimensions.
+- Preserve the existing CastleChat headline scale and the architecture and stack dialogs.
+- Add the requested right-side project menu without inventing unfinished project content.
+
+## Existing Architecture Scope
 
 - Keep a concise project landing screen.
 - Open a dedicated architecture view from the architecture button.
