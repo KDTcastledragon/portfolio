@@ -44,7 +44,7 @@
                         </div>
                         <p class="hero-topline">[ 개인 프로젝트 ]</p>
                         <h1 id="portfolioTitle">대규모 메시지 처리 지향<br><span class="hero-accent">웹 채팅 CastleChat</span></h1>
-                        <p class="hero-description">5개 프로세스 MSA로 연결 유지·검증·영속화의 책임을 분리. Kafka durable save 기반 비동기 DB
+                        <p class="hero-description">5개의 Multi Process 기반으로 연결 유지·검증·영속화의 책임을 분리. Kafka 기반 비동기 DB
                             Write, Redis 읽음 선반영 + Dirty Flush 배치로 응답 경로에서 DB 대기를 제거한 실시간 채팅.</p>
                         <div class="hero-actions">
                             <a class="button button-primary" href="https://www.naver.com" target="_blank"
@@ -265,7 +265,7 @@
                             <button class="architecture-view-button is-active" type="button"
                                 data-architecture-view="onpremise" role="tab" aria-selected="true">On-Premise</button>
                             <button class="architecture-view-button" type="button" data-architecture-view="cloud"
-                                role="tab" aria-selected="false">Cloud</button>
+                                role="tab" aria-selected="false">AWS Cloud</button>
                         </div>
                     </div>
 
@@ -310,8 +310,7 @@
                             <path class="flow-event" d="M 907 260 C 932 242, 937 111, 955 111"
                                 marker-end="url(#arrowEvent)"></path>
 
-                            <path class="flow-event" d="M 1050 158 L 1050 233"
-                                marker-end="url(#arrowEvent)"></path>
+                            <path class="flow-event" d="M 1050 158 L 1050 233" marker-end="url(#arrowEvent)"></path>
 
                             <path class="flow-db" d="M 1145 280 L 1193 280" marker-end="url(#arrowDb)"></path>
 
@@ -328,8 +327,8 @@
                                 marker-start="url(#arrowShared)" marker-end="url(#arrowShared)"></path>
                             <path class="flow-shared" d="M 546 327 C 600 420, 680 480, 717 507"
                                 marker-start="url(#arrowShared)" marker-end="url(#arrowShared)"></path>
-                            <path class="flow-shared" d="M 812 327 L 812 460"
-                                marker-start="url(#arrowShared)" marker-end="url(#arrowShared)"></path>
+                            <path class="flow-shared" d="M 812 327 L 812 460" marker-start="url(#arrowShared)"
+                                marker-end="url(#arrowShared)"></path>
                             <path class="flow-shared" d="M 641 449 C 680 470, 690 490, 717 507"
                                 marker-start="url(#arrowShared)" marker-end="url(#arrowShared)"></path>
 
@@ -430,21 +429,19 @@
 
                     <div class="architecture-panel cloud-architecture" data-architecture-panel="cloud" hidden role="img"
                         aria-label="개발자가 AWS EKS의 CastleChat에 접속하고 ECR 이미지를 배포하며 MariaDB와 S3를 사용하고 Gemini API를 호출하는 구조">
-                        <strong class="cloud-title">AWS Cloud</strong>
-
-                        <svg class="cloud-lines" viewBox="0 0 1400 600" preserveAspectRatio="none"
-                            aria-hidden="true">
+                        <svg class="cloud-lines" viewBox="0 0 1400 600" preserveAspectRatio="none" aria-hidden="true">
                             <defs>
                                 <marker id="cloudArrow" markerWidth="10" markerHeight="10" refX="8" refY="5"
                                     orient="auto">
                                     <path d="M0,0 L10,5 L0,10 Z"></path>
                                 </marker>
                             </defs>
-                            <path d="M150 500 H350" marker-end="url(#cloudArrow)"></path>
-                            <path d="M150 205 H260 V320 H610 V365" marker-end="url(#cloudArrow)"></path>
-                            <path d="M1170 190 V310 H830 V365" marker-end="url(#cloudArrow)"></path>
-                            <text x="390" y="309">LLM</text>
-                            <text x="930" y="299">Image Pull</text>
+                            <path d="M135 500 H193" marker-end="url(#cloudArrow)"></path>
+                            <path d="M300 500 H352" marker-end="url(#cloudArrow)"></path>
+                            <path d="M471 155 V335" marker-end="url(#cloudArrow)"></path>
+                            <path d="M1078 115 H960 V335" marker-end="url(#cloudArrow)"></path>
+                            <text x="486" y="300">LLM</text>
+                            <text x="972" y="300">Image Pull</text>
                         </svg>
 
                         <article class="cloud-node cloud-gemini-node">
@@ -455,39 +452,41 @@
                         <article class="cloud-node cloud-ecr-node">
                             <span class="node-type">Elastic Container Registry (ECR)</span>
                             <div class="cloud-ecr-heading">
-                                <strong>CastleChat</strong>
-                                <span>Container Images</span>
+                                <strong>CastleChat Container Images</strong>
                             </div>
-                            <div class="cloud-image-grid" aria-hidden="true">
-                                <i></i><i></i><i></i><i></i>
-                                <i></i><i></i><i></i><i></i>
+                            <div class="cloud-image-grid">
+                                <span>Front-End</span><span>gateway</span><span>engine</span><span>domain</span>
+                                <span>worker</span><span>ai-assist</span><span>kafka</span><span>redis</span>
                             </div>
                         </article>
 
                         <article class="cloud-node cloud-developer-node">
-                            <span class="node-type">User</span>
                             <strong>Developer</strong>
                         </article>
 
-                        <section class="cloud-vpc" aria-label="DEV VPC">
-                            <span class="cloud-vpc-title">DEV VPC</span>
+                        <article class="cloud-node cloud-bastion-node">
+                            <span class="node-type">Access</span>
+                            <strong>Bastion</strong>
+                        </article>
 
+                        <section class="cloud-vpc">
                             <section class="cloud-eks" aria-label="Elastic Kubernetes Service">
                                 <div class="cloud-eks-heading">
-                                    <span>AWS</span>
                                     <strong>Elastic Kubernetes Service (EKS)</strong>
                                 </div>
                                 <div class="cloud-eks-grid">
                                     <article class="cloud-compute-node">
                                         <strong>Master Node</strong>
-                                        <div class="cloud-pod-grid" aria-hidden="true">
-                                            <i></i><i></i><i></i><i></i>
+                                        <div class="cloud-pod-grid">
+                                            <span>Front-End</span><span>gateway</span>
+                                            <span>engine</span><span>domain</span>
                                         </div>
                                     </article>
                                     <article class="cloud-compute-node">
                                         <strong>Worker Node</strong>
-                                        <div class="cloud-pod-grid" aria-hidden="true">
-                                            <i></i><i></i><i></i><i></i>
+                                        <div class="cloud-pod-grid">
+                                            <span>worker</span><span>ai-assist</span>
+                                            <span>kafka</span><span>redis</span>
                                         </div>
                                     </article>
                                 </div>

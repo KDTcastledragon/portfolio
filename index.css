@@ -262,22 +262,22 @@
         /* 말풍선 2개는 제목 윗줄을 침범하지 않는 우상단 영역 안에만 배치한다. */
         .hero-message-visual {
             position: absolute;
-            top: 26px;
-            right: 42px;
-            width: 190px;
-            height: 120px;
+            top: 12px;
+            right: 36px;
+            width: 150px;
+            height: 116px;
             pointer-events: none;
         }
 
         .hero-chat-bubble {
             position: absolute;
             display: grid;
-            gap: 8px;
-            width: 126px;
-            height: 54px;
-            padding: 15px 18px;
+            gap: 7px;
+            width: 108px;
+            height: 48px;
+            padding: 13px 15px;
             border: 1px solid var(--line);
-            border-radius: 18px;
+            border-radius: 16px;
             box-shadow: 0 12px 26px rgb(37 91 63 / 0.12);
         }
 
@@ -303,7 +303,7 @@
 
         .hero-chat-bubble.is-received {
             top: 0;
-            right: 0;
+            right: -16px;
             background: var(--accent-soft);
         }
 
@@ -318,7 +318,7 @@
         }
 
         .hero-chat-bubble.is-sent {
-            top: 52px;
+            top: 58px;
             left: 0;
             border-color: var(--accent);
             background: var(--accent);
@@ -888,8 +888,8 @@
 
         .architecture-canvas {
             position: relative;
-            height: clamp(420px, calc(100dvh - 250px), 560px);
-            min-height: 420px;
+            height: clamp(480px, calc(100dvh - 155px), 655px);
+            min-height: 480px;
             isolation: isolate;
             background: #edf8f0;
         }
@@ -1065,7 +1065,7 @@
 
         .cloud-architecture {
             position: relative;
-            height: clamp(420px, calc(100dvh - 250px), 560px);
+            height: clamp(480px, calc(100dvh - 155px), 655px);
             padding: 18px;
             overflow: hidden;
             background:
@@ -1073,16 +1073,6 @@
                 linear-gradient(90deg, rgb(18 132 109 / 0.07) 1px, transparent 1px),
                 #edf8f0;
             background-size: 28px 28px;
-        }
-
-        .cloud-title {
-            position: absolute;
-            top: 14px;
-            left: 50%;
-            z-index: 2;
-            color: var(--text);
-            font-size: 16px;
-            transform: translateX(-50%);
         }
 
         .cloud-lines {
@@ -1129,7 +1119,7 @@
 
         .cloud-node strong {
             margin-top: 5px;
-            font-size: 13px;
+            font-size: 15px;
             line-height: 1.25;
         }
 
@@ -1140,17 +1130,22 @@
             line-height: 1.35;
         }
 
+        .cloud-node .node-type {
+            font-size: 13px;
+        }
+
         .cloud-gemini-node {
-            top: 24%;
-            left: 3%;
-            width: 130px;
+            top: 9%;
+            left: 29%;
+            width: 165px;
+            min-height: 88px;
         }
 
         .cloud-ecr-node {
-            top: 12%;
+            top: 5%;
             right: 3%;
-            width: 300px;
-            min-height: 150px;
+            width: 380px;
+            min-height: 185px;
         }
 
         .cloud-ecr-heading {
@@ -1162,17 +1157,8 @@
 
         .cloud-ecr-heading strong {
             margin: 0;
-            padding: 5px 11px;
-            border-radius: 999px;
-            color: #2e2407;
-            background: #f4ad21;
-            font-size: 12px;
-        }
-
-        .cloud-ecr-heading span {
             color: var(--text);
-            font-size: 11px;
-            font-weight: 800;
+            font-size: 14px;
         }
 
         .cloud-image-grid {
@@ -1185,18 +1171,28 @@
             background: #173528;
         }
 
-        .cloud-image-grid i {
-            display: block;
-            height: 17px;
+        .cloud-image-grid span {
+            display: grid;
+            height: 30px;
+            place-items: center;
             border: 1px solid #426455;
             background: #f7fbf8;
-            box-shadow: inset 0 -4px #d6e8dc;
+            color: var(--text);
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 12.5px;
+            font-weight: 700;
         }
 
         .cloud-developer-node {
             bottom: 8%;
             left: 3%;
-            width: 130px;
+            width: 105px;
+        }
+
+        .cloud-bastion-node {
+            bottom: 8%;
+            left: 14%;
+            width: 110px;
         }
 
         .cloud-vpc {
@@ -1204,31 +1200,16 @@
             position: absolute;
             right: 3%;
             bottom: 4%;
-            left: 25%;
+            left: 26%;
             z-index: 1;
-            grid-template-columns: minmax(0, 2.2fr) 32px minmax(210px, 0.8fr);
+            grid-template-columns: minmax(0, 2.6fr) 36px minmax(215px, 0.75fr);
             gap: 12px;
-            padding: 34px 14px 14px;
             align-items: stretch;
-            border: 1px dashed #6fa889;
-            border-radius: 14px;
-            background: rgb(255 255 255 / 0.54);
-        }
-
-        .cloud-vpc-title {
-            position: absolute;
-            top: 10px;
-            left: 14px;
-            color: var(--accent);
-            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-            font-size: 11px;
-            font-weight: 900;
-            letter-spacing: 0.08em;
         }
 
         .cloud-eks,
         .cloud-database {
-            padding: 12px;
+            padding: 16px;
             border: 1px solid #426455;
             border-radius: 10px;
             background: #f7fbf8;
@@ -1241,17 +1222,10 @@
             align-items: center;
         }
 
-        .cloud-eks-heading span {
-            color: var(--accent);
-            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-            font-size: 10px;
-            font-weight: 900;
-        }
-
         .cloud-eks-heading strong,
         .cloud-database > strong {
             color: var(--text);
-            font-size: 12px;
+            font-size: 14.5px;
         }
 
         .cloud-eks-grid {
@@ -1271,7 +1245,7 @@
         .cloud-compute-node strong {
             margin-top: 4px;
             color: var(--text);
-            font-size: 11px;
+            font-size: 13px;
         }
 
         .cloud-pod-grid {
@@ -1281,50 +1255,62 @@
             margin-top: 10px;
         }
 
-        .cloud-pod-grid i {
-            display: block;
-            height: 20px;
+        .cloud-pod-grid span {
+            display: grid;
+            height: 34px;
+            place-items: center;
             border: 1px solid #426455;
             background: #e5f1e9;
-            box-shadow: inset -5px -5px #c9ded1;
+            color: var(--text);
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 13.5px;
+            font-weight: 700;
         }
 
         .cloud-data-connector {
             align-self: center;
             color: var(--accent);
-            font-size: 24px;
+            font-size: 34px;
             font-weight: 900;
             text-align: center;
         }
 
         .cloud-database {
             display: grid;
-            align-content: center;
+            align-content: start;
         }
 
         .cloud-database-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
-            margin-top: 12px;
+            margin-top: 14px;
         }
 
         .cloud-database-grid article {
+            position: relative;
             display: grid;
-            gap: 7px;
             justify-items: center;
-            color: var(--text);
-            font-size: 10px;
         }
 
+        /* 상단 인셋 하이라이트를 빼서 테두리 굵기와 채움색이 전체적으로 균일하게 보이도록 한다. */
         .cloud-database-grid article > span {
             display: block;
-            width: 48px;
-            height: 42px;
-            border: 1px solid #426455;
+            width: 86px;
+            height: 72px;
+            border: 2px solid #173528;
             border-radius: 50% / 16%;
             background: #e5f1e9;
-            box-shadow: inset 0 7px #f7fbf8;
+        }
+
+        /* 라벨은 원기둥 몸통 안에 겹쳐 표시 */
+        .cloud-database-grid article > strong {
+            position: absolute;
+            top: 56%;
+            left: 50%;
+            color: var(--text);
+            font-size: 12px;
+            transform: translate(-50%, -50%);
         }
 
         @media (min-width: 821px) {
@@ -1478,10 +1464,6 @@
                 position: relative;
                 grid-column: 1 / -1;
                 grid-template-columns: minmax(0, 2fr) 32px minmax(210px, 0.8fr);
-            }
-
-            .cloud-vpc-title {
-                top: 10px;
             }
         }
 
