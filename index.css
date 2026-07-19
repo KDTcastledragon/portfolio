@@ -843,6 +843,14 @@
             font-size: 11px;
         }
 
+        #architectureDialog .modal-inner {
+            padding-top: 6px;
+        }
+
+        #architectureDialog .modal-header {
+            margin-bottom: 0;
+        }
+
         .architecture-shell {
             overflow: hidden;
             border: 1px solid var(--line);
@@ -888,7 +896,7 @@
 
         .architecture-canvas {
             position: relative;
-            height: clamp(480px, calc(100dvh - 155px), 655px);
+            height: clamp(480px, calc(100dvh - 130px), 680px);
             min-height: 480px;
             isolation: isolate;
             background: #edf8f0;
@@ -1006,6 +1014,7 @@
         .node-nginx {
             left: 23%;
             top: 43%;
+            width: 138px;
         }
 
         .node-nginx strong {
@@ -1014,7 +1023,7 @@
 
         .node-domain {
             left: 39%;
-            top: 17%;
+            top: 11.5%;
         }
 
         .node-gateway {
@@ -1024,33 +1033,34 @@
 
         .node-ai {
             left: 39%;
-            top: 69%;
+            top: 79%;
         }
 
         .node-engine {
-            left: 58%;
-            top: 43%;
+            left: 57.5%;
+            top: 26%;
+            width: 230px;
         }
 
         .node-kafka {
             left: 75%;
-            top: 17%;
+            top: 12.5%;
         }
 
         .node-worker {
-            left: 75%;
-            top: 43%;
+            left: 92%;
+            top: 13%;
         }
 
         .node-redis {
-            left: 58%;
-            top: 78%;
+            left: 56%;
+            top: 63.5%;
             width: clamp(220px, 19vw, 300px);
         }
 
         .node-gemini {
-            left: 75%;
-            top: 78%;
+            left: 64.5%;
+            top: 91.5%;
         }
 
         .node-db {
@@ -1065,7 +1075,7 @@
 
         .cloud-architecture {
             position: relative;
-            height: clamp(480px, calc(100dvh - 155px), 655px);
+            height: clamp(480px, calc(100dvh - 130px), 680px);
             padding: 18px;
             overflow: hidden;
             background:
