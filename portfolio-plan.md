@@ -32,3 +32,22 @@
 - Validate HTML structure.
 - Check keyboard interaction and reduced-motion behavior.
 - Inspect Git diff before completion.
+
+## 2026-07-18 Architecture Revision
+
+- Add On-Premise and Cloud architecture views inside the existing architecture dialog.
+- Show native Nginx on Windows for On-Premise and containerized Nginx on AWS Kubernetes for Cloud.
+- Reorganize the technology stack around application, communication, asynchronous processing, data, and deployment.
+- Promote the existing skill summary to a concise Core Engineering section.
+- Keep downloadable desktop builds outside the portfolio repository and link GitHub Release assets.
+
+## 2026-07-19 Architecture Visual Cleanup
+
+- Simplify the On-Premise board by removing legends, connector labels, and explanatory footnotes.
+- Use the CastleChat light-green palette for both architecture views.
+- Redraw connector directions and rebalance node spacing without changing the represented services.
+
+## 2026-07-19 Cloud Architecture Simplification
+
+- Rebuild only the Cloud panel around AWS Cloud, ECR, DEV VPC, EKS, Gemini, MariaDB, and S3.
+- Remove the crossed-out intermediary components and their layout space.

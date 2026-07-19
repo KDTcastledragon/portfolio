@@ -29,3 +29,35 @@
 - [x] Add subtle radius and motion to the project box without changing the layout structure.
 - [x] Move the project number, description, and menu group upward by 7px.
 - [x] Verify CSS syntax and layout overflow after the change.
+
+## 2026-07-18 CastleChat architecture
+
+- [x] Add On-Premise and Cloud architecture tabs.
+- [x] Correct the Nginx runtime labels for each environment.
+- [x] Add the AWS Kubernetes deployment view.
+- [x] Reorganize the technology stack.
+- [x] Replace the placeholder menu with Core Engineering content.
+- [x] Verify the architecture tab interaction.
+
+## 2026-07-19 Architecture visual cleanup
+
+- [x] Simplify NginX, Client, Redis, and MariaDB labels.
+- [x] Remove connector captions, toolbar metadata, legend, and footnotes.
+- [x] Redraw directional connectors.
+- [x] Lighten the On-Premise and Cloud architecture backgrounds.
+- [x] Increase node size and rebalance outer spacing.
+- [x] Center the environment switch.
+
+## 2026-07-19 Stack and hero polish
+
+- [x] Remove the stack modal heading and version summary.
+- [x] Rename the first two stack groups.
+- [x] Shorten stack notes and prevent clipping.
+- [x] Number Core Engineering and Troubleshooting items.
+- [x] Add a lightweight chat illustration to the CastleChat hero.
+
+## 2026-07-19 Cloud architecture simplification
+
+- [x] Replace the Cloud panel with the requested AWS layout.
+- [x] Keep only ECR, CastleChat, EKS, Gemini, MariaDB, and S3.
+- [x] Remove obsolete Cloud layout styles.
