@@ -37,6 +37,14 @@
 - 기존 Load Balancer, Nginx Pod, 개별 서비스, Kafka, Redis, 모니터링 카드는 Cloud 패널에서 제거했다.
 - 기존 모달 JavaScript 구문 검사는 `node --check`로 통과했다.
 
+## 2026-07-19 Cloud 아키텍처 배치 조정
+
+- On-Premise는 수정하지 않고 Cloud 전용 마크업과 스타일만 조정한다.
+- 첨부 화면의 표시 영역에 맞춰 BedRock, ECR, EKS, Database 크기와 연결선을 함께 이동한다.
+- External AI 카드를 BedRock으로 변경하고 ECR 상단 박스와 하단 EKS·Database를 확대했다.
+- MariaDB 원기둥 위에 RDS 서비스명을 추가하고 S3는 별도 저장소로 유지했다.
+- 변경된 박스 중심에 맞춰 LLM과 Image Pull 화살표 좌표도 함께 이동했다.
+
 ## 2026-07-13 랜딩 리디자인 (claude)
 
 - 제목 재배치 : "멀티 프로세스 기반의"는 작은 도입 라인, h1은 "대규모 메시지 처리 지향 / 웹 채팅, CastleChat" 2줄 계층으로. 글자 수에 맞춰 폰트 축소(줄바꿈 깨짐 방지).

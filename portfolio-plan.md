@@ -51,3 +51,9 @@
 
 - Rebuild only the Cloud panel around AWS Cloud, ECR, DEV VPC, EKS, Gemini, MariaDB, and S3.
 - Remove the crossed-out intermediary components and their layout space.
+
+## 2026-07-19 Cloud Architecture Layout
+
+- Resize and reposition only the Cloud architecture nodes and connectors.
+- Replace the external AI label with BedRock and label MariaDB as an RDS database.
+- Preserve the completed On-Premise panel without changes.

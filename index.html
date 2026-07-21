@@ -316,8 +316,8 @@
                             <path class="flow-db" d="M 1288 138 V 221" marker-start="url(#arrowDb)"
                                 marker-end="url(#arrowDb)"></path>
 
-                            <path class="flow-db" d="M 640 40 H 937 V 290 H 1194"
-                                marker-start="url(#arrowDb)" marker-end="url(#arrowDb)"></path>
+                            <path class="flow-db" d="M 640 40 H 937 V 290 H 1194" marker-start="url(#arrowDb)"
+                                marker-end="url(#arrowDb)"></path>
 
                             <path class="flow-db" d="M 919 180 C 1010 190, 1120 225, 1194 258"
                                 marker-start="url(#arrowDb)" marker-end="url(#arrowDb)"></path>
@@ -325,20 +325,20 @@
                             <path class="flow-db" d="M 932 413 C 1080 425, 1240 420, 1260 338"
                                 marker-start="url(#arrowDb)" marker-end="url(#arrowDb)"></path>
 
-                            <path class="flow-db" d="M 640 505 H 1330 V 338"
-                                marker-start="url(#arrowDb)" marker-end="url(#arrowDb)"></path>
+                            <path class="flow-db" d="M 640 505 H 1330 V 338" marker-start="url(#arrowDb)"
+                                marker-end="url(#arrowDb)"></path>
 
-                            <path class="flow-shared" d="M 640 100 H 664 V 359"
-                                marker-start="url(#arrowShared)" marker-end="url(#arrowShared)"></path>
-                            <path class="flow-shared" d="M 546 333 V 390 H 636"
-                                marker-start="url(#arrowShared)" marker-end="url(#arrowShared)"></path>
+                            <path class="flow-shared" d="M 640 100 H 664 V 359" marker-start="url(#arrowShared)"
+                                marker-end="url(#arrowShared)"></path>
+                            <path class="flow-shared" d="M 546 333 V 390 H 636" marker-start="url(#arrowShared)"
+                                marker-end="url(#arrowShared)"></path>
                             <path class="flow-shared" d="M 805 229 V 359" marker-start="url(#arrowShared)"
                                 marker-end="url(#arrowShared)"></path>
-                            <path class="flow-shared" d="M 640 520 H 700 V 467"
-                                marker-start="url(#arrowShared)" marker-end="url(#arrowShared)"></path>
+                            <path class="flow-shared" d="M 640 520 H 700 V 467" marker-start="url(#arrowShared)"
+                                marker-end="url(#arrowShared)"></path>
 
-                            <path class="flow-external" d="M 546 568 V 600 H 809"
-                                marker-start="url(#arrowDb)" marker-end="url(#arrowDb)"></path>
+                            <path class="flow-external" d="M 546 568 V 600 H 809" marker-start="url(#arrowDb)"
+                                marker-end="url(#arrowDb)"></path>
                         </svg>
 
                         <article class="architecture-node infrastructure-node node-client">
@@ -433,7 +433,7 @@
                     </div>
 
                     <div class="architecture-panel cloud-architecture" data-architecture-panel="cloud" hidden role="img"
-                        aria-label="개발자가 AWS EKS의 CastleChat에 접속하고 ECR 이미지를 배포하며 MariaDB와 S3를 사용하고 Gemini API를 호출하는 구조">
+                        aria-label="개발자가 AWS EKS의 CastleChat에 접속하고 ECR 이미지를 배포하며 RDS MariaDB와 S3를 사용하고 BedRock을 호출하는 구조">
                         <svg class="cloud-lines" viewBox="0 0 1400 600" preserveAspectRatio="none" aria-hidden="true">
                             <defs>
                                 <marker id="cloudArrow" markerWidth="10" markerHeight="10" refX="8" refY="5"
@@ -443,15 +443,15 @@
                             </defs>
                             <path d="M135 500 H193" marker-end="url(#cloudArrow)"></path>
                             <path d="M300 500 H352" marker-end="url(#cloudArrow)"></path>
-                            <path d="M471 155 V335" marker-end="url(#cloudArrow)"></path>
-                            <path d="M1078 115 H960 V335" marker-end="url(#cloudArrow)"></path>
-                            <text x="486" y="300">LLM</text>
-                            <text x="972" y="300">Image Pull</text>
+                            <path d="M535 210 V322" marker-end="url(#cloudArrow)"></path>
+                            <path d="M1080 248 V322" marker-end="url(#cloudArrow)"></path>
+                            <text x="550" y="292">LLM</text>
+                            <text x="1095" y="292">Image Pull</text>
                         </svg>
 
-                        <article class="cloud-node cloud-gemini-node">
+                        <article class="cloud-node cloud-bedrock-node">
                             <span class="node-type">External AI</span>
-                            <strong>Gemini</strong>
+                            <strong>BedRock</strong>
                         </article>
 
                         <article class="cloud-node cloud-ecr-node">
@@ -502,7 +502,11 @@
                             <section class="cloud-database" aria-label="Database">
                                 <strong>Database</strong>
                                 <div class="cloud-database-grid">
-                                    <article><span aria-hidden="true"></span><strong>MariaDB</strong></article>
+                                    <article class="cloud-rds-database">
+                                        <small>RDS</small>
+                                        <span aria-hidden="true"></span>
+                                        <strong>MariaDB</strong>
+                                    </article>
                                     <article><span aria-hidden="true"></span><strong>S3</strong></article>
                                 </div>
                             </section>

@@ -61,3 +61,10 @@
 - [x] Replace the Cloud panel with the requested AWS layout.
 - [x] Keep only ECR, CastleChat, EKS, Gemini, MariaDB, and S3.
 - [x] Remove obsolete Cloud layout styles.
+
+## 2026-07-19 Cloud architecture layout
+
+- [x] Enlarge and reposition the Cloud-only nodes.
+- [x] Rename External AI to BedRock.
+- [x] Display RDS above MariaDB.
+- [x] Move Cloud connector paths with their nodes.

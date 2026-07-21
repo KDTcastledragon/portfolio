@@ -1075,7 +1075,7 @@
 
         .cloud-architecture {
             position: relative;
-            height: clamp(480px, calc(100dvh - 130px), 680px);
+            height: clamp(560px, calc(100dvh - 130px), 710px);
             padding: 18px;
             overflow: hidden;
             background:
@@ -1144,18 +1144,18 @@
             font-size: 13px;
         }
 
-        .cloud-gemini-node {
-            top: 9%;
+        .cloud-bedrock-node {
+            top: 8%;
             left: 29%;
-            width: 165px;
-            min-height: 88px;
+            width: 325px;
+            min-height: 175px;
         }
 
         .cloud-ecr-node {
             top: 5%;
             right: 3%;
-            width: 380px;
-            min-height: 185px;
+            width: min(44%, 720px);
+            min-height: 220px;
         }
 
         .cloud-ecr-heading {
@@ -1183,7 +1183,7 @@
 
         .cloud-image-grid span {
             display: grid;
-            height: 30px;
+            height: 38px;
             place-items: center;
             border: 1px solid #426455;
             background: #f7fbf8;
@@ -1196,30 +1196,33 @@
         .cloud-developer-node {
             bottom: 8%;
             left: 3%;
-            width: 105px;
+            width: 140px;
+            min-height: 94px;
         }
 
         .cloud-bastion-node {
             bottom: 8%;
-            left: 14%;
-            width: 110px;
+            left: 14.5%;
+            width: 140px;
+            min-height: 94px;
         }
 
         .cloud-vpc {
             display: grid;
             position: absolute;
             right: 3%;
-            bottom: 4%;
+            bottom: 2%;
             left: 26%;
             z-index: 1;
-            grid-template-columns: minmax(0, 2.6fr) 36px minmax(215px, 0.75fr);
+            grid-template-columns: minmax(0, 2.8fr) 44px minmax(260px, 0.8fr);
             gap: 12px;
             align-items: stretch;
         }
 
         .cloud-eks,
         .cloud-database {
-            padding: 16px;
+            min-height: 310px;
+            padding: 20px;
             border: 1px solid #426455;
             border-radius: 10px;
             background: #f7fbf8;
@@ -1235,7 +1238,7 @@
         .cloud-eks-heading strong,
         .cloud-database > strong {
             color: var(--text);
-            font-size: 14.5px;
+            font-size: 16px;
         }
 
         .cloud-eks-grid {
@@ -1246,7 +1249,8 @@
 
         .cloud-compute-node {
             min-width: 0;
-            padding: 10px;
+            min-height: 220px;
+            padding: 14px;
             border: 1px solid var(--line);
             border-radius: 8px;
             background: var(--surface-strong);
@@ -1267,7 +1271,7 @@
 
         .cloud-pod-grid span {
             display: grid;
-            height: 34px;
+            height: 44px;
             place-items: center;
             border: 1px solid #426455;
             background: #e5f1e9;
@@ -1293,30 +1297,37 @@
         .cloud-database-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-top: 14px;
+            gap: 14px;
+            margin-top: 18px;
         }
 
         .cloud-database-grid article {
             position: relative;
             display: grid;
+            padding-top: 24px;
             justify-items: center;
         }
 
-        /* 상단 인셋 하이라이트를 빼서 테두리 굵기와 채움색이 전체적으로 균일하게 보이도록 한다. */
+        .cloud-rds-database small {
+            position: absolute;
+            top: 0;
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 900;
+        }
+
         .cloud-database-grid article > span {
             display: block;
-            width: 86px;
-            height: 72px;
+            width: 100px;
+            height: 88px;
             border: 2px solid #173528;
             border-radius: 50% / 16%;
             background: #e5f1e9;
         }
 
-        /* 라벨은 원기둥 몸통 안에 겹쳐 표시 */
         .cloud-database-grid article > strong {
             position: absolute;
-            top: 56%;
+            top: 68px;
             left: 50%;
             color: var(--text);
             font-size: 12px;
