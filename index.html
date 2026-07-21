@@ -274,20 +274,20 @@
                         <svg class="architecture-lines" viewBox="0 0 1400 650" preserveAspectRatio="none"
                             aria-hidden="true">
                             <defs>
-                                <marker id="arrowCall" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7"
-                                    markerHeight="7" orient="auto-start-reverse">
+                                <marker id="arrowCall" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6"
+                                    markerHeight="6" orient="auto-start-reverse">
                                     <path d="M 0 0 L 10 5 L 0 10 z" fill="#386f5d"></path>
                                 </marker>
-                                <marker id="arrowEvent" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7"
-                                    markerHeight="7" orient="auto">
+                                <marker id="arrowEvent" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6"
+                                    markerHeight="6" orient="auto">
                                     <path d="M 0 0 L 10 5 L 0 10 z" fill="#12846d"></path>
                                 </marker>
-                                <marker id="arrowDb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7"
-                                    markerHeight="7" orient="auto-start-reverse">
+                                <marker id="arrowDb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6"
+                                    markerHeight="6" orient="auto-start-reverse">
                                     <path d="M 0 0 L 10 5 L 0 10 z" fill="#5b806f"></path>
                                 </marker>
-                                <marker id="arrowShared" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7"
-                                    markerHeight="7" orient="auto-start-reverse">
+                                <marker id="arrowShared" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6"
+                                    markerHeight="6" orient="auto-start-reverse">
                                     <path d="M 0 0 L 10 5 L 0 10 z" fill="#4f9279"></path>
                                 </marker>
                             </defs>
@@ -295,20 +295,22 @@
                             <path class="flow-call" d="M 199 280 L 254 280" marker-start="url(#arrowCall)"
                                 marker-end="url(#arrowCall)"></path>
 
-                            <path class="flow-call" d="M 322 227 V 75 H 452" marker-start="url(#arrowCall)"
+                            <path class="flow-call" d="M 322 218 V 75 H 452" marker-start="url(#arrowCall)"
                                 marker-end="url(#arrowCall)"></path>
 
                             <path class="flow-call" d="M 390 280 L 452 280" marker-start="url(#arrowCall)"
                                 marker-end="url(#arrowCall)"></path>
 
-                            <path class="flow-call" d="M 322 333 V 514 H 452" marker-start="url(#arrowCall)"
+                            <path class="flow-call" d="M 322 342 V 514 H 452" marker-start="url(#arrowCall)"
                                 marker-end="url(#arrowCall)"></path>
 
-                            <path class="flow-call" d="M 640 280 H 740 V 229" marker-start="url(#arrowCall)"
+                            <path class="flow-call" d="M 640 280 H 810 V 229" marker-start="url(#arrowCall)"
                                 marker-end="url(#arrowCall)"></path>
+                            <rect class="flow-label-box" x="675" y="253" width="115" height="50" rx="8"></rect>
+                            <text class="flow-label-text" x="732.5" y="273" text-anchor="middle">gRPC</text>
+                            <text class="flow-label-sub" x="732.5" y="289" text-anchor="middle">.proto contract</text>
 
-                            <path class="flow-event" d="M 919 125 L 956 125" marker-start="url(#arrowEvent)"
-                                marker-end="url(#arrowEvent)"></path>
+                            <path class="flow-event" d="M 805 128 V 88 H 956" marker-end="url(#arrowEvent)"></path>
 
                             <path class="flow-event" d="M 1144 83 L 1194 83" marker-start="url(#arrowEvent)"
                                 marker-end="url(#arrowEvent)"></path>
@@ -332,14 +334,20 @@
                                 marker-end="url(#arrowShared)"></path>
                             <path class="flow-shared" d="M 546 333 V 390 H 636" marker-start="url(#arrowShared)"
                                 marker-end="url(#arrowShared)"></path>
-                            <path class="flow-shared" d="M 805 229 V 359" marker-start="url(#arrowShared)"
+                            <path class="flow-shared" d="M 860 229 V 359" marker-start="url(#arrowShared)"
                                 marker-end="url(#arrowShared)"></path>
                             <path class="flow-shared" d="M 640 520 H 700 V 467" marker-start="url(#arrowShared)"
                                 marker-end="url(#arrowShared)"></path>
 
-                            <path class="flow-external" d="M 546 568 V 600 H 809" marker-start="url(#arrowDb)"
+                            <path class="flow-db" d="M 546 568 V 600 H 809" marker-start="url(#arrowDb)"
                                 marker-end="url(#arrowDb)"></path>
                         </svg>
+
+                        <aside class="architecture-legend">
+                            <p class="legend-note"><span class="legend-dash"></span>Redis 상태 공유 (점선)</p>
+                            <p class="legend-note"><span class="legend-dot"></span><span>Actuator 계측 지점 →
+                                    Prometheus 수집<br>→ Grafana 시각화</span></p>
+                        </aside>
 
                         <article class="architecture-node infrastructure-node node-client">
                             <span class="node-type">Frontend</span>
@@ -348,29 +356,34 @@
                         </article>
 
                         <article class="architecture-node infrastructure-node node-nginx">
+                            <span class="node-type">Web Server</span>
                             <strong>NginX</strong>
                             <small>Reverse Proxy<br>Load Balancing</small>
                         </article>
 
-                        <article class="architecture-node primary-node node-domain">
+                        <article class="architecture-node primary-node node-domain node-monitored"
+                            title="Actuator 계측 지점 → Prometheus 수집 → Grafana 시각화">
                             <span class="node-type">Process</span>
                             <strong>Domain Service</strong>
                             <small>회원가입/로그인 · Snapshot Query · File Upload</small>
                         </article>
 
-                        <article class="architecture-node primary-node node-gateway">
+                        <article class="architecture-node primary-node node-gateway node-monitored"
+                            title="Actuator 계측 지점 → Prometheus 수집 → Grafana 시각화">
                             <span class="node-type">Process</span>
                             <strong>WebSocket Gateway</strong>
                             <small>WsSession 관리 · 채팅방 입장/퇴장</small>
                         </article>
 
-                        <article class="architecture-node primary-node node-ai">
+                        <article class="architecture-node primary-node node-ai node-monitored"
+                            title="Actuator 계측 지점 → Prometheus 수집 → Grafana 시각화">
                             <span class="node-type">Process</span>
                             <strong>AI Assistant Service</strong>
                             <small>채팅방/상대에 맞는 메시지 추천받기</small>
                         </article>
 
-                        <article class="architecture-node primary-node node-engine">
+                        <article class="architecture-node primary-node node-engine node-monitored"
+                            title="Actuator 계측 지점 → Prometheus 수집 → Grafana 시각화">
                             <span class="node-type">Process</span>
                             <strong>Channel Engine</strong>
                             <small>실시간 채팅방 FEED/메시지/친구 관계 관리</small>
@@ -382,7 +395,8 @@
                             <small>durable ACK · retry · DLT</small>
                         </article>
 
-                        <article class="architecture-node primary-node node-worker">
+                        <article class="architecture-node primary-node node-worker node-monitored"
+                            title="Actuator 계측 지점 → Prometheus 수집 → Grafana 시각화">
                             <span class="node-type">Process</span>
                             <strong>Event Persist Worker</strong>
                             <small>idempotent message DB write</small>
@@ -396,7 +410,7 @@
 
                         <article class="architecture-node infrastructure-node node-gemini">
                             <span class="node-type">External API</span>
-                            <strong>Gemini</strong>
+                            <strong>Gemini API</strong>
                             <small>LLM message recommendation</small>
                         </article>
 
