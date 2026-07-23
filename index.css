@@ -108,6 +108,29 @@
             text-decoration: none;
         }
 
+        .header-github {
+            position: absolute;
+            right: max(20px, calc((100% - var(--content)) / 2));
+            display: inline-flex;
+            min-height: 32px;
+            align-items: center;
+            padding: 0 14px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            color: var(--text);
+            background: var(--surface);
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease;
+        }
+
+        .header-github:hover {
+            border-color: var(--accent);
+            color: var(--accent-strong);
+            background: var(--accent-soft);
+        }
+
         main {
             scroll-snap-type: y mandatory;
         }
@@ -460,9 +483,17 @@
             background: #e7f0ea;
         }
 
+        /* 큰 초록 배경 박스는 castleChat 전용. 2·3페이지는 흰 배경에 카드만 단독으로 세운다. */
         .two-project-stage {
             display: grid;
             align-items: center;
+            padding: 0;
+            border: none;
+            border-radius: 0;
+            background: none;
+            box-shadow: none;
+            animation: none;
+            overflow: visible;
         }
 
         .two-project-grid {
@@ -497,9 +528,410 @@
         .mini-project-card h2 {
             margin: 0 0 20px;
             color: var(--text);
-            font-size: clamp(34px, 3.5vw, 52px);
+            font-size: clamp(30px, 2.9vw, 44px);
             line-height: 1.12;
             letter-spacing: -0.045em;
+        }
+
+        /* 프로젝트별 테마: 카드 배경 톤 + 강조색을 변수로 주입 */
+        .mini-project-card[class*="theme-"] {
+            border-color: var(--t-border, var(--line));
+            background: var(--t-tint, var(--surface));
+        }
+
+        .mini-project-card[class*="theme-"] .hero-topline {
+            color: var(--t-accent);
+        }
+
+        .mini-project-card[class*="theme-"] .mini-project-number {
+            border-color: var(--t-accent);
+            color: var(--t-accent);
+        }
+
+        .mini-project-card[class*="theme-"] .button-primary {
+            border-color: var(--t-accent);
+            background: var(--t-accent);
+        }
+
+        .mini-project-card[class*="theme-"] .button-primary:hover {
+            border-color: var(--t-accent-hover);
+            background: var(--t-accent-hover);
+        }
+
+        .mini-project-card[class*="theme-"] .mini-project-menu button:hover {
+            border-color: var(--t-accent);
+            color: var(--t-accent);
+        }
+
+        .theme-gas {
+            --t-accent: #d98a2b;
+            --t-accent-hover: #c2781f;
+            --t-border: #e6cfa8;
+            --t-tint: #fbf4e7;
+        }
+
+        .theme-fox {
+            --t-accent: #e8863a;
+            --t-accent-hover: #d5742a;
+            --t-border: #e4d3b8;
+            --t-tint: #fbf6ee;
+        }
+
+        /* 여우 쇼핑몰: 주황 + 초록 조합 (번호/카테고리는 초록) */
+        .mini-project-card.theme-fox .mini-project-number,
+        .mini-project-card.theme-fox .hero-topline {
+            border-color: #2f9e6f;
+            color: #2f9e6f;
+        }
+
+        .theme-respla {
+            --t-accent: #8b5cf6;
+            --t-accent-hover: #7c3aed;
+            --t-border: #ddd0f7;
+            --t-tint: #f6f2fe;
+        }
+
+        .theme-iplist {
+            --t-accent: #3b82c4;
+            --t-accent-hover: #2f6da8;
+            --t-border: #cddef0;
+            --t-tint: #f1f7fc;
+        }
+
+        /* HPDFS: 다크 대시보드 느낌 */
+        .theme-hpdfs {
+            --t-accent: #5fb0c9;
+            --t-accent-hover: #7cc3d8;
+            --t-border: #2a3547;
+            --t-tint: #1a2233;
+        }
+
+        .theme-hpdfs h2 {
+            color: #f4f7fb;
+        }
+
+        .theme-hpdfs .hero-description {
+            color: #aab6c7;
+        }
+
+        .theme-hpdfs .mini-project-menu button,
+        .theme-hpdfs .hero-actions .button:not(.button-primary) {
+            color: #cdd7e5;
+            border-color: #33405a;
+            background: #222c40;
+        }
+
+        .theme-hpdfs .mini-project-menu button:hover,
+        .theme-hpdfs .hero-actions .button:not(.button-primary):hover {
+            color: var(--t-accent);
+            border-color: var(--t-accent);
+            background: #26344b;
+        }
+
+        .theme-hpdfs .button-primary {
+            color: #10202b;
+        }
+
+        /* 프로젝트 상세 모달용 미니 아키텍처 다이어그램 (castleChat 노드/화살표 스타일 재사용) */
+        .mini-arch {
+            position: relative;
+            height: clamp(460px, calc(100dvh - 210px), 640px);
+            margin-bottom: 8px;
+            border-radius: 16px;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .mini-arch .architecture-node {
+            position: absolute;
+            width: clamp(112px, 12vw, 152px);
+            min-height: 58px;
+            padding: 10px 13px;
+            transform: translate(-50%, -50%);
+        }
+
+        .mini-arch .architecture-node strong {
+            margin-top: 3px;
+            font-size: 13.5px;
+        }
+
+        .mini-arch .architecture-node .node-type {
+            font-size: 9.5px;
+        }
+
+        .mini-arch .architecture-node small {
+            margin-top: 3px;
+            font-size: 9px;
+            line-height: 1.35;
+        }
+
+        .mini-lines {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .mini-lines path {
+            fill: none;
+            stroke-width: 1.9;
+            vector-effect: non-scaling-stroke;
+        }
+
+        /* HPDFS 다크 대시보드 테마 */
+        .arch-hpdfs {
+            background: #1a2233;
+        }
+
+        .arch-hpdfs::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background-image:
+                linear-gradient(rgb(95 176 201 / 0.09) 1px, transparent 1px),
+                linear-gradient(90deg, rgb(95 176 201 / 0.09) 1px, transparent 1px);
+            background-size: 26px 26px;
+        }
+
+        .arch-hpdfs .architecture-node {
+            border-color: #33415c;
+            background: #243049;
+            box-shadow: 0 10px 24px rgb(0 0 0 / 0.32);
+        }
+
+        .arch-hpdfs .architecture-node strong {
+            color: #f4f7fb;
+        }
+
+        .arch-hpdfs .architecture-node small {
+            color: #9fb0c6;
+        }
+
+        .arch-hpdfs .architecture-node .node-type {
+            color: #5fb0c9;
+        }
+
+        .arch-hpdfs .mini-lines path {
+            stroke: #5fb0c9;
+        }
+
+        .arch-hpdfs .mini-lines marker path {
+            fill: #5fb0c9;
+            stroke: none;
+        }
+
+        .harch-agent {
+            left: 10%;
+            top: 27%;
+        }
+
+        .harch-nginx {
+            left: 31%;
+            top: 50%;
+        }
+
+        .harch-fastapi {
+            left: 56%;
+            top: 26%;
+        }
+
+        .harch-streamlit {
+            left: 56%;
+            top: 75%;
+        }
+
+        .harch-prediction {
+            left: 82%;
+            top: 26%;
+        }
+
+        .harch-postgres {
+            left: 82%;
+            top: 57%;
+        }
+
+        /* 상세 모달 스택 그룹 테마 색 오버라이드 */
+        .stack-hpdfs h3,
+        .stack-hpdfs .stack-version {
+            color: #2b7d94;
+        }
+
+        /* --- 라이트 캔버스 미니 아키텍처 테마 (gas/fox/respla) --- */
+        .arch-gas {
+            background: #fbf4e7;
+        }
+
+        .arch-fox {
+            background: #fbf6ee;
+        }
+
+        .arch-respla {
+            background: #f6f2fe;
+        }
+
+        .arch-gas::after,
+        .arch-fox::after,
+        .arch-respla::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background-size: 26px 26px;
+        }
+
+        .arch-gas::after {
+            background-image:
+                linear-gradient(rgb(217 138 43 / 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgb(217 138 43 / 0.08) 1px, transparent 1px);
+        }
+
+        .arch-fox::after {
+            background-image:
+                linear-gradient(rgb(47 158 111 / 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgb(47 158 111 / 0.08) 1px, transparent 1px);
+        }
+
+        .arch-respla::after {
+            background-image:
+                linear-gradient(rgb(124 58 237 / 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgb(124 58 237 / 0.08) 1px, transparent 1px);
+        }
+
+        .arch-gas .architecture-node .node-type {
+            color: #c2781f;
+        }
+
+        .arch-gas .mini-lines path {
+            stroke: #d98a2b;
+        }
+
+        .arch-gas .mini-lines marker path {
+            fill: #d98a2b;
+            stroke: none;
+        }
+
+        .arch-fox .architecture-node .node-type {
+            color: #2f9e6f;
+        }
+
+        .arch-fox .mini-lines path {
+            stroke: #e8863a;
+        }
+
+        .arch-fox .mini-lines marker path {
+            fill: #e8863a;
+            stroke: none;
+        }
+
+        .arch-respla .architecture-node .node-type {
+            color: #7c3aed;
+        }
+
+        .arch-respla .mini-lines path {
+            stroke: #8b5cf6;
+        }
+
+        .arch-respla .mini-lines marker path {
+            fill: #8b5cf6;
+            stroke: none;
+        }
+
+        .gas-unity {
+            left: 11%;
+            top: 50%;
+        }
+
+        .gas-fastapi {
+            left: 44%;
+            top: 50%;
+        }
+
+        .gas-risk {
+            left: 78%;
+            top: 28%;
+        }
+
+        .gas-ppm {
+            left: 78%;
+            top: 72%;
+        }
+
+        .fox-client {
+            left: 11%;
+            top: 50%;
+        }
+
+        .fox-web {
+            left: 37%;
+            top: 33%;
+        }
+
+        .fox-rest {
+            left: 37%;
+            top: 72%;
+        }
+
+        .fox-service {
+            left: 61%;
+            top: 50%;
+        }
+
+        .fox-jpa {
+            left: 83%;
+            top: 33%;
+        }
+
+        .fox-mysql {
+            left: 83%;
+            top: 72%;
+        }
+
+        .resp-electron {
+            left: 11%;
+            top: 50%;
+        }
+
+        .resp-spring {
+            left: 39%;
+            top: 50%;
+        }
+
+        .resp-service {
+            left: 63%;
+            top: 50%;
+        }
+
+        .resp-jpa {
+            left: 84%;
+            top: 30%;
+        }
+
+        .resp-mysql {
+            left: 84%;
+            top: 70%;
+        }
+
+        .stack-gas h3,
+        .stack-gas .stack-version {
+            color: #b06a1c;
+        }
+
+        .stack-fox h3,
+        .stack-fox .stack-version {
+            color: #2f9e6f;
+        }
+
+        .stack-respla h3,
+        .stack-respla .stack-version {
+            color: #7c3aed;
+        }
+
+        /* 아키텍처 상세는 castleChat 아키텍처 모달 폭으로 확대 */
+        dialog.modal.detail-arch {
+            width: min(calc(100% - 40px), var(--content));
         }
 
         .mini-project-number {
@@ -1098,6 +1530,16 @@
             flex: none;
             border-radius: 50%;
             background: #e8913a;
+        }
+
+        .legend-proc {
+            width: 11px;
+            height: 8px;
+            flex: none;
+            margin-top: 4px;
+            border: 1px solid #6fa889;
+            border-radius: 3px;
+            background: #7fcaa4;
         }
 
         .legend-dash {

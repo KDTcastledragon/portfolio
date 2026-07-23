@@ -23,6 +23,8 @@
             <span class="project-summary-compact" aria-hidden="true">프로젝트 6개</span>
         </button>
         <a class="portfolio-title" href="#castlechat">이성룡 포트폴리오</a>
+        <a class="header-github" href="https://github.com/KDTcastledragon" target="_blank" rel="noopener"
+            aria-label="GitHub 프로필 열기">GitHub 링크</a>
     </header>
 
     <main>
@@ -68,7 +70,7 @@
         <section id="page2" class="project-page project-page-two" aria-labelledby="page2Title">
             <div class="project-stage two-project-stage">
                 <div class="two-project-grid">
-                    <article class="mini-project-card">
+                    <article class="mini-project-card theme-hpdfs">
                         <span class="project-number mini-project-number" aria-label="두 번째 프로젝트">2</span>
                         <div>
                             <p class="hero-topline">[ 팀 프로젝트 · Backend / DB ]</p>
@@ -76,8 +78,7 @@
                             <p class="hero-description">SMART 기반 저장장치 고장 예측 및 모니터링 시스템.<br>FastAPI API 설계 · PostgreSQL
                                 DB 설계</p>
                             <div class="hero-actions">
-                                <a class="button button-primary" href="https://www.naver.com" target="_blank"
-                                    rel="noopener">배포 링크</a>
+                                <a class="button button-primary" href="./downloads/hpdfs-agent.zip" download>파일 다운로드</a>
                                 <button class="button" type="button" id="hpdfsCopyLinkButton">링크 복사</button>
                             </div>
                             <nav class="project-menu mini-project-menu" aria-label="HPDFS 상세 메뉴">
@@ -90,15 +91,14 @@
                         </div>
                     </article>
 
-                    <article class="mini-project-card">
+                    <article class="mini-project-card theme-gas">
                         <span class="project-number mini-project-number" aria-label="세 번째 프로젝트">3</span>
                         <div>
                             <p class="hero-topline">[ 팀 프로젝트 ]</p>
                             <h2>가스 누출 방지 시뮬레이션</h2>
                             <p class="hero-description">센서 흐름과 차단 동작을 시각화한 안전 자동화 프로젝트.</p>
                             <div class="hero-actions">
-                                <a class="button button-primary" href="https://www.naver.com" target="_blank"
-                                    rel="noopener">파일 다운로드</a>
+                                <a class="button button-primary" href="./downloads/gsafe.zip" download>파일 다운로드</a>
                                 <button class="button" type="button" id="copyLinkButton">링크 복사</button>
                             </div>
                             <nav class="project-menu mini-project-menu" aria-label="가스 누출 방지 시뮬레이션 상세 메뉴">
@@ -116,7 +116,7 @@
         <section id="page3" class="project-page project-page-three" aria-labelledby="page3Title">
             <div class="project-stage two-project-stage">
                 <div class="three-project-grid">
-                    <article class="mini-project-card compact-project-card">
+                    <article class="mini-project-card compact-project-card theme-fox">
                         <span class="project-number mini-project-number" aria-label="네 번째 프로젝트">4</span>
                         <div>
                             <p class="hero-topline">[ 팀 프로젝트 ]</p>
@@ -136,11 +136,11 @@
                         </div>
                     </article>
 
-                    <article class="mini-project-card compact-project-card">
+                    <article class="mini-project-card compact-project-card theme-respla">
                         <span class="project-number mini-project-number" aria-label="다섯 번째 프로젝트">5</span>
                         <div>
                             <p class="hero-topline">[ 개인 프로젝트 ]</p>
-                            <h2>Respla 스터디카페</h2>
+                            <h2>RESPLA 스터디카페</h2>
                             <p class="hero-description">좌석 예약과 이용 상태를 관리하는 웹 시스템.</p>
                             <div class="hero-actions">
                                 <a class="button button-primary" href="https://www.naver.com" target="_blank"
@@ -156,7 +156,7 @@
                         </div>
                     </article>
 
-                    <article class="mini-project-card compact-project-card">
+                    <article class="mini-project-card compact-project-card theme-iplist">
                         <span class="project-number mini-project-number" aria-label="여섯 번째 프로젝트">6</span>
                         <div>
                             <p class="hero-topline">[ 개인 프로젝트 ]</p>
@@ -233,7 +233,7 @@
                         <span class="project-summary-number">05</span>
                         <div>
                             <div class="project-summary-heading">
-                                <strong>Respla 스터디카페</strong>
+                                <strong>RESPLA 스터디카페</strong>
                                 <span class="project-type is-personal">개인</span>
                             </div>
                             <p>좌석 예약과 이용 상태를 관리하는 웹 시스템.</p>
@@ -344,13 +344,15 @@
                         </svg>
 
                         <aside class="architecture-legend">
+                            <p class="legend-note"><span class="legend-proc"></span><span>각 Process = 독립 Spring Boot
+                                    JVM<br>(프로세스별 독립 배포·확장)</span></p>
                             <p class="legend-note"><span class="legend-dash"></span>Redis 상태 공유 (점선)</p>
                             <p class="legend-note"><span class="legend-dot"></span><span>Actuator 계측 지점 →
                                     Prometheus 수집<br>→ Grafana 시각화</span></p>
                         </aside>
 
                         <article class="architecture-node infrastructure-node node-client">
-                            <span class="node-type">Frontend</span>
+                            <span class="node-type">Front-End</span>
                             <strong>Client</strong>
                             <small>HTTP · WebSocket</small>
                         </article>
@@ -719,58 +721,111 @@
             },
             smartctl: {
                 title: "HPDFS",
-                architecture: `<ul class="detail-cards">
-                    <li>
-                        <strong>Local Agent</strong>
-                        <span>사용자 PC에서 저장장치를 탐색하고 SMART 원시 지표를 수집해 진단 요청 JSON으로 변환합니다.</span>
-                    </li>
-                    <li>
-                        <strong>Nginx Gateway</strong>
-                        <span>외부 요청의 단일 진입점으로 동작하며 API 요청은 FastAPI로, 화면 요청은 Streamlit으로 전달합니다.</span>
-                    </li>
-                    <li>
-                        <strong>FastAPI Backend</strong>
-                        <span>SMART 입력값을 검증하고 예측, 규칙 판정, DB 저장과 조회를 하나의 REST API 흐름으로 연결합니다.</span>
-                    </li>
-                    <li>
-                        <strong>Prediction Pipeline</strong>
-                        <span>RandomForest 고장 확률과 SMART 규칙 판정 중 더 높은 위험 등급을 최종 결과로 선택합니다.</span>
-                    </li>
-                    <li>
+                architecture: `<div class="mini-arch arch-hpdfs" role="img" aria-label="Local Agent가 Nginx를 통해 FastAPI로 SMART 데이터를 보내고, FastAPI가 RandomForest 예측과 PostgreSQL 저장을 수행하며 Streamlit 대시보드가 Nginx를 거쳐 조회하는 구조">
+                    <svg class="mini-lines" viewBox="0 0 1400 600" preserveAspectRatio="none" aria-hidden="true">
+                        <defs>
+                            <marker id="mArrowH" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+                                <path d="M0 0 L10 5 L0 10 z"></path>
+                            </marker>
+                        </defs>
+                        <path d="M 205 202 L 360 278" marker-end="url(#mArrowH)"></path>
+                        <path d="M 505 282 L 700 186" marker-start="url(#mArrowH)" marker-end="url(#mArrowH)"></path>
+                        <path d="M 505 320 L 700 418" marker-start="url(#mArrowH)" marker-end="url(#mArrowH)"></path>
+                        <path d="M 878 156 L 1052 156" marker-start="url(#mArrowH)" marker-end="url(#mArrowH)"></path>
+                        <path d="M 806 198 L 1074 322" marker-start="url(#mArrowH)" marker-end="url(#mArrowH)"></path>
+                    </svg>
+                    <article class="architecture-node harch-agent">
+                        <span class="node-type">Local Agent</span>
+                        <strong>SMART Collector</strong>
+                        <small>Python · 디스크 SMART 수집</small>
+                    </article>
+                    <article class="architecture-node harch-nginx">
+                        <span class="node-type">Web Server</span>
+                        <strong>Nginx</strong>
+                        <small>API · UI 라우팅</small>
+                    </article>
+                    <article class="architecture-node harch-fastapi">
+                        <span class="node-type">Backend</span>
+                        <strong>FastAPI</strong>
+                        <small>검증 · 진단 · REST</small>
+                    </article>
+                    <article class="architecture-node harch-prediction">
+                        <span class="node-type">ML Pipeline</span>
+                        <strong>RandomForest</strong>
+                        <small>고장확률 + SMART 규칙</small>
+                    </article>
+                    <article class="architecture-node harch-postgres">
+                        <span class="node-type">Database</span>
                         <strong>PostgreSQL</strong>
-                        <span>진단 이력은 누적 저장하고 디스크별 최신 상태는 별도로 유지해 이력 조회와 현황 조회를 함께 지원합니다.</span>
-                    </li>
-                    <li>
-                        <strong>Streamlit Dashboard</strong>
-                        <span>전체 현황, 디스크 목록, 상세 진단 이력과 권장 조치를 API 기반으로 시각화합니다.</span>
-                    </li>
-                </ul>`,
-                stack: `<ul class="detail-cards">
-                    <li>
-                        <strong>Backend</strong>
-                        <span>FastAPI, Pydantic, SQLAlchemy로 요청 검증, REST API와 데이터 영속화 계층을 구성했습니다.</span>
-                    </li>
-                    <li>
-                        <strong>Database</strong>
-                        <span>PostgreSQL에 최신 디스크 상태와 누적 진단 이력을 분리해 저장했습니다.</span>
-                    </li>
-                    <li>
-                        <strong>Data & Model</strong>
-                        <span>Pandas, scikit-learn, RandomForest, joblib을 사용해 SMART 피처를 입력받는 예측 파이프라인을 구성했습니다.</span>
-                    </li>
-                    <li>
-                        <strong>Frontend</strong>
-                        <span>Streamlit으로 디스크 현황과 진단 결과를 조회하는 대시보드를 구현했습니다.</span>
-                    </li>
-                    <li>
-                        <strong>Runtime</strong>
-                        <span>Nginx와 Docker Compose로 서비스 진입점과 로컬 통합 실행 환경을 구성했습니다.</span>
-                    </li>
-                    <li>
-                        <strong>Cloud</strong>
-                        <span>Kubernetes, Amazon EKS, ECR을 이용해 컨테이너 이미지 배포와 서비스 구성을 검증했습니다.</span>
-                    </li>
-                </ul>`,
+                        <small>진단 이력 · 최신 상태</small>
+                    </article>
+                    <article class="architecture-node harch-streamlit">
+                        <span class="node-type">Frontend</span>
+                        <strong>Streamlit</strong>
+                        <small>현황 · 진단 대시보드</small>
+                    </article>
+                </div>`,
+                stack: `<div class="stack-groups stack-hpdfs">
+                    <section class="stack-group" aria-label="백엔드 기술">
+                        <h3>Backend</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">FastAPI</span>
+                            <span class="stack-note">비동기 REST · 진단 API</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">Pydantic</span>
+                            <span class="stack-note">SmartData 스키마 · 입력 검증</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">SQLAlchemy</span>
+                            <span class="stack-note">ORM · 요청 단위 세션</span>
+                        </div>
+                    </section>
+                    <section class="stack-group" aria-label="데이터와 모델 기술">
+                        <h3>Data &amp; Model</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">scikit-learn</span>
+                            <span class="stack-note">RandomForest 고장 확률</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">Pandas</span>
+                            <span class="stack-note">SMART 피처 전처리</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">joblib</span>
+                            <span class="stack-note">학습 모델 직렬화 로드</span>
+                        </div>
+                    </section>
+                    <section class="stack-group" aria-label="데이터 저장 기술">
+                        <h3>Database</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">PostgreSQL</span>
+                            <span class="stack-note">이력 append-only · 최신 스냅샷 분리</span>
+                        </div>
+                    </section>
+                    <section class="stack-group" aria-label="프론트엔드 기술">
+                        <h3>Front-End</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">Streamlit</span>
+                            <span class="stack-note">디스크 현황 · 진단 대시보드</span>
+                        </div>
+                    </section>
+                    <section class="stack-group" aria-label="인프라와 배포 기술">
+                        <h3>Infra &amp; Deploy</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">Nginx</span>
+                            <span class="stack-note">단일 진입점 · API/UI 프록시</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">Docker Compose</span>
+                            <span class="stack-note">로컬 통합 실행 환경</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">Kubernetes · EKS · ECR</span>
+                            <span class="stack-note">컨테이너 이미지 배포 검증</span>
+                        </div>
+                    </section>
+                </div>`,
                 core: `<ul class="detail-cards">
                     <li>
                         <strong>명확한 API 입력 계약</strong>
@@ -822,24 +877,279 @@
             },
             gas: {
                 title: "가스 누출 방지 시뮬레이션",
-                architecture: "센서 입력, 위험 판단, 밸브 차단, 경고 표시 흐름.",
-                stack: "Unity, C#, 시뮬레이션 UI, 자동화 로직.",
+                architecture: `<div class="mini-arch arch-gas" role="img" aria-label="Unity GSAFE 클라이언트가 FastAPI로 16채널 센서 데이터를 보내고 RandomForest 위험도와 농도 모델 결과를 받아 밸브 차단과 경고를 시각화하는 구조">
+                    <svg class="mini-lines" viewBox="0 0 1400 600" preserveAspectRatio="none" aria-hidden="true">
+                        <defs>
+                            <marker id="mArrowG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+                                <path d="M0 0 L10 5 L0 10 z"></path>
+                            </marker>
+                        </defs>
+                        <path d="M 232 300 L 498 300" marker-start="url(#mArrowG)" marker-end="url(#mArrowG)"></path>
+                        <path d="M 702 276 L 986 192" marker-start="url(#mArrowG)" marker-end="url(#mArrowG)"></path>
+                        <path d="M 702 324 L 986 408" marker-start="url(#mArrowG)" marker-end="url(#mArrowG)"></path>
+                    </svg>
+                    <article class="architecture-node gas-unity">
+                        <span class="node-type">Unity Client</span>
+                        <strong>GSAFE</strong>
+                        <small>센서 시뮬 · 밸브/경고 시각화</small>
+                    </article>
+                    <article class="architecture-node gas-fastapi">
+                        <span class="node-type">Backend</span>
+                        <strong>FastAPI</strong>
+                        <small>예측 API · AWS Docker</small>
+                    </article>
+                    <article class="architecture-node gas-risk">
+                        <span class="node-type">ML Model</span>
+                        <strong>Risk RF</strong>
+                        <small>RandomForest 위험도 분류</small>
+                    </article>
+                    <article class="architecture-node gas-ppm">
+                        <span class="node-type">ML Model</span>
+                        <strong>PPM RF</strong>
+                        <small>RandomForest 농도(ppm) 회귀</small>
+                    </article>
+                </div>`,
+                stack: `<div class="stack-groups stack-gas">
+                    <section class="stack-group" aria-label="시뮬레이션 기술">
+                        <h3>Simulation</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">Unity</span>
+                            <span class="stack-note">GSAFE 클라이언트 · 3D 시각화</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">C#</span>
+                            <span class="stack-note">센서 시뮬 · 밸브 차단 로직</span>
+                        </div>
+                    </section>
+                    <section class="stack-group" aria-label="백엔드 기술">
+                        <h3>Backend</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">FastAPI</span>
+                            <span class="stack-note">Gas Prediction API</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">Pydantic</span>
+                            <span class="stack-note">센서 입력 검증</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">Uvicorn</span>
+                            <span class="stack-note">ASGI 런타임</span>
+                        </div>
+                    </section>
+                    <section class="stack-group" aria-label="데이터와 모델 기술">
+                        <h3>Data &amp; Model</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">scikit-learn</span>
+                            <span class="stack-note">RandomForest 위험도 · ppm</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">Pandas · NumPy</span>
+                            <span class="stack-note">16채널 센서 피처 처리</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">joblib</span>
+                            <span class="stack-note">학습 모델 직렬화 로드</span>
+                        </div>
+                    </section>
+                    <section class="stack-group" aria-label="인프라 기술">
+                        <h3>Infra</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">AWS · Docker</span>
+                            <span class="stack-note">컨테이너 예측 서버 배포</span>
+                        </div>
+                    </section>
+                </div>`,
                 skill: "누출 감지와 차단 동작을 시각적으로 확인하는 자동화 시뮬레이션.",
                 trouble: "상태 전이 표현, 오작동 케이스, 시뮬레이션 UX 조정.",
                 todo: "시연 영상과 상세 설명 연결 예정."
             },
             fox: {
                 title: "여우 쇼핑몰 홈페이지",
-                architecture: "상품 목록, 상세, 장바구니, 주문 흐름 중심의 커머스 웹 구조.",
-                stack: "HTML/CSS/JavaScript, Spring 기반 백엔드, DB 연동.",
+                architecture: `<div class="mini-arch arch-fox" role="img" aria-label="브라우저와 React가 Spring MVC와 REST API로 요청하고 Service를 거쳐 JPA로 MySQL에 접근하는 커머스 웹 구조">
+                    <svg class="mini-lines" viewBox="0 0 1400 600" preserveAspectRatio="none" aria-hidden="true">
+                        <defs>
+                            <marker id="mArrowF" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+                                <path d="M0 0 L10 5 L0 10 z"></path>
+                            </marker>
+                        </defs>
+                        <path d="M 226 284 L 446 214" marker-start="url(#mArrowF)" marker-end="url(#mArrowF)"></path>
+                        <path d="M 226 316 L 446 418" marker-start="url(#mArrowF)" marker-end="url(#mArrowF)"></path>
+                        <path d="M 592 212 L 792 284" marker-start="url(#mArrowF)" marker-end="url(#mArrowF)"></path>
+                        <path d="M 592 418 L 792 316" marker-start="url(#mArrowF)" marker-end="url(#mArrowF)"></path>
+                        <path d="M 922 284 L 1090 214" marker-start="url(#mArrowF)" marker-end="url(#mArrowF)"></path>
+                        <path d="M 1162 238 L 1162 396" marker-start="url(#mArrowF)" marker-end="url(#mArrowF)"></path>
+                    </svg>
+                    <article class="architecture-node fox-client">
+                        <span class="node-type">Front-End</span>
+                        <strong>Browser · React</strong>
+                        <small>상품 탐색 · 주문</small>
+                    </article>
+                    <article class="architecture-node fox-web">
+                        <span class="node-type">Spring MVC</span>
+                        <strong>Controller</strong>
+                        <small>페이지 · JSP View</small>
+                    </article>
+                    <article class="architecture-node fox-rest">
+                        <span class="node-type">REST API</span>
+                        <strong>Rest Controller</strong>
+                        <small>장바구니 · 리뷰 · 쿠폰</small>
+                    </article>
+                    <article class="architecture-node fox-service">
+                        <span class="node-type">Service</span>
+                        <strong>Business Logic</strong>
+                        <small>주문 · 결제 · 재고</small>
+                    </article>
+                    <article class="architecture-node fox-jpa">
+                        <span class="node-type">Persistence</span>
+                        <strong>Spring Data JPA</strong>
+                        <small>Repository · 엔티티 매핑</small>
+                    </article>
+                    <article class="architecture-node fox-mysql">
+                        <span class="node-type">Database</span>
+                        <strong>MySQL</strong>
+                        <small>상품 · 주문 · 회원</small>
+                    </article>
+                </div>`,
+                stack: `<div class="stack-groups stack-fox">
+                    <section class="stack-group" aria-label="프론트엔드 기술">
+                        <h3>Front-End</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">React</span>
+                            <span class="stack-note">일부 화면 SPA 구성</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">JSP</span>
+                            <span class="stack-note">서버 렌더링 페이지</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">JavaScript</span>
+                            <span class="stack-note">장바구니 · 주문 인터랙션</span>
+                        </div>
+                    </section>
+                    <section class="stack-group" aria-label="서버 기술">
+                        <h3>Server</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">Spring Boot<span class="stack-version">2.7</span></span>
+                            <span class="stack-note">MVC · REST 컨트롤러</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">Java<span class="stack-version">11</span></span>
+                            <span class="stack-note">백엔드 런타임</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">Lombok</span>
+                            <span class="stack-note">보일러플레이트 제거</span>
+                        </div>
+                    </section>
+                    <section class="stack-group" aria-label="데이터 기술">
+                        <h3>Data</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">Spring Data JPA</span>
+                            <span class="stack-note">Hibernate · 엔티티 매핑</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">MySQL</span>
+                            <span class="stack-note">상품 · 주문 · 회원 영속화</span>
+                        </div>
+                    </section>
+                    <section class="stack-group" aria-label="빌드와 배포 기술">
+                        <h3>Build</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">Maven</span>
+                            <span class="stack-note">의존성 · WAR 패키징</span>
+                        </div>
+                    </section>
+                </div>`,
                 skill: "상품 탐색, 주문 흐름, 기본 회원 기능, 관리자 관리 영역.",
                 trouble: "상품 데이터 관리, 주문 상태 처리, 화면 흐름 정리.",
                 todo: "배포 링크와 주요 화면 연결 예정."
             },
             respla: {
-                title: "Respla 스터디카페",
-                architecture: "사용자 예약 화면과 관리자 좌석 관리 화면 중심 구성.",
-                stack: "Java, Spring, DB, 웹 UI.",
+                title: "RESPLA 스터디카페",
+                architecture: `<div class="mini-arch arch-respla" role="img" aria-label="Electron 키오스크가 Spring Boot로 요청하고 Service를 거쳐 JPA로 MySQL에 접근해 좌석 예약과 이용 상태를 관리하는 구조">
+                    <svg class="mini-lines" viewBox="0 0 1400 600" preserveAspectRatio="none" aria-hidden="true">
+                        <defs>
+                            <marker id="mArrowR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+                                <path d="M0 0 L10 5 L0 10 z"></path>
+                            </marker>
+                        </defs>
+                        <path d="M 232 300 L 468 300" marker-start="url(#mArrowR)" marker-end="url(#mArrowR)"></path>
+                        <path d="M 624 300 L 810 300" marker-start="url(#mArrowR)" marker-end="url(#mArrowR)"></path>
+                        <path d="M 958 285 L 1108 200" marker-start="url(#mArrowR)" marker-end="url(#mArrowR)"></path>
+                        <path d="M 1176 218 L 1176 382" marker-start="url(#mArrowR)" marker-end="url(#mArrowR)"></path>
+                    </svg>
+                    <article class="architecture-node resp-electron">
+                        <span class="node-type">Client</span>
+                        <strong>Electron</strong>
+                        <small>좌석 예약 키오스크 UI</small>
+                    </article>
+                    <article class="architecture-node resp-spring">
+                        <span class="node-type">Server</span>
+                        <strong>Spring Boot</strong>
+                        <small>Controller · JSP · REST</small>
+                    </article>
+                    <article class="architecture-node resp-service">
+                        <span class="node-type">Service</span>
+                        <strong>Business Logic</strong>
+                        <small>예약 · 이용 상태 관리</small>
+                    </article>
+                    <article class="architecture-node resp-jpa">
+                        <span class="node-type">Persistence</span>
+                        <strong>Spring Data JPA</strong>
+                        <small>Repository · 엔티티 매핑</small>
+                    </article>
+                    <article class="architecture-node resp-mysql">
+                        <span class="node-type">Database</span>
+                        <strong>MySQL</strong>
+                        <small>좌석 · 예약 · 이용 이력</small>
+                    </article>
+                </div>`,
+                stack: `<div class="stack-groups stack-respla">
+                    <section class="stack-group" aria-label="클라이언트 기술">
+                        <h3>Client</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">Electron<span class="stack-version">35</span></span>
+                            <span class="stack-note">데스크톱 키오스크 앱</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">Electron Forge</span>
+                            <span class="stack-note">패키징 · 빌드</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">React</span>
+                            <span class="stack-note">예약 화면 UI</span>
+                        </div>
+                    </section>
+                    <section class="stack-group" aria-label="서버 기술">
+                        <h3>Server</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">Spring Boot<span class="stack-version">3.3</span></span>
+                            <span class="stack-note">MVC · REST · JSP View</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">Java<span class="stack-version">17</span></span>
+                            <span class="stack-note">백엔드 런타임</span>
+                        </div>
+                    </section>
+                    <section class="stack-group" aria-label="데이터 기술">
+                        <h3>Data</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">Spring Data JPA</span>
+                            <span class="stack-note">Hibernate · 엔티티 매핑</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">MySQL</span>
+                            <span class="stack-note">좌석 · 예약 · 이용 이력</span>
+                        </div>
+                    </section>
+                    <section class="stack-group" aria-label="빌드 기술">
+                        <h3>Build</h3>
+                        <div class="stack-item">
+                            <span class="stack-name">Maven</span>
+                            <span class="stack-note">서버 의존성 · 패키징</span>
+                        </div>
+                    </section>
+                </div>`,
                 skill: "좌석 조회, 예약, 이용 상태 관리, 관리자 확인 화면.",
                 trouble: "동시 예약 처리, 좌석 상태 동기화, UI 가시성 개선.",
                 todo: "시연 링크와 ERD 연결 예정."
@@ -952,7 +1262,9 @@
                 document.getElementById("detailTitle").textContent = detail.title;
                 document.getElementById("detailState").textContent = detailTypeLabel[type];
                 document.getElementById("detailText").innerHTML = detail[type];
-                document.getElementById("detailDialog").showModal();
+                const detailDlg = document.getElementById("detailDialog");
+                detailDlg.classList.toggle("detail-arch", type === "architecture");
+                detailDlg.showModal();
             });
         });
         document.querySelectorAll("[data-open]").forEach(button => {
