@@ -114,21 +114,26 @@
             display: inline-flex;
             min-height: 32px;
             align-items: center;
+            gap: 7px;
             padding: 0 14px;
-            border: 1px solid var(--line);
+            border: 1px solid #17181a;
             border-radius: 8px;
-            color: var(--text);
-            background: var(--surface);
+            color: #ffffff;
+            background: #17181a;
             font-size: 13px;
-            font-weight: 700;
+            font-weight: 800;
             text-decoration: none;
             transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease;
         }
 
+        .header-github-icon {
+            flex: none;
+        }
+
         .header-github:hover {
-            border-color: var(--accent);
-            color: var(--accent-strong);
-            background: var(--accent-soft);
+            border-color: #000000;
+            color: #ffffff;
+            background: #000000;
         }
 
         main {
@@ -1014,7 +1019,7 @@
         }
 
         dialog.modal.stack-modal {
-            width: min(calc(100% - 40px), 1240px);
+            width: min(calc(100% - 40px), var(--content));
             overflow-y: auto;
         }
 
@@ -1255,7 +1260,7 @@
             font-size: 12.5px;
             line-height: 1.5;
             text-align: right;
-            word-break: keep-all;
+            white-space: nowrap;
         }
 
         .architecture-heading {
@@ -2032,6 +2037,12 @@
             .stack-groups,
             .detail-cards {
                 grid-template-columns: 1fr;
+            }
+
+            /* 좁은 화면에서는 한 줄 유지가 불가능하므로 줄바꿈 허용 */
+            .stack-note {
+                white-space: normal;
+                word-break: keep-all;
             }
 
             .project-summary-list {

@@ -24,7 +24,14 @@
         </button>
         <a class="portfolio-title" href="#castlechat">이성룡 포트폴리오</a>
         <a class="header-github" href="https://github.com/KDTcastledragon" target="_blank" rel="noopener"
-            aria-label="GitHub 프로필 열기">GitHub 링크</a>
+            aria-label="GitHub 프로필 열기">
+            <svg class="header-github-icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                <path fill="currentColor"
+                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z">
+                </path>
+            </svg>
+            <span>GitHub 링크</span>
+        </a>
     </header>
 
     <main>
@@ -49,7 +56,7 @@
                         <p class="hero-description">5개의 Multi Process 기반으로 연결 유지·검증·영속화의 책임을 분리. Kafka 기반 비동기 DB
                             Write, Redis 채팅 읽음 처리 선반영 + Dirty Flush 배치로 응답 경로에서 DB 대기를 제거하여 상향된 UX 지향 설계.</p>
                         <div class="hero-actions">
-                            <a class="button button-primary" href="https://www.naver.com" target="_blank"
+                            <a class="button button-primary" href="http://43.202.208.133" target="_blank"
                                 rel="noopener">사이트 접속</a>
                             <button class="button" type="button" id="copyLinkButton">링크 복사</button>
                         </div>
@@ -143,7 +150,7 @@
                             <h2>RESPLA 스터디카페</h2>
                             <p class="hero-description">좌석 예약과 이용 상태를 관리하는 웹 시스템.</p>
                             <div class="hero-actions">
-                                <a class="button button-primary" href="https://www.naver.com" target="_blank"
+                                <a class="button button-primary" href="http://43.202.208.133:8081" target="_blank"
                                     rel="noopener">사이트 접속</a>
                                 <button class="button" type="button" id="copyLinkButton">링크 복사</button>
                             </div>
@@ -584,7 +591,7 @@
                         <h3>Async Processing</h3>
                         <div class="stack-item">
                             <span class="stack-name">Snowflake ID</span>
-                            <span class="stack-note">messageId 선채번 · DB 대기 제거</span>
+                            <span class="stack-note">53bit 직접 설계 · JS 안전정수 · 시계역행 대응</span>
                         </div>
                         <div class="stack-item">
                             <span class="stack-name">Event Persist Worker</span>
@@ -612,8 +619,8 @@
                         </div>
                     </section>
 
-                    <section class="stack-group" aria-label="인프라와 모니터링 기술">
-                        <h3>Infra &amp; Monitoring</h3>
+                    <section class="stack-group" aria-label="인프라 기술">
+                        <h3>Infra</h3>
                         <div class="stack-item">
                             <span class="stack-name">Nginx</span>
                             <span class="stack-note">Reverse Proxy · Load Balancing</span>
@@ -630,9 +637,17 @@
                             <span class="stack-name">AWS</span>
                             <span class="stack-note">Cloud Cluster · Public LB</span>
                         </div>
+                    </section>
+
+                    <section class="stack-group" aria-label="모니터링 기술">
+                        <h3>Monitoring</h3>
                         <div class="stack-item">
-                            <span class="stack-name">Prometheus · Grafana</span>
-                            <span class="stack-note">Metrics · Dashboard</span>
+                            <span class="stack-name">Prometheus</span>
+                            <span class="stack-note">Metrics 수집 · 시계열 저장</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-name">Grafana</span>
+                            <span class="stack-note">대시보드 · 지표 시각화</span>
                         </div>
                     </section>
                 </div>
@@ -1178,11 +1193,10 @@
             deploy: "배포 링크",
             copy: "링크 복사"
         };
-        const DEPLOY_URL = "https://www.naver.com";
-        const copyLinkButton = document.getElementById("copyLinkButton");
-        const hpdfsCopyLinkButton = document.getElementById("hpdfsCopyLinkButton");
 
+        // 바로 앞의 "사이트 접속"/"파일 다운로드" 링크 주소를 복사한다.
         async function copyDeployLink(button) {
+            const DEPLOY_URL = button.previousElementSibling.href;
             let copied = true;
 
             try {
@@ -1202,8 +1216,9 @@
             }, 1600);
         }
 
-        copyLinkButton.addEventListener("click", () => copyDeployLink(copyLinkButton));
-        hpdfsCopyLinkButton.addEventListener("click", () => copyDeployLink(hpdfsCopyLinkButton));
+        document.querySelectorAll("#copyLinkButton, #hpdfsCopyLinkButton").forEach((button) => {
+            button.addEventListener("click", () => copyDeployLink(button));
+        });
 
 
         const portfolioPages = Array.from(document.querySelectorAll(".project-page"));
