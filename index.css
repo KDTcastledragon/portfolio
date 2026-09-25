@@ -2583,3 +2583,14 @@
                 display: none;
             }
         }
+
+        /* ── 1페이지 카드 3개를 화면 폭에 가깝게 넓힌다 ──────────
+           기본 --content(1480px)로는 양옆이 많이 남는다. 이 페이지만 더 넓게 쓴다. */
+        .hero-trio-stage {
+            width: min(100%, 1880px);
+        }
+
+        .hero-trio-grid {
+            grid-template-columns: minmax(0, 1.1fr) minmax(360px, 1fr);
+            gap: clamp(10px, 1vw, 18px);
+        }
