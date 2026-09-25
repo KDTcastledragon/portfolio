@@ -14,8 +14,7 @@
         <nav class="project-header-brand page-indicator" aria-label="포트폴리오 페이지">
             <button class="page-dot is-active" type="button" data-page-target="castlechat"
                 aria-current="page">1</button>
-            <button class="page-dot" type="button" data-page-target="page2">2</button>
-            <button class="page-dot" type="button" data-page-target="page3">3</button>
+            <button class="page-dot" type="button" data-page-target="page3">2</button>
         </nav>
         <button class="project-summary-trigger" type="button" data-open="projectSummaryDialog"
             aria-label="6개 프로젝트 참여. 개인 프로젝트 4개, 팀 프로젝트 2개">
@@ -35,8 +34,10 @@
     </header>
 
     <main>
-        <section id="castlechat" class="project-page" aria-labelledby="portfolioTitle">
-            <div class="project-stage">
+        <section id="castlechat" class="project-page project-page-hero" aria-labelledby="portfolioTitle">
+            <div class="project-stage hero-trio-stage">
+                <div class="hero-trio-grid">
+                    <div class="hero-main-box">
                 <div class="project-layout">
                     <span class="project-number" aria-label="첫 번째 프로젝트">1</span>
 
@@ -70,14 +71,10 @@
                         <button type="button" data-detail="castlechat" data-detail-type="core">핵심 구현</button>
                     </nav>
                 </div>
-            </div>
-        </section>
+                    </div>
 
-
-        <section id="page2" class="project-page project-page-two" aria-labelledby="page2Title">
-            <div class="project-stage two-project-stage">
-                <div class="two-project-grid">
-                    <article class="mini-project-card theme-hpdfs">
+                    <div class="hero-side">
+                    <article class="mini-project-card side-project-card theme-hpdfs">
                         <span class="project-number mini-project-number" aria-label="두 번째 프로젝트">2</span>
                         <div>
                             <p class="hero-topline">[ 팀 프로젝트 · Backend / DB ]</p>
@@ -100,7 +97,7 @@
                         </div>
                     </article>
 
-                    <article class="mini-project-card theme-gas">
+                    <article class="mini-project-card side-project-card theme-gas">
                         <span class="project-number mini-project-number" aria-label="세 번째 프로젝트">3</span>
                         <div>
                             <p class="hero-topline">[ 팀 프로젝트 ]</p>
@@ -118,6 +115,7 @@
                             </nav>
                         </div>
                     </article>
+                    </div>
                 </div>
             </div>
         </section>
