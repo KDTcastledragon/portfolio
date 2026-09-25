@@ -2564,23 +2564,22 @@
             position: relative;
         }
 
-        .hero-main-box::after {
-            content: '';
-            position: absolute;
-            right: 14px;
-            bottom: 14px;
-            /* 흰 카드와 메뉴 버튼을 가리지 않도록 오른쪽 아래 구석에만 깐다. */
-            width: 40%;
-            aspect-ratio: 16 / 10;
-            background: url('./img/castlechat.png') no-repeat right bottom / contain;
-            opacity: 0.16;
-            border-radius: 10px;
-            pointer-events: none;
-            z-index: 0;
+        /* 흰 카드 안에 실제 화면을 보여준다. 이 카드에만 세로 여백이 350px 이상 남는다. */
+        .hero-shot {
+            display: block;
+            width: 100%;
+            margin-top: 18px;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            object-position: left top;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            box-shadow: 0 10px 24px rgb(37 91 63 / 0.14);
         }
 
-        /* 글과 버튼은 이미지 위에 온다. */
-        .hero-main-box .project-layout {
-            position: relative;
-            z-index: 1;
+        /* 낮은 화면에서는 카드가 이미 꽉 차므로 숨긴다. */
+        @media (min-width: 821px) and (max-height: 780px) {
+            .hero-shot {
+                display: none;
+            }
         }

@@ -18,7 +18,7 @@
         </nav>
         <button class="project-summary-trigger" type="button" data-open="projectSummaryDialog"
             aria-label="6개 프로젝트 참여. 개인 프로젝트 4개, 팀 프로젝트 2개">
-            <span class="project-summary-full">6개 프로젝트 구현 (개인4 + 팀2)</span>
+            <span class="project-summary-full">6개 프로젝트 [ 개인4 + 팀2 ]</span>
             <span class="project-summary-compact" aria-hidden="true">프로젝트 6개</span>
         </button>
         <a class="portfolio-title" href="#castlechat">이성룡 포트폴리오</a>
@@ -38,81 +38,90 @@
             <div class="project-stage hero-trio-stage">
                 <div class="hero-trio-grid">
                     <div class="hero-main-box">
-                <div class="project-layout">
-                    <span class="project-number" aria-label="첫 번째 프로젝트">1</span>
+                        <div class="project-layout">
+                            <span class="project-number" aria-label="첫 번째 프로젝트">1</span>
 
-                    <article class="project-description">
-                        <div class="hero-message-visual" aria-hidden="true">
-                            <div class="hero-chat-bubble is-received">
-                                <span></span>
-                                <span></span>
-                            </div>
-                            <div class="hero-chat-bubble is-sent">
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </div>
-                        <p class="hero-topline">[ 개인 프로젝트 ]</p>
-                        <h1 id="portfolioTitle">대규모 메시지 처리 지향<br><span class="hero-accent">웹 채팅 CastleChat</span></h1>
-                        <p class="hero-description">5개의 Multi Process 기반으로 연결 유지·검증·영속화의 책임을 분리. Kafka 기반 비동기 DB
-                            Write, Redis 채팅 읽음 처리 선반영 + Dirty Flush 배치로 응답 경로에서 DB 대기를 제거하여 상향된 UX 지향 설계.</p>
-                        <div class="hero-actions">
-                            <a class="button button-primary" href="http://43.202.208.133" target="_blank"
-                                rel="noopener">사이트 접속</a>
-                            <button class="button" type="button" id="copyLinkButton">링크 복사</button>
-                        </div>
-                    </article>
+                            <article class="project-description">
+                                <div class="hero-message-visual" aria-hidden="true">
+                                    <div class="hero-chat-bubble is-received">
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <div class="hero-chat-bubble is-sent">
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                                <p class="hero-topline">[ 개인 프로젝트 ]</p>
+                                <h1 id="portfolioTitle">대규모 메시지 처리 지향<br><span class="hero-accent">웹 채팅
+                                        CastleChat</span></h1>
+                                <p class="hero-description">5개의 Multi Process 기반으로 연결 유지·검증·영속화의 책임을 분리. Kafka 기반 비동기 DB
+                                    Write, Redis 채팅 읽음 처리 선반영 + Dirty Flush 배치로 응답 경로에서 DB 대기를 제거하여 상향된 UX 지향 설계.</p>
+                                <div class="hero-actions">
+                                    <a class="button button-primary" href="http://43.202.208.133" target="_blank"
+                                        rel="noopener">사이트 접속</a>
+                                    <button class="button" type="button" id="copyLinkButton">링크 복사</button>
+                                </div>
 
-                    <nav class="project-menu" aria-label="CastleChat 상세 메뉴">
-                        <button type="button" data-open="architectureDialog">아키텍처</button>
-                        <button type="button" data-open="stackDialog">기술 스택</button>
-                        <button type="button" data-detail="castlechat" data-detail-type="skill">주요 스킬 개요</button>
-                        <button type="button" data-detail="castlechat" data-detail-type="trouble">트러블 슈팅</button>
-                        <button type="button" data-detail="castlechat" data-detail-type="core">핵심 구현</button>
-                    </nav>
-                </div>
+                                <img class="hero-shot" src="./img/castlechat.png" alt="CastleChat 채팅 화면" loading="lazy">
+                            </article>
+
+                            <nav class="project-menu" aria-label="CastleChat 상세 메뉴">
+                                <button type="button" data-open="architectureDialog">아키텍처</button>
+                                <button type="button" data-open="stackDialog">기술 스택</button>
+                                <button type="button" data-detail="castlechat" data-detail-type="skill">주요 스킬
+                                    개요</button>
+                                <button type="button" data-detail="castlechat" data-detail-type="trouble">트러블
+                                    슈팅</button>
+                                <button type="button" data-detail="castlechat" data-detail-type="core">핵심 구현</button>
+                            </nav>
+                        </div>
                     </div>
 
                     <div class="hero-side">
-                    <article class="mini-project-card side-project-card theme-respla">
-                        <span class="project-number mini-project-number" aria-label="두 번째 프로젝트">2</span>
-                        <div>
-                            <p class="hero-topline">[ 개인 프로젝트 ]</p>
-                            <h2 id="page2Title">RESPLA 스터디카페</h2>
-                            <p class="hero-description">좌석 예약과 이용 상태를 관리하는 웹 시스템.</p>
-                            <div class="hero-actions">
-                                <a class="button button-primary" href="http://43.202.208.133:8081" target="_blank"
-                                    rel="noopener">사이트 접속</a>
-                                <button class="button" type="button" id="copyLinkButton">링크 복사</button>
+                        <article class="mini-project-card side-project-card theme-respla">
+                            <span class="project-number mini-project-number" aria-label="두 번째 프로젝트">2</span>
+                            <div>
+                                <p class="hero-topline">[ 개인 프로젝트 ]</p>
+                                <h2 id="page2Title">RESPLA 스터디카페</h2>
+                                <p class="hero-description">좌석 예약과 이용 상태를 관리하는 웹 시스템.</p>
+                                <div class="hero-actions">
+                                    <a class="button button-primary" href="http://43.202.208.133:8081" target="_blank"
+                                        rel="noopener">사이트 접속</a>
+                                    <button class="button" type="button" id="copyLinkButton">링크 복사</button>
+                                </div>
+                                <nav class="project-menu mini-project-menu" aria-label="Respla 스터디카페 상세 메뉴">
+                                    <button type="button" data-detail="respla"
+                                        data-detail-type="architecture">아키텍처</button>
+                                    <button type="button" data-detail="respla" data-detail-type="stack">기술 스택</button>
+                                    <button type="button" data-detail="respla" data-detail-type="skill">주요 스킬
+                                        개요</button>
+                                    <button type="button" data-detail="respla" data-detail-type="trouble">트러블
+                                        슈팅</button>
+                                </nav>
                             </div>
-                            <nav class="project-menu mini-project-menu" aria-label="Respla 스터디카페 상세 메뉴">
-                                <button type="button" data-detail="respla" data-detail-type="architecture">아키텍처</button>
-                                <button type="button" data-detail="respla" data-detail-type="stack">기술 스택</button>
-                                <button type="button" data-detail="respla" data-detail-type="skill">주요 스킬 개요</button>
-                                <button type="button" data-detail="respla" data-detail-type="trouble">트러블 슈팅</button>
-                            </nav>
-                        </div>
-                    </article>
+                        </article>
 
-                    <article class="mini-project-card side-project-card theme-fox">
-                        <span class="project-number mini-project-number" aria-label="세 번째 프로젝트">3</span>
-                        <div>
-                            <p class="hero-topline">[ 팀 프로젝트 ]</p>
-                            <h2>여우 쇼핑몰 홈페이지</h2>
-                            <p class="hero-description">상품 탐색과 주문 흐름을 구현한 쇼핑몰 프로젝트.</p>
-                            <div class="hero-actions">
-                                <a class="button button-primary" href="http://43.202.208.133:8082" target="_blank"
-                                    rel="noopener">사이트 접속</a>
-                                <button class="button" type="button" id="copyLinkButton">링크 복사</button>
+                        <article class="mini-project-card side-project-card theme-fox">
+                            <span class="project-number mini-project-number" aria-label="세 번째 프로젝트">3</span>
+                            <div>
+                                <p class="hero-topline">[ 팀 프로젝트 ]</p>
+                                <h2>여우 쇼핑몰 홈페이지</h2>
+                                <p class="hero-description">상품 탐색과 주문 흐름을 구현한 쇼핑몰 프로젝트.</p>
+                                <div class="hero-actions">
+                                    <a class="button button-primary" href="http://43.202.208.133:8082" target="_blank"
+                                        rel="noopener">사이트 접속</a>
+                                    <button class="button" type="button" id="copyLinkButton">링크 복사</button>
+                                </div>
+                                <nav class="project-menu mini-project-menu" aria-label="여우 쇼핑몰 상세 메뉴">
+                                    <button type="button" data-detail="fox"
+                                        data-detail-type="architecture">아키텍처</button>
+                                    <button type="button" data-detail="fox" data-detail-type="stack">기술 스택</button>
+                                    <button type="button" data-detail="fox" data-detail-type="skill">주요 스킬 개요</button>
+                                    <button type="button" data-detail="fox" data-detail-type="trouble">트러블 슈팅</button>
+                                </nav>
                             </div>
-                            <nav class="project-menu mini-project-menu" aria-label="여우 쇼핑몰 상세 메뉴">
-                                <button type="button" data-detail="fox" data-detail-type="architecture">아키텍처</button>
-                                <button type="button" data-detail="fox" data-detail-type="stack">기술 스택</button>
-                                <button type="button" data-detail="fox" data-detail-type="skill">주요 스킬 개요</button>
-                                <button type="button" data-detail="fox" data-detail-type="trouble">트러블 슈팅</button>
-                            </nav>
-                        </div>
-                    </article>
+                        </article>
                     </div>
                 </div>
             </div>
