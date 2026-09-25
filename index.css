@@ -2539,3 +2539,20 @@
                 grid-template-columns: 1fr 1fr;
             }
         }
+
+        /* 3열 카드에서 "[ 팀 프로젝트 · Backend / DB ]" 처럼 긴 라벨이 줄바꿈되면서
+           닫는 대괄호만 다음 줄로 떨어졌다. 한 줄에 들어가게 줄인다. */
+        .compact-project-card .hero-topline {
+            font-size: 12.5px;
+            white-space: nowrap;
+        }
+
+        /* 버튼이 세 개인 카드(HPDFS)는 좁은 칸에서 줄이 넘친다. 조금 더 촘촘하게. */
+        .compact-project-card .hero-actions {
+            gap: 8px;
+        }
+
+        .compact-project-card .hero-actions .button {
+            padding: 0 12px;
+            font-size: 13px;
+        }
