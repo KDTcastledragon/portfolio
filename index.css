@@ -2556,3 +2556,31 @@
             padding: 0 12px;
             font-size: 13px;
         }
+
+        /* ── 카드 배경 이미지 (A안) ──────────────────────────────
+           카드 오른쪽 아래에 실제 화면을 흐리게 깔아 무슨 프로젝트인지 바로 보이게 한다.
+           position:absolute 라 높이를 차지하지 않는다. 낮은 화면에서 잘리던 문제와 무관. */
+        .hero-main-box {
+            position: relative;
+        }
+
+        .hero-main-box::after {
+            content: '';
+            position: absolute;
+            right: 14px;
+            bottom: 14px;
+            /* 흰 카드와 메뉴 버튼을 가리지 않도록 오른쪽 아래 구석에만 깐다. */
+            width: 40%;
+            aspect-ratio: 16 / 10;
+            background: url('./img/castlechat.png') no-repeat right bottom / contain;
+            opacity: 0.16;
+            border-radius: 10px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* 글과 버튼은 이미지 위에 온다. */
+        .hero-main-box .project-layout {
+            position: relative;
+            z-index: 1;
+        }
