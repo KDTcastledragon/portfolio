@@ -2617,3 +2617,29 @@
         .theme-hpdfs .hero-topline {
             color: #8a94a3;
         }
+
+        /* ── 6개 프로젝트 요약: 카드마다 테마색 ──────────────── */
+        .project-summary-list li[class*="theme-"] {
+            border-color: var(--t-border, var(--line-soft));
+            background: var(--t-tint, var(--surface-soft));
+        }
+
+        .project-summary-list li[class*="theme-"] .project-summary-number {
+            color: var(--t-accent);
+        }
+
+        /* CastleChat 은 별도 테마가 없어 기본 초록을 쓴다. */
+        .project-summary-list li.theme-castlechat {
+            --t-accent: #12846d;
+            --t-border: #cfe6dc;
+            --t-tint: #f1f8f4;
+        }
+
+        /* HPDFS 는 어두운 카드라 글자색을 뒤집는다. */
+        .project-summary-list li.theme-hpdfs strong {
+            color: #f1f5f9;
+        }
+
+        .project-summary-list li.theme-hpdfs p {
+            color: #aab6c7;
+        }
