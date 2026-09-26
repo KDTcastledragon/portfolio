@@ -2697,7 +2697,8 @@
         .card-tech {
             display: inline-flex;
             flex-wrap: wrap;
-            gap: 5px;
+            column-gap: 8px;
+            row-gap: 4px;
             margin: 0 0 2px;
             vertical-align: middle;
         }
@@ -2710,7 +2711,8 @@
         }
 
         .card-tech span {
-            padding: 3px 9px;
+            padding: 2px 8px;
+            line-height: 1;
             border: 1px solid var(--line);
             border-radius: 999px;
             color: var(--muted);
@@ -2731,7 +2733,7 @@
            칩을 조금 줄이고 줄바꿈을 막아 라벨과 한 줄에 둔다. */
         .hero-main-box .card-tech {
             flex-wrap: nowrap;
-            gap: 4px;
+            column-gap: 6px;
         }
 
         /* .project-description 이 flex column 이라 라벨과 칩이 각각 한 줄을 차지했다.
@@ -2749,7 +2751,7 @@
         }
 
         .hero-main-box .card-tech span {
-            padding: 3px 7px;
+            padding: 2px 6px;
         }
 
         /* HPDFS·가스는 담당 라벨이 길어 칩이 통째로 다음 줄로 넘어간다.
@@ -2758,7 +2760,7 @@
         .theme-gas .card-tech {
             display: grid;
             grid-template-columns: repeat(2, auto);
-            row-gap: 2px;
+            row-gap: 4px;
             justify-items: start;
             /* 2행짜리 칩이 줄 높이를 늘려 라벨이 가운데로 밀리고 제목까지 내려갔다.
                흐름에서 빼서 라벨 줄은 다른 카드와 같은 한 줄 높이로 되돌린다. */
