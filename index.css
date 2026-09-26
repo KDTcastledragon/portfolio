@@ -2706,10 +2706,3 @@
         .theme-hpdfs .card-tech {
             color: #8fa2bb;
         }
-
-        /* 세로가 짧으면 카드가 이미 꽉 차므로 숨긴다. */
-        @media (min-width: 821px) and (max-height: 700px) {
-            .card-tech {
-                display: none;
-            }
-        }
