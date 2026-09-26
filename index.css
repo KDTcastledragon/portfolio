@@ -3011,3 +3011,22 @@
             border-color: #6fa889;
             color: #12846d;
         }
+
+        /* 복사 아이콘과 테두리를 카드 테마색으로. CastleChat 은 테마 변수가 없어 기본 accent 로 떨어진다. */
+        .hero-actions .button.button-icon,
+        .theme-hpdfs .hero-actions .button.button-icon:not(.button-primary) {
+            border-color: var(--t-accent, var(--accent));
+            color: var(--t-accent, var(--accent));
+        }
+
+        .hero-actions .button.button-icon:hover,
+        .theme-hpdfs .hero-actions .button.button-icon:not(.button-primary):hover {
+            border-color: var(--t-accent-hover, var(--accent));
+            color: var(--t-accent-hover, var(--accent));
+        }
+
+        .hero-actions .button.button-icon.is-copied,
+        .theme-hpdfs .hero-actions .button.button-icon.is-copied:not(.button-primary) {
+            border-color: var(--t-accent, var(--accent));
+            color: var(--t-accent, var(--accent));
+        }
