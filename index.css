@@ -3019,10 +3019,19 @@
             color: var(--t-accent, var(--accent));
         }
 
-        .hero-actions .button.button-icon:hover,
-        .theme-hpdfs .hero-actions .button.button-icon:not(.button-primary):hover {
+        /* hover 배경은 테마색을 옅게 섞는다. 아이콘은 진한 쪽(accent-hover)이라 묻히지 않는다. */
+        .hero-actions .button.button-icon:hover {
             border-color: var(--t-accent-hover, var(--accent));
-            color: var(--t-accent-hover, var(--accent));
+            /* 주황 계열은 그대로 두면 옅은 배경에 묻힌다. 한 단계 눌러 색상은 유지한다. */
+            color: color-mix(in srgb, var(--t-accent-hover, var(--accent)) 82%, #000000);
+            background: color-mix(in srgb, var(--t-accent, var(--accent)) 12%, var(--surface));
+        }
+
+        /* HPDFS 는 카드가 어두워 밝은 쪽이 아니라 어두운 버튼색에 섞어야 한다. */
+        .theme-hpdfs .hero-actions .button.button-icon:not(.button-primary):hover {
+            border-color: var(--t-accent-hover);
+            color: var(--t-accent-hover);
+            background: color-mix(in srgb, var(--t-accent) 22%, #222c40);
         }
 
         .hero-actions .button.button-icon.is-copied,
