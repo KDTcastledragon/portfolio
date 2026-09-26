@@ -2963,3 +2963,22 @@
                 grid-template-columns: repeat(3, 1fr);
             }
         }
+
+        /* 링크 복사 버튼: 글자 대신 아이콘 하나. 카드마다 같은 문구가 반복돼 산만했다. */
+        .button-icon {
+            padding: 0 14px;
+        }
+
+        .button-icon .icon-check,
+        .button-icon.is-copied .icon-copy {
+            display: none;
+        }
+
+        .button-icon.is-copied .icon-check {
+            display: block;
+        }
+
+        .button-icon.is-copied {
+            border-color: #6fa889;
+            color: #12846d;
+        }
