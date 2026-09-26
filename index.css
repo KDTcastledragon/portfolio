@@ -2600,3 +2600,20 @@
         .hero-main-box .project-description h1 {
             font-size: clamp(21px, 1.7vw, 31px);
         }
+
+        /* CastleChat 제목 아래 부제 */
+        .hero-subtitle {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: clamp(14px, 1.15vw, 18px);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        /* [ 개인 ] [ 팀 ] 라벨은 테마색을 따르지 않고 회색으로 통일한다. */
+        .hero-topline,
+        .mini-project-card[class*="theme-"] .hero-topline,
+        .mini-project-card.theme-fox .hero-topline,
+        .theme-hpdfs .hero-topline {
+            color: #8a94a3;
+        }
