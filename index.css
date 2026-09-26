@@ -2648,3 +2648,47 @@
         dialog.modal.project-summary-modal {
             background: #ffffff;
         }
+
+        /* ── 프로젝트 요약 모달(프요카) ─────────────────────── */
+
+        /* 1) 제목은 기존 "6개 프로젝트" 보다 조금 작게 */
+        .summary-heading {
+            font-size: clamp(20px, 2vw, 30px);
+        }
+
+        /* 2) 번호에도 포트폴리오 카드처럼 네모 박스 */
+        .project-summary-list .project-summary-number {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            border: 1px solid var(--t-border, var(--line));
+            border-radius: 8px;
+            background: #ffffff;
+            font-size: 14px;
+        }
+
+        .project-summary-list li.theme-hpdfs .project-summary-number {
+            border-color: #2c3a51;
+            background: #0f1723;
+        }
+
+        /* 3) 개인/팀 배지가 제목 앞으로 왔으니 왼쪽 정렬 */
+        .project-summary-heading {
+            justify-content: flex-start;
+        }
+
+        /* 4) 닫기 버튼은 테두리·배경 없이 검은 글자만 */
+        .project-summary-modal .dialog-close {
+            border: none;
+            background: none;
+            box-shadow: none;
+            color: var(--text);
+            font-size: 26px;
+        }
+
+        .project-summary-modal .dialog-close:hover {
+            border: none;
+            background: none;
+            color: #000000;
+        }
