@@ -2698,7 +2698,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 5px;
-            margin: 9px 0 0;
+            margin: 8px 0 10px;
         }
 
         .card-tech span {
