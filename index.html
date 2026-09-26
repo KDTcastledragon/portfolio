@@ -603,14 +603,6 @@
                             <span class="stack-note">53bit 직접 설계 · JS 안전정수 · 시계역행 대응</span>
                         </div>
                         <div class="stack-item">
-                            <span class="stack-name">Event Persist Worker</span>
-                            <span class="stack-note">Kafka consume · 멱등 저장 · DLT</span>
-                        </div>
-                        <div class="stack-item">
-                            <span class="stack-name">Read Flush Worker</span>
-                            <span class="stack-note">LRM 배치 반영 · DB Write N:1</span>
-                        </div>
-                        <div class="stack-item">
                             <span class="stack-name">Apache Kafka</span>
                             <span class="stack-note">acks=all 응답 · DLT 재처리</span>
                         </div>
@@ -701,11 +693,11 @@
                 </ul>`,
                 core: `<ul class="detail-cards">
                     <li>
-                        <strong>1. Kafka 비동기 영속화 파이프라인</strong>
+                        <strong>1. Kafka 비동기 영속화 파이프라인 — Event Persist Worker</strong>
                         <span>sendMessage는 DB insert를 기다리지 않습니다. Snowflake ID를 채번하고 Kafka durable save(acks=all)까지만 동기로 확인한 뒤 즉시 응답하며, DB 쓰기는 Event Persist Worker가 소비해 멱등 처리합니다. 실패 메시지는 DLT로 격리해 재처리합니다.</span>
                     </li>
                     <li>
-                        <strong>2. 읽음 위치 Write-Behind</strong>
+                        <strong>2. 읽음 위치 Write-Behind — Read Flush Worker</strong>
                         <span>읽음 요청마다 DB를 갱신하지 않습니다. Redis Lua 스크립트로 최신 읽음 위치만 원자 병합하고 dirty로 마킹, Flush Worker가 주기 배치로 DB에 반영해 요청 대비 DB 쓰기를 N:1로 줄였습니다.</span>
                     </li>
                     <li>
