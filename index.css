@@ -2693,16 +2693,28 @@
             color: #000000;
         }
 
-        /* 카드마다 쓴 언어·핵심 기술 한 줄. 자세한 건 기술 스택 패널에 있다. */
+        /* 카드마다 쓴 언어·핵심 기술. 작은 칩으로 한 줄. 자세한 건 기술 스택 패널에 있다. */
         .card-tech {
-            margin: 8px 0 0;
-            color: var(--muted);
-            font-size: 12.5px;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-            word-break: keep-all;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin: 9px 0 0;
         }
 
-        .theme-hpdfs .card-tech {
-            color: #8fa2bb;
+        .card-tech span {
+            padding: 3px 9px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: var(--muted);
+            background: var(--surface);
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            white-space: nowrap;
+        }
+
+        .theme-hpdfs .card-tech span {
+            border-color: #2c3a51;
+            color: #b6c4d6;
+            background: #16202e;
         }
