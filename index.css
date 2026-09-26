@@ -2760,13 +2760,13 @@
         .theme-gas .card-tech {
             display: grid;
             grid-template-columns: repeat(2, auto);
-            row-gap: 4px;
+            row-gap: 6px;
             justify-items: start;
             /* 2행짜리 칩이 줄 높이를 늘려 라벨이 가운데로 밀리고 제목까지 내려갔다.
                흐름에서 빼서 라벨 줄은 다른 카드와 같은 한 줄 높이로 되돌린다. */
             position: absolute;
             top: 0;
-            right: 0;
+            right: 20px;
             margin: 0;
         }
 
@@ -2777,7 +2777,9 @@
 
         /* 가스는 제목이 길어 아랫줄 칩과 겹친다. 칩 폭만큼 비워 두 줄로 접는다. */
         .theme-gas h2 {
-            padding-right: 168px;
+            padding-right: 170px;
+            /* 남은 폭이 좁아 '방/지' 처럼 낱말 중간에서 끊겼다. */
+            word-break: keep-all;
         }
 
         /* 좁은 화면에서는 칸이 좁아 칩을 띄워두면 제목 위로 겹친다. 흐름으로 되돌린다. */
