@@ -1089,7 +1089,7 @@
             },
             respla: {
                 title: "RESPLA",
-                architecture: `<div class="mini-arch arch-respla" role="img" aria-label="Electron 키오스크가 Spring Boot로 요청하고 Service를 거쳐 JPA로 MariaDB에 접근해 좌석 예약과 이용 상태를 관리하는 구조">
+                architecture: `<div class="mini-arch arch-respla" role="img" aria-label="React 화면이 Spring Boot로 요청하고 Service를 거쳐 JPA로 MariaDB에 접근해 좌석 예약과 이용 상태를 관리하는 구조">
                     <svg class="mini-lines" viewBox="0 0 1400 600" preserveAspectRatio="none" aria-hidden="true">
                         <defs>
                             <marker id="mArrowR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
@@ -1103,8 +1103,8 @@
                     </svg>
                     <article class="architecture-node resp-electron">
                         <span class="node-type">Client</span>
-                        <strong>Electron</strong>
-                        <small>좌석 예약 키오스크 UI</small>
+                        <strong>React</strong>
+                        <small>좌석 예약 화면 UI</small>
                     </article>
                     <article class="architecture-node resp-spring">
                         <span class="node-type">Server</span>
@@ -1130,14 +1130,6 @@
                 stack: `<div class="stack-groups stack-respla">
                     <section class="stack-group" aria-label="클라이언트 기술">
                         <h3>Client</h3>
-                        <div class="stack-item">
-                            <span class="stack-name">Electron<span class="stack-version">35</span></span>
-                            <span class="stack-note">데스크톱 키오스크 앱</span>
-                        </div>
-                        <div class="stack-item">
-                            <span class="stack-name">Electron Forge</span>
-                            <span class="stack-note">패키징 · 빌드</span>
-                        </div>
                         <div class="stack-item">
                             <span class="stack-name">React</span>
                             <span class="stack-note">예약 화면 UI</span>
