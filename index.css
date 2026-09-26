@@ -2966,7 +2966,36 @@
 
         /* 링크 복사 버튼: 글자 대신 아이콘 하나. 카드마다 같은 문구가 반복돼 산만했다. */
         .button-icon {
+            position: relative;
             padding: 0 14px;
+            /* 1px 은 125% 배율에서 변이 고르지 않게 찍힌다. */
+            border-width: 2px;
+        }
+
+        /* 기본 title 툴팁은 1초쯤 늦게 뜬다. 직접 그려서 바로 보이게 한다. */
+        .button-icon::after {
+            content: attr(data-tip);
+            display: block;
+            position: absolute;
+            bottom: calc(100% + 6px);
+            left: 50%;
+            z-index: 3;
+            padding: 4px 9px;
+            transform: translateX(-50%);
+            border: 1px solid rgb(255 255 255 / 0.2);
+            border-radius: 6px;
+            color: #ffffff;
+            background: #14211b;
+            font-size: 11.5px;
+            font-weight: 700;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .button-icon:hover::after,
+        .button-icon:focus-visible::after {
+            opacity: 1;
         }
 
         .button-icon .icon-check,
