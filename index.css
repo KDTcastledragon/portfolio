@@ -2594,3 +2594,8 @@
             grid-template-columns: minmax(0, 1.1fr) minmax(360px, 1fr);
             gap: clamp(10px, 1vw, 18px);
         }
+
+        /* 제목 첫 줄("대규모 메시지 처리 지향 웹 채팅")이 카드 폭에서 접히지 않게 줄인다. */
+        .hero-main-box .project-description h1 {
+            font-size: clamp(21px, 1.7vw, 31px);
+        }
