@@ -2794,3 +2794,194 @@
                 padding-right: 0;
             }
         }
+
+        /* ── 아키텍처 모달 머리줄: 제목 · 뷰 전환 · 닫기 ─────── */
+        #architectureDialog .architecture-toolbar {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 12px;
+        }
+
+        .architecture-modal-title {
+            margin: 0;
+            align-self: center;
+            color: var(--text);
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+        }
+
+        /* 닫기 버튼이 모달 바깥으로 삐져나와 있었다. 툴바 오른쪽 칸에 넣는다. */
+        #architectureDialog .dialog-close {
+            position: static;
+            justify-self: end;
+            align-self: center;
+            width: 32px;
+            height: 32px;
+            font-size: 18px;
+        }
+
+        /* ── AWS Lightsail 실제 배포 구조 ──────────────────── */
+        .lightsail-architecture {
+            display: flex;
+            height: clamp(560px, calc(100dvh - 130px), 710px);
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            padding: 22px;
+            overflow: auto;
+            background:
+                linear-gradient(rgb(18 132 109 / 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgb(18 132 109 / 0.07) 1px, transparent 1px),
+                #edf8f0;
+            background-size: 28px 28px;
+        }
+
+        .ls-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .ls-node {
+            display: flex;
+            flex: none;
+            min-height: 74px;
+            padding: 11px 14px;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: #f1faf4;
+            box-shadow: 0 10px 24px rgb(0 0 0 / 0.14);
+        }
+
+        .ls-node .node-type {
+            font-size: 11px;
+        }
+
+        .ls-node strong {
+            margin-top: 5px;
+            font-size: 15px;
+            line-height: 1.25;
+        }
+
+        .ls-node small {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .ls-registry {
+            flex: 1;
+        }
+
+        .ls-arrow {
+            flex: none;
+            color: #426455;
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .ls-arrow-down {
+            align-self: center;
+        }
+
+        .ls-image-grid,
+        .ls-container-grid {
+            display: grid;
+            gap: 6px;
+            margin-top: 10px;
+            padding: 9px;
+            border-radius: 8px;
+            background: #173528;
+        }
+
+        .ls-image-grid {
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        .ls-container-grid {
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        .ls-image-grid span,
+        .ls-container-grid span {
+            display: grid;
+            height: 32px;
+            place-items: center;
+            border: 1px solid #426455;
+            background: #f7fbf8;
+            color: var(--text);
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 11.5px;
+            font-weight: 700;
+        }
+
+        .ls-instance {
+            flex: 1;
+            padding: 14px;
+            border: 2px dashed #6fa889;
+            border-radius: 14px;
+            background: rgb(255 255 255 / 0.55);
+        }
+
+        .ls-instance-head .node-type {
+            font-size: 11px;
+        }
+
+        .ls-instance-head strong {
+            display: block;
+            margin-top: 4px;
+            font-size: 15px;
+        }
+
+        .ls-instance-head small {
+            display: block;
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .ls-instance-body {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+            align-items: center;
+        }
+
+        .ls-network {
+            flex: 1;
+            padding: 10px 12px 12px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: #f1faf4;
+        }
+
+        .ls-network-label {
+            color: var(--muted);
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .ls-note {
+            margin: 12px 0 0;
+            color: var(--muted);
+            font-size: 11px;
+            word-break: keep-all;
+        }
+
+        @media (max-width: 820px) {
+            .ls-row,
+            .ls-instance-body {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .ls-image-grid,
+            .ls-container-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }

@@ -278,18 +278,19 @@
 
         <dialog id="architectureDialog" class="modal" aria-labelledby="architectureTitle">
             <div class="modal-inner">
-                <header class="modal-header">
-                    <button class="dialog-close" type="button" data-close aria-label="닫기">&times;</button>
-                </header>
-
                 <div class="architecture-shell">
                     <div class="architecture-toolbar">
+                        <h2 class="architecture-modal-title" id="architectureTitle">CastleChat Architecture</h2>
                         <div class="architecture-view-switch" role="tablist" aria-label="배포 환경">
                             <button class="architecture-view-button is-active" type="button"
                                 data-architecture-view="onpremise" role="tab" aria-selected="true">On-Premise</button>
+                            <button class="architecture-view-button" type="button"
+                                data-architecture-view="lightsail" role="tab"
+                                aria-selected="false">AWS LightSail</button>
                             <button class="architecture-view-button" type="button" data-architecture-view="cloud"
-                                role="tab" aria-selected="false">AWS Cloud</button>
+                                role="tab" aria-selected="false">AWS Kubernetes</button>
                         </div>
+                        <button class="dialog-close" type="button" data-close aria-label="닫기">&times;</button>
                     </div>
 
                     <div class="architecture-canvas architecture-panel" data-architecture-panel="onpremise" role="img"
@@ -550,6 +551,64 @@
                                 </div>
                             </section>
                         </section>
+                    </div>
+
+                    <div class="architecture-panel lightsail-architecture" data-architecture-panel="lightsail" hidden
+                        role="img"
+                        aria-label="로컬에서 빌드한 이미지를 ECR 에 올리고 Lightsail 인스턴스 한 대가 이를 내려받아 NginX 뒤 Docker 네트워크에서 5개 프로세스와 Kafka, Redis, MariaDB 컨테이너를 함께 돌리는 구조">
+                        <div class="ls-row">
+                            <article class="ls-node">
+                                <span class="node-type">Local</span>
+                                <strong>Docker Build</strong>
+                                <small>프로세스별 이미지 빌드</small>
+                            </article>
+                            <span class="ls-arrow" aria-hidden="true">push &rarr;</span>
+                            <article class="ls-node ls-registry">
+                                <span class="node-type">Elastic Container Registry</span>
+                                <strong>castlechat/*</strong>
+                                <div class="ls-image-grid">
+                                    <span>front-end</span><span>gateway</span><span>engine</span>
+                                    <span>domain</span><span>worker</span><span>ai-assist</span>
+                                </div>
+                            </article>
+                        </div>
+
+                        <span class="ls-arrow ls-arrow-down" aria-hidden="true">&darr; image pull</span>
+
+                        <div class="ls-row">
+                            <article class="ls-node">
+                                <span class="node-type">Front-End</span>
+                                <strong>Client</strong>
+                                <small>HTTP · WebSocket</small>
+                            </article>
+                            <span class="ls-arrow" aria-hidden="true">&rarr;</span>
+                            <section class="ls-instance">
+                                <div class="ls-instance-head">
+                                    <span class="node-type">AWS Lightsail · ap-northeast-2</span>
+                                    <strong>인스턴스 1대 · 2 vCPU / 4GB</strong>
+                                    <small>고정 IP · 월 $24 (전송량 4TB 포함)</small>
+                                </div>
+                                <div class="ls-instance-body">
+                                    <article class="ls-node ls-nginx">
+                                        <span class="node-type">Web Server</span>
+                                        <strong>NginX :80</strong>
+                                        <small>Reverse Proxy</small>
+                                    </article>
+                                    <span class="ls-arrow" aria-hidden="true">&rarr;</span>
+                                    <section class="ls-network">
+                                        <span class="ls-network-label">docker network · castlechat_default</span>
+                                        <div class="ls-container-grid">
+                                            <span>front-end</span><span>gateway</span><span>engine</span>
+                                            <span>domain</span><span>worker</span><span>ai-assist</span>
+                                            <span>kafka</span><span>redis</span><span>mariadb</span>
+                                            <span>prometheus</span><span>grafana</span>
+                                        </div>
+                                    </section>
+                                </div>
+                                <p class="ls-note">JVM 힙 축소(-Xmx160m · SerialGC)로 5개 프로세스와 Kafka · Redis · MariaDB 를
+                                    4GB 한 대에 수용</p>
+                            </section>
+                        </div>
                     </div>
 
                 </div>
