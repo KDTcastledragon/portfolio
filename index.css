@@ -2643,3 +2643,8 @@
         .project-summary-list li.theme-hpdfs p {
             color: #aab6c7;
         }
+
+        /* 프로젝트 요약 모달(프요카)의 바탕은 흰색. 카드 색이 더 또렷하게 보인다. */
+        dialog.modal.project-summary-modal {
+            background: #ffffff;
+        }
