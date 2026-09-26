@@ -2695,10 +2695,18 @@
 
         /* 카드마다 쓴 언어·핵심 기술. 작은 칩으로 한 줄. 자세한 건 기술 스택 패널에 있다. */
         .card-tech {
-            display: flex;
+            display: inline-flex;
             flex-wrap: wrap;
             gap: 5px;
-            margin: 8px 0 10px;
+            margin: 0 0 2px;
+            vertical-align: middle;
+        }
+
+        /* 구분 라벨과 같은 줄에 둔다. */
+        .hero-topline {
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
         }
 
         .card-tech span {
