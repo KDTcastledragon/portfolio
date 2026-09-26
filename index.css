@@ -247,9 +247,10 @@
         }
 
         .hero-topline {
-            margin: 0 0 2px;
+            margin: 0 0 4px;
             color: var(--muted);
-            font-size: clamp(19px, 1.9vw, 27px);
+            /* 제목보다 눈에 띄면 안 된다. 라벨 수준으로 줄인다. */
+            font-size: clamp(12px, 1vw, 15px);
             font-weight: 700;
             letter-spacing: -0.02em;
         }
