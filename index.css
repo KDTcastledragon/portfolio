@@ -2326,12 +2326,10 @@
             border: 1px solid var(--line);
             border-radius: 22px;
             background-color: var(--page);
+            /* 격자 무늬는 걷어내고 은은한 빛만 남긴다. */
             background-image:
                 radial-gradient(circle at 18% 12%, rgb(18 132 109 / 0.12), transparent 34%),
-                radial-gradient(circle at 88% 18%, rgb(120 185 142 / 0.16), transparent 30%),
-                linear-gradient(rgb(18 132 109 / 0.055) 1px, transparent 1px),
-                linear-gradient(90deg, rgb(18 132 109 / 0.055) 1px, transparent 1px);
-            background-size: auto, auto, 32px 32px, 32px 32px;
+                radial-gradient(circle at 88% 18%, rgb(120 185 142 / 0.16), transparent 30%);
             box-shadow: 0 24px 70px rgb(37 91 63 / 0.16), inset 0 1px 0 rgb(255 255 255 / 0.72);
             animation: stage-rise 520ms cubic-bezier(.2, .8, .2, 1) both;
             overflow: hidden;
