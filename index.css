@@ -3117,3 +3117,15 @@
                 display: none;
             }
         }
+
+        /* 메뉴 버튼은 글자 폭만큼만. 가로로 늘어질 이유가 없다. */
+        .hero-main-box .project-menu {
+            grid-template-columns: repeat(2, max-content);
+            justify-content: start;
+            max-width: none;
+        }
+
+        .hero-main-box .project-menu button {
+            width: auto;
+            justify-content: center;
+        }
