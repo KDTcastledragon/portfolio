@@ -570,10 +570,10 @@
         }
 
         .theme-gas {
-            --t-accent: #d98a2b;
-            --t-accent-hover: #c2781f;
-            --t-border: #e6cfa8;
-            --t-tint: #fbf4e7;
+            --t-accent: #d9605c;
+            --t-accent-hover: #c24b47;
+            --t-border: #eecfcd;
+            --t-tint: #fdf3f2;
         }
 
         .theme-fox {
@@ -790,8 +790,8 @@
 
         .arch-gas::after {
             background-image:
-                linear-gradient(rgb(217 138 43 / 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgb(217 138 43 / 0.08) 1px, transparent 1px);
+                linear-gradient(rgb(217 96 92 / 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgb(217 96 92 / 0.08) 1px, transparent 1px);
         }
 
         .arch-fox::after {
