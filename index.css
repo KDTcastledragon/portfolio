@@ -3129,3 +3129,23 @@
             width: auto;
             justify-content: center;
         }
+
+        /* 나머지 카드 메뉴도 글자 폭만큼만. 행·열 구성은 그대로 두고 가로만 줄인다. */
+        .mini-project-menu {
+            grid-template-columns: repeat(2, max-content);
+            justify-content: start;
+        }
+
+        .compact-project-card .mini-project-menu {
+            grid-template-columns: max-content;
+        }
+
+        .mini-project-menu button {
+            width: auto;
+            justify-content: center;
+        }
+
+        /* 2·3번 카드는 .side-project-card 쪽 규칙이 더 구체적이라 따로 덮는다. */
+        .side-project-card .mini-project-menu {
+            grid-template-columns: repeat(2, max-content);
+        }
