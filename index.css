@@ -3286,8 +3286,8 @@
         }
 
         .page-two-grid > .theme-iplist { grid-area: 1 / 1; }
-        .page-two-grid > .theme-hpdfs  { grid-area: 2 / 1; }
-        .page-two-grid > .theme-gas    { grid-area: 1 / 2; }
+        .page-two-grid > .theme-hpdfs  { grid-area: 1 / 2; }
+        .page-two-grid > .theme-gas    { grid-area: 2 / 1; }
 
         /* 스크린샷이 없는 카드는 셋째 칸이 0 으로 접히게 auto 로 둔다. */
         .side-project-card {
