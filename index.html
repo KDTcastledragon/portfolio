@@ -99,8 +99,6 @@
                                     <button type="button" data-detail="respla"
                                         data-detail-type="architecture">아키텍처</button>
                                     <button type="button" data-detail="respla" data-detail-type="stack">기술 스택</button>
-                                    <button type="button" data-detail="respla" data-detail-type="skill">주요 스킬
-                                        개요</button>
                                     <button type="button" data-detail="respla" data-detail-type="trouble">트러블
                                         슈팅</button>
                                 </nav>
@@ -121,10 +119,10 @@
                                     <button class="button button-icon" type="button" id="copyLinkButton" aria-label="링크 복사" data-tip="링크 복사"><svg class="icon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg><svg class="icon-check" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path></svg></button>
                                 </div>
                                 <nav class="project-menu mini-project-menu" aria-label="여우 쇼핑몰 상세 메뉴">
+                                    <button type="button" data-detail="fox" data-detail-type="part">담당 파트</button>
                                     <button type="button" data-detail="fox"
                                         data-detail-type="architecture">아키텍처</button>
                                     <button type="button" data-detail="fox" data-detail-type="stack">기술 스택</button>
-                                    <button type="button" data-detail="fox" data-detail-type="skill">주요 스킬 개요</button>
                                     <button type="button" data-detail="fox" data-detail-type="trouble">트러블 슈팅</button>
                                 </nav>
                             </div>
@@ -153,7 +151,6 @@
                             <nav class="project-menu mini-project-menu" aria-label="외부장비 및 IP 관리 상세 메뉴">
                                 <button type="button" data-detail="extra" data-detail-type="architecture">아키텍처</button>
                                 <button type="button" data-detail="extra" data-detail-type="stack">기술 스택</button>
-                                <button type="button" data-detail="extra" data-detail-type="skill">주요 스킬 개요</button>
                                 <button type="button" data-detail="extra" data-detail-type="trouble">트러블 슈팅</button>
                             </nav>
                         </div>
@@ -174,6 +171,7 @@
                                     rel="noopener">웹 접속</a>
                             </div>
                             <nav class="project-menu mini-project-menu" aria-label="HPDFS 상세 메뉴">
+                                <button type="button" data-detail="smartctl" data-detail-type="part">담당 파트</button>
                                 <button type="button" data-detail="smartctl"
                                     data-detail-type="architecture">아키텍처</button>
                                 <button type="button" data-detail="smartctl" data-detail-type="stack">기술 스택</button>
@@ -195,6 +193,7 @@
                                 <a class="button button-primary" href="./downloads/gsafe.zip" download>.exe 파일 다운로드</a>
                             </div>
                             <nav class="project-menu mini-project-menu" aria-label="가스 누출 방지 시뮬레이션 상세 메뉴">
+                                <button type="button" data-detail="gas" data-detail-type="part">담당 파트</button>
                                 <button type="button" data-detail="gas" data-detail-type="architecture">아키텍처</button>
                                 <button type="button" data-detail="gas" data-detail-type="stack">기술 스택</button>
                                 <button type="button" data-detail="gas" data-detail-type="skill">주요 스킬 개요</button>
@@ -911,6 +910,20 @@
                         </div>
                     </section>
                 </div>`,
+                part: `<ul class="detail-cards">
+                    <li>
+                        <strong>FastAPI API 설계</strong>
+                        <span>진단 요청, 디스크 조회, 진단 이력 조회, 조치 상태 변경 엔드포인트와 Pydantic 입력 스키마를 설계했습니다.</span>
+                    </li>
+                    <li>
+                        <strong>PostgreSQL 스키마 설계</strong>
+                        <span>매 진단 결과를 쌓는 diagnosis_log 와 디스크별 최신 상태만 두는 disks 로 테이블 책임을 나눴습니다.</span>
+                    </li>
+                    <li>
+                        <strong>담당 범위</strong>
+                        <span>서버와 DB 를 맡았습니다. 수집 에이전트와 Streamlit 대시보드는 팀원이 담당했습니다.</span>
+                    </li>
+                </ul>`,
                 core: `<ul class="detail-cards">
                     <li>
                         <strong>명확한 API 입력 계약</strong>
@@ -1044,6 +1057,20 @@
                         </div>
                     </section>
                 </div>`,
+                part: `<ul class="detail-cards">
+                    <li>
+                        <strong>센서 수신 API</strong>
+                        <span>Unity 클라이언트가 보내는 16채널 센서 값을 받아 위험도 판정 결과를 돌려주는 FastAPI 서버를 맡았습니다.</span>
+                    </li>
+                    <li>
+                        <strong>예측 모델 서빙</strong>
+                        <span>RandomForest 위험도 모델과 농도 추정 결과를 API 응답으로 묶어 밸브 차단·경고 판단에 쓰이게 했습니다.</span>
+                    </li>
+                    <li>
+                        <strong>담당 범위</strong>
+                        <span>서버와 데이터 쪽을 맡았습니다. Unity 시뮬레이션 화면과 연출은 팀원이 담당했습니다.</span>
+                    </li>
+                </ul>`,
                 skill: "누출 감지와 차단 동작을 시각적으로 확인하는 자동화 시뮬레이션.",
                 trouble: "상태 전이 표현, 오작동 케이스, 시뮬레이션 UX 조정.",
                 todo: "시연 영상과 상세 설명 연결 예정."
@@ -1141,6 +1168,20 @@
                         </div>
                     </section>
                 </div>`,
+                part: `<ul class="detail-cards">
+                    <li>
+                        <strong>상품 탐색 화면</strong>
+                        <span>국가·카테고리·장르 다중 필터와 제목·가격·판매량·평점·리뷰 정렬, 가격 구간 검색, 페이지당 노출 개수를 담당했습니다.</span>
+                    </li>
+                    <li>
+                        <strong>장바구니와 주문</strong>
+                        <span>수량 조절, 장바구니 담기, 바로구매로 이어지는 흐름과 주문 상태 처리를 화면과 API 양쪽에서 맡았습니다.</span>
+                    </li>
+                    <li>
+                        <strong>담당 범위</strong>
+                        <span>상품·주문 도메인의 React 화면과 Spring MVC 컨트롤러·서비스·JPA 리포지토리까지 FE·BE 를 함께 맡았습니다.</span>
+                    </li>
+                </ul>`,
                 skill: "상품 탐색, 주문 흐름, 기본 회원 기능, 관리자 관리 영역.",
                 trouble: "상품 데이터 관리, 주문 상태 처리, 화면 흐름 정리.",
                 todo: "배포 링크와 주요 화면 연결 예정."
@@ -1245,6 +1286,7 @@
             architecture: "아키텍처",
             stack: "기술 스택",
             skill: "주요 스킬 개요",
+            part: "담당 파트",
             core: "핵심 구현",
             trouble: "트러블 슈팅",
             todo: "미정",

@@ -3410,3 +3410,9 @@
         .card-shot {
             width: 200px;
         }
+
+        /* '담당 파트' 가 붙어 메뉴가 5개가 됐다. 2열이면 3줄이라 카드를 넘친다. */
+        .theme-hpdfs .mini-project-menu,
+        .theme-gas .mini-project-menu {
+            grid-template-columns: repeat(3, max-content);
+        }
