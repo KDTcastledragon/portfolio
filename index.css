@@ -3074,3 +3074,8 @@
         .hero-main-box .hero-actions {
             margin-top: 12px;
         }
+
+        /* 속 카드를 없앤 뒤로도 위쪽 패딩이 남아 라벨이 번호보다 30px 내려가 있었다. */
+        .hero-main-box .project-description {
+            padding-top: 3px;
+        }
