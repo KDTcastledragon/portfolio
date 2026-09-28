@@ -3267,3 +3267,131 @@
         .theme-hpdfs .project-year {
             color: #97a6ba;
         }
+
+        /* ── 2페이지: 4·6 위, 5 아래. 카드 모양·크기는 2·3번과 동일 ────── */
+        .page-two-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            /* 1페이지 .hero-side 와 같게 두 줄로 반씩 나눠 카드 높이를 맞춘다. */
+            grid-template-rows: 1fr 1fr;
+            height: 100%;
+            min-height: 0;
+            gap: clamp(14px, 1.6vw, 24px);
+        }
+
+        /* 스테이지 행이 내용 크기라 grid 안쪽 1fr 이 무의미했다. 행을 화면 높이로 못 박는다. */
+        .project-page-three .two-project-stage {
+            align-items: stretch;
+            grid-template-rows: minmax(0, 1fr);
+        }
+
+        .page-two-grid > .theme-iplist { grid-area: 1 / 1; }
+        .page-two-grid > .theme-hpdfs  { grid-area: 2 / 1; }
+        .page-two-grid > .theme-gas    { grid-area: 1 / 2; }
+
+        /* 스크린샷이 없는 카드는 셋째 칸이 0 으로 접히게 auto 로 둔다. */
+        .side-project-card {
+            grid-template-columns: 52px minmax(0, 1fr) auto;
+        }
+
+        .card-shot {
+            width: 150px;
+        }
+
+        /* 3열 카드용으로 띄워 뒀던 규칙들. 이제 2·3번과 같은 흐름 배치를 쓴다. */
+        .side-project-card .card-shot {
+            position: static;
+        }
+
+        .theme-hpdfs .card-tech,
+        .theme-gas .card-tech {
+            position: static;
+            display: inline-flex;
+            margin: 0;
+        }
+
+        .theme-gas h2 {
+            padding-right: 0;
+        }
+
+        /* 담당 라벨이 길어 줄바꿈되면 닫는 대괄호만 떨어진다. */
+        .side-project-card .hero-topline {
+            font-size: 12.5px;
+            white-space: nowrap;
+        }
+
+        /* 2페이지 카드가 1페이지와 같은 높이(≈257px)를 쓰게 되면서 내용이 몇 px 씩 넘쳤다.
+           2·3번도 같은 규격이라 .side-project-card 전체를 조금씩 줄인다. */
+        .side-project-card {
+            padding: 14px;
+        }
+
+        .side-project-card h2 {
+            margin-bottom: 8px;
+        }
+
+        .side-project-card .hero-actions {
+            margin-top: 10px;
+        }
+
+        .side-project-card .mini-project-menu {
+            margin-top: 8px;
+        }
+
+        .side-project-card .mini-project-menu button,
+        .side-project-card .hero-actions .button {
+            min-height: 32px;
+        }
+
+        /* 135px 이면 HPDFS 글 칸이 좁아 칩이 라벨 아래로 밀린다. */
+        .card-shot {
+            width: 120px;
+        }
+
+        /* HPDFS 는 설명이 두 줄이라 아직 11px 넘친다. */
+        .side-project-card .hero-description {
+            line-height: 1.5;
+        }
+
+        .side-project-card .mini-project-menu {
+            gap: 6px;
+        }
+
+        .side-project-card .mini-project-menu button {
+            min-height: 30px;
+        }
+
+        /* 낮은 화면에서는 카드 높이도 같이 줄어든다. 2·3·4·5·6번을 한 번 더 촘촘하게. */
+        @media (min-width: 821px) and (max-height: 700px) {
+            .side-project-card {
+                padding: 12px;
+            }
+
+            .side-project-card h2 {
+                margin-bottom: 6px;
+                font-size: clamp(18px, 1.5vw, 24px);
+            }
+
+            .side-project-card .hero-description {
+                font-size: 12.5px;
+                line-height: 1.45;
+            }
+
+            .side-project-card .hero-actions {
+                margin-top: 8px;
+            }
+
+            .side-project-card .mini-project-menu {
+                margin-top: 6px;
+            }
+
+            .side-project-card .hero-actions .button,
+            .side-project-card .mini-project-menu button {
+                min-height: 28px;
+            }
+
+            .side-project-card .card-tech span {
+                font-size: 9.5px;
+                padding: 2px 6px;
+            }
+        }
