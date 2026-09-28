@@ -3042,3 +3042,21 @@
             border-color: var(--t-accent, var(--accent));
             color: var(--t-accent, var(--accent));
         }
+
+        /* CastleChat 카드 순서: 라벨·제목·부제 → 버튼 → (스크린샷) → 설명은 맨 아래.
+           가운데 정렬이던 것을 위로 붙여 번호 '1' 과 같은 높이에서 시작한다. */
+        .hero-main-box .project-description {
+            justify-content: flex-start;
+        }
+
+        .hero-main-box .card-head { order: 1; }
+        .hero-main-box .project-description h1 { order: 2; }
+        .hero-main-box .hero-subtitle { order: 3; }
+        .hero-main-box .hero-actions { order: 4; }
+        .hero-main-box .hero-shot { order: 5; }
+
+        .hero-main-box .hero-description {
+            order: 6;
+            margin-top: auto;
+            padding-top: 18px;
+        }
