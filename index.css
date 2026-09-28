@@ -3106,18 +3106,6 @@
         .hero-main-box .hero-shot { order: 6; }
         .hero-main-box .hero-description { order: 7; }
 
-        /* 본문 칸이 넓어지면서 스크린샷이 통째로 커져 아래 설명문을 밀어냈다. */
-        .hero-main-box .hero-shot {
-            max-width: 440px;
-        }
-
-        /* 메뉴가 본문으로 내려오면서 세로가 빡빡해졌다. 충분히 높을 때만 스크린샷을 보인다. */
-        @media (min-width: 821px) and (max-height: 940px) {
-            .hero-main-box .hero-shot {
-                display: none;
-            }
-        }
-
         /* 메뉴 버튼은 글자 폭만큼만. 가로로 늘어질 이유가 없다. */
         .hero-main-box .project-menu {
             grid-template-columns: repeat(2, max-content);
@@ -3148,4 +3136,72 @@
         /* 2·3번 카드는 .side-project-card 쪽 규칙이 더 구체적이라 따로 덮는다. */
         .side-project-card .mini-project-menu {
             grid-template-columns: repeat(2, max-content);
+        }
+
+        /* ── AWS Kubernetes 다이어그램 정렬 ──────────────────────
+           박스는 px, 화살표는 viewBox 단위라 패널 크기가 바뀌면 둘이 어긋났다.
+           (패널 높이는 clamp(560px, 100dvh-130px, 710px) 로 화면마다 다르다)
+           박스 크기를 전부 % 로 바꿔 화살표와 같은 좌표계에 올린다. */
+        .cloud-bedrock-node {
+            width: 23%;
+            height: 24.6%;
+            min-height: 0;
+        }
+
+        .cloud-ecr-node {
+            width: 44%;
+            height: 31%;
+            min-height: 0;
+        }
+
+        .cloud-developer-node,
+        .cloud-bastion-node {
+            width: 10%;
+            height: 13.2%;
+            min-height: 0;
+        }
+
+        .cloud-vpc {
+            top: 54.5%;
+        }
+
+        .cloud-eks,
+        .cloud-database,
+        .cloud-compute-node {
+            min-height: 0;
+        }
+
+        /* RDS 칸이 EKS 높이에 맞춰 늘어나 아래가 텅 비어 있었다. */
+        .cloud-database {
+            align-self: start;
+        }
+
+        /* ↔ 는 RDS 칸 높이의 절반쯤에 둔다. (RDS 박스 ~166px) */
+        .cloud-data-connector {
+            align-self: start;
+            margin-top: 74px;
+        }
+
+        /* EKS 칸이 VPC 높이만큼 늘어나 아래가 비었다. 안쪽 노드가 남은 높이를 채우게 한다. */
+        .cloud-eks {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cloud-eks-grid {
+            flex: 1;
+        }
+
+        /* 채팅 화면을 카드 오른쪽 칸으로. 세로로 쌓이지 않으니 높이에 따라 숨길 이유도 없다. */
+        .hero-main-box .project-layout {
+            grid-template-columns: 64px minmax(0, 1fr) minmax(280px, 0.62fr);
+        }
+
+        .hero-main-box .hero-shot {
+            display: block;
+            align-self: start;
+            max-width: none;
+            margin-top: 0;
+            /* 원본은 1610x862(1.87:1). 세로로 더 채우되 왼쪽 위 기준으로 잘라 대화 화면을 남긴다. */
+            aspect-ratio: 4 / 3;
         }
