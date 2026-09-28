@@ -3206,3 +3206,41 @@
             aspect-ratio: 1610 / 862;
             object-fit: contain;
         }
+
+        /* 2·3·5번 카드에도 실제 화면을 오른쪽 칸에 붙인다. (CastleChat 과 같은 자리) */
+        .side-project-card {
+            grid-template-columns: 52px minmax(0, 1fr) minmax(135px, 0.3fr);
+            padding: clamp(14px, 1.2vw, 20px);
+        }
+
+        /* 3열 카드는 폭이 좁아 오른쪽 칸을 못 낸다. 메뉴 옆 빈 자리에 띄워 둔다.
+           흐름에 넣으면 카드가 길어져 2페이지 전체가 잘렸다. */
+        .compact-project-card {
+            position: relative;
+        }
+
+        .compact-project-card .card-shot {
+            position: absolute;
+            right: 6%;
+            bottom: 6%;
+            width: 52%;
+        }
+
+        .card-shot {
+            display: block;
+            width: 100%;
+            align-self: start;
+            object-fit: contain;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+        }
+
+        .theme-hpdfs .card-shot {
+            border-color: #33405a;
+        }
+
+        /* 이미지가 들어가며 글이 한 줄씩 늘었다. 2·3번 카드만 버튼 높이를 조금 줄인다. */
+        .side-project-card .mini-project-menu button,
+        .side-project-card .hero-actions .button {
+            min-height: 34px;
+        }
