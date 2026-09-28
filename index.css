@@ -3244,3 +3244,26 @@
         .side-project-card .hero-actions .button {
             min-height: 34px;
         }
+
+        /* 넘버링 아래 개발 시점. 배지 높이에 영향을 주지 않게 띄워 둔다. */
+        .project-number {
+            position: relative;
+        }
+
+        .project-year {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--muted);
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            white-space: nowrap;
+        }
+
+        /* HPDFS 카드는 배경이 어두워 --muted 로는 대비가 3.3 밖에 안 나온다. */
+        .theme-hpdfs .project-year {
+            color: #97a6ba;
+        }
