@@ -3060,3 +3060,17 @@
             margin-top: auto;
             padding-top: 18px;
         }
+
+        /* 부제가 혼자 굵고 간격도 넓어 튀었다. 다른 카드(제목→설명 10px, 설명→버튼 12px)에 맞춘다. */
+        .hero-main-box .project-description h1 {
+            margin-bottom: 0;
+        }
+
+        .hero-main-box .hero-subtitle {
+            margin-top: 10px;
+            font-weight: 400;
+        }
+
+        .hero-main-box .hero-actions {
+            margin-top: 12px;
+        }
