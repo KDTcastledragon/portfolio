@@ -3202,6 +3202,7 @@
             align-self: start;
             max-width: none;
             margin-top: 0;
-            /* 원본은 1610x862(1.87:1). 세로로 더 채우되 왼쪽 위 기준으로 잘라 대화 화면을 남긴다. */
-            aspect-ratio: 4 / 3;
+            /* 원본 비율 그대로(1610x862). 잘리지 않게 전체를 보여준다. */
+            aspect-ratio: 1610 / 862;
+            object-fit: contain;
         }
