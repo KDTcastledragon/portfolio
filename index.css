@@ -3426,3 +3426,18 @@
         .detail-modal-header .architecture-modal-title {
             align-self: center;
         }
+
+        /* 담당 파트처럼 화면 캡처가 붙는 카드. 글 아래에 실제 화면을 같이 보여준다. */
+        .detail-cards-shot li img {
+            display: block;
+            width: 100%;
+            margin-top: 12px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            object-fit: contain;
+        }
+
+        .detail-cards-shot li {
+            display: flex;
+            flex-direction: column;
+        }
