@@ -583,13 +583,6 @@
             --t-tint: #fbf6ee;
         }
 
-        /* 여우 쇼핑몰: 주황 + 초록 조합 (번호/카테고리는 초록) */
-        .mini-project-card.theme-fox .mini-project-number,
-        .mini-project-card.theme-fox .hero-topline {
-            border-color: #2f9e6f;
-            color: #2f9e6f;
-        }
-
         .theme-respla {
             --t-accent: #8b5cf6;
             --t-accent-hover: #7c3aed;
