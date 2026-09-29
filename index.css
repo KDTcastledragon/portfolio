@@ -3194,7 +3194,7 @@
 
         /* 채팅 화면을 카드 오른쪽 칸으로. 세로로 쌓이지 않으니 높이에 따라 숨길 이유도 없다. */
         .hero-main-box .project-layout {
-            grid-template-columns: 64px minmax(0, 1fr) minmax(280px, 0.62fr);
+            grid-template-columns: 64px minmax(0, 1fr) minmax(clamp(215px, 20vw, 320px), 0.68fr);
         }
 
         .hero-main-box .hero-shot {
@@ -3289,15 +3289,6 @@
         .page-two-grid > .theme-hpdfs  { grid-area: 1 / 2; }
         .page-two-grid > .theme-gas    { grid-area: 2 / 1; }
 
-        /* 스크린샷이 없는 카드는 셋째 칸이 0 으로 접히게 auto 로 둔다. */
-        .side-project-card {
-            grid-template-columns: 52px minmax(0, 1fr) auto;
-        }
-
-        .card-shot {
-            width: 150px;
-        }
-
         /* 3열 카드용으로 띄워 뒀던 규칙들. 이제 2·3번과 같은 흐름 배치를 쓴다. */
         .side-project-card .card-shot {
             position: static;
@@ -3341,11 +3332,6 @@
         .side-project-card .mini-project-menu button,
         .side-project-card .hero-actions .button {
             min-height: 32px;
-        }
-
-        /* 135px 이면 HPDFS 글 칸이 좁아 칩이 라벨 아래로 밀린다. */
-        .card-shot {
-            width: 120px;
         }
 
         /* HPDFS 는 설명이 두 줄이라 아직 11px 넘친다. */
@@ -3408,11 +3394,25 @@
         }
 
         .card-shot {
-            width: 200px;
+            width: clamp(180px, 17vw, 270px);
         }
 
         /* '담당 파트' 가 붙어 메뉴가 5개가 됐다. 2열이면 3줄이라 카드를 넘친다. */
         .theme-hpdfs .mini-project-menu,
         .theme-gas .mini-project-menu {
             grid-template-columns: repeat(3, max-content);
+        }
+
+        /* 낮은 화면에서는 카드도 낮아진다. 스크린샷을 줄여 글 칸을 확보한다.
+           (.card-shot 기본 폭 선언이 이 아래에 있으면 안 되므로 파일 끝에 둔다) */
+        @media (min-width: 821px) and (max-height: 700px) {
+            .card-shot {
+                width: clamp(150px, 14vw, 205px);
+            }
+
+            /* CastleChat 은 설명문이 카드 맨 아래라 낮은 화면에서 먼저 넘친다. */
+            .hero-main-box .hero-description {
+                font-size: 13px;
+                line-height: 1.5;
+            }
         }
