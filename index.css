@@ -598,37 +598,12 @@
         }
 
         /* HPDFS: 다크 대시보드 느낌 */
+        /* 다크 대시보드 톤이 너무 어두워 밝은 청록 계열로 바꿨다. 다른 카드와 같은 구조다. */
         .theme-hpdfs {
-            --t-accent: #5fb0c9;
-            --t-accent-hover: #7cc3d8;
-            --t-border: #2a3547;
-            --t-tint: #1a2233;
-        }
-
-        .theme-hpdfs h2 {
-            color: #f4f7fb;
-        }
-
-        .theme-hpdfs .hero-description {
-            color: #aab6c7;
-        }
-
-        .theme-hpdfs .mini-project-menu button,
-        .theme-hpdfs .hero-actions .button:not(.button-primary) {
-            color: #cdd7e5;
-            border-color: #33405a;
-            background: #222c40;
-        }
-
-        .theme-hpdfs .mini-project-menu button:hover,
-        .theme-hpdfs .hero-actions .button:not(.button-primary):hover {
-            color: var(--t-accent);
-            border-color: var(--t-accent);
-            background: #26344b;
-        }
-
-        .theme-hpdfs .button-primary {
-            color: #10202b;
+            --t-accent: #2b8aa6;
+            --t-accent-hover: #216f87;
+            --t-border: #bfdde6;
+            --t-tint: #eef8fb;
         }
 
         /* 프로젝트 상세 모달용 미니 아키텍처 다이어그램 (castleChat 노드/화살표 스타일 재사용) */
@@ -2627,14 +2602,6 @@
         }
 
         /* HPDFS 는 어두운 카드라 글자색을 뒤집는다. */
-        .project-summary-list li.theme-hpdfs strong {
-            color: #f1f5f9;
-        }
-
-        .project-summary-list li.theme-hpdfs p {
-            color: #aab6c7;
-        }
-
         /* 프로젝트 요약 모달(프요카)의 바탕은 흰색. 카드 색이 더 또렷하게 보인다. */
         dialog.modal.project-summary-modal {
             background: #ffffff;
@@ -2657,11 +2624,6 @@
             border-radius: 8px;
             background: #ffffff;
             font-size: 14px;
-        }
-
-        .project-summary-list li.theme-hpdfs .project-summary-number {
-            border-color: #2c3a51;
-            background: #0f1723;
         }
 
         /* 3) 개인/팀 배지가 제목 앞으로 왔으니 왼쪽 정렬 */
@@ -2698,12 +2660,6 @@
             font-weight: 700;
             letter-spacing: -0.01em;
             white-space: nowrap;
-        }
-
-        .theme-hpdfs .card-tech span {
-            border-color: #2c3a51;
-            color: #b6c4d6;
-            background: #16202e;
         }
 
         /* CastleChat 카드는 폭이 좁아 칩 5개가 라벨 아래로 밀렸다.
@@ -3009,8 +2965,7 @@
         }
 
         /* 복사 아이콘과 테두리를 카드 테마색으로. CastleChat 은 테마 변수가 없어 기본 accent 로 떨어진다. */
-        .hero-actions .button.button-icon,
-        .theme-hpdfs .hero-actions .button.button-icon:not(.button-primary) {
+        .hero-actions .button.button-icon {
             border-color: var(--t-accent, var(--accent));
             color: var(--t-accent, var(--accent));
         }
@@ -3023,15 +2978,7 @@
             background: color-mix(in srgb, var(--t-accent, var(--accent)) 20%, var(--surface));
         }
 
-        /* HPDFS 는 카드가 어두워 밝은 쪽이 아니라 어두운 버튼색에 섞어야 한다. */
-        .theme-hpdfs .hero-actions .button.button-icon:not(.button-primary):hover {
-            border-color: var(--t-accent-hover);
-            color: var(--t-accent-hover);
-            background: color-mix(in srgb, var(--t-accent) 32%, #222c40);
-        }
-
-        .hero-actions .button.button-icon.is-copied,
-        .theme-hpdfs .hero-actions .button.button-icon.is-copied:not(.button-primary) {
+        .hero-actions .button.button-icon.is-copied {
             border-color: var(--t-accent, var(--accent));
             color: var(--t-accent, var(--accent));
         }
@@ -3228,10 +3175,6 @@
             border-radius: 12px;
         }
 
-        .theme-hpdfs .card-shot {
-            border-color: #33405a;
-        }
-
         /* 이미지가 들어가며 글이 한 줄씩 늘었다. 2·3번 카드만 버튼 높이를 조금 줄인다. */
         .side-project-card .mini-project-menu button,
         .side-project-card .hero-actions .button {
@@ -3254,11 +3197,6 @@
             font-weight: 700;
             letter-spacing: -0.02em;
             white-space: nowrap;
-        }
-
-        /* HPDFS 카드는 배경이 어두워 --muted 로는 대비가 3.3 밖에 안 나온다. */
-        .theme-hpdfs .project-year {
-            color: #97a6ba;
         }
 
         /* ── 2페이지: 4·6 위, 5 아래. 카드 모양·크기는 2·3번과 동일 ────── */
