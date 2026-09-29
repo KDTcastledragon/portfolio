@@ -69,8 +69,6 @@
                                 <nav class="project-menu" aria-label="CastleChat 상세 메뉴">
                                     <button type="button" data-open="architectureDialog">아키텍처</button>
                                     <button type="button" data-open="stackDialog">기술 스택</button>
-                                    <button type="button" data-detail="castlechat" data-detail-type="skill">주요 스킬
-                                        개요</button>
                                     <button type="button" data-detail="castlechat" data-detail-type="trouble">트러블
                                         슈팅</button>
                                     <button type="button" data-detail="castlechat" data-detail-type="core">핵심 구현</button>
@@ -727,11 +725,8 @@
 
         <dialog id="detailDialog" class="modal modal-narrow" aria-labelledby="detailTitle">
             <div class="modal-inner">
-                <header class="modal-header">
-                    <div>
-                        <h2 id="detailTitle" class="architecture-heading">프로젝트 상세</h2>
-                        <span id="detailState" class="architecture-state">SUMMARY</span>
-                    </div>
+                <header class="modal-header detail-modal-header">
+                    <h2 id="detailTitle" class="architecture-modal-title">프로젝트 상세</h2>
                     <button class="dialog-close" type="button" data-close aria-label="닫기">&times;</button>
                 </header>
                 <div class="detail-body">
@@ -763,28 +758,28 @@
                 </ul>`,
                 core: `<ul class="detail-cards">
                     <li>
-                        <strong>1. Kafka 비동기 영속화 파이프라인 — Event Persist Worker</strong>
-                        <span>sendMessage는 DB insert를 기다리지 않습니다. Snowflake ID를 채번하고 Kafka durable save(acks=all)까지만 동기로 확인한 뒤 즉시 응답하며, DB 쓰기는 Event Persist Worker가 소비해 멱등 처리합니다. 실패 메시지는 DLT로 격리해 재처리합니다.</span>
+                        <strong>1. 프로세스 격리와 독립 확장</strong>
+                        <span>도메인 HTTP, 소켓 연결 유지, 실시간 메시지 중계, 이벤트 영속화, AI 호출을 별도 독립 프로세스로 분리했습니다. 연결을 붙잡고 있는 프로세스와 DB 쓰기를 하는 프로세스가 서로 달라, WebSocket 연결과 DB I/O 가 같은 JVM 의 힙·스레드풀을 두고 경합하지 않습니다.</span>
                     </li>
                     <li>
-                        <strong>2. 읽음 위치 Write-Behind — Read Flush Worker</strong>
-                        <span>읽음 요청마다 DB를 갱신하지 않습니다. Redis Lua 스크립트로 최신 읽음 위치만 원자 병합하고 dirty로 마킹, Flush Worker가 주기 배치로 DB에 반영해 요청 대비 DB 쓰기를 N:1로 줄였습니다.</span>
+                        <strong>2. 단일 WebSocket 멀티플렉싱</strong>
+                        <span>방마다 연결을 만들지 않고 유저당 연결 1개를 wsType + roomId 로 디멀티플렉싱합니다. Kernel Socket 과 Session Memory 비용이 참여한 방 수와 무관하게 1 로 고정됩니다.</span>
                     </li>
                     <li>
-                        <strong>3. 단일 WebSocket 멀티플렉싱</strong>
-                        <span>방마다 연결을 만들지 않고 유저당 연결 1개를 wsType + roomId로 디멀티플렉싱합니다. 커널 소켓과 세션 메모리 비용이 참여한 방 수와 무관하게 고정됩니다.</span>
+                        <strong>3. 읽음 위치 Write-Behind — Read Flush Worker</strong>
+                        <span>읽음 요청마다 DB 를 갱신하지 않습니다. Redis Lua 스크립트로 최신 읽음 위치만 원자 병합하고 dirty 로 마킹, Flush Worker 가 주기 배치로 DB 에 반영해 요청 대비 DB 쓰기를 N:1 로 줄였습니다.</span>
                     </li>
                     <li>
-                        <strong>4. gRPC 내부 계약 + 프로세스 간 세션 공유</strong>
-                        <span>Gateway는 연결 유지와 라우팅만 담당하고, 검증과 오케스트레이션은 Channel Engine이 맡습니다. 내부 호출은 proto 계약의 gRPC unary, 인증은 Spring Session Redis로 5개 프로세스가 동일 세션을 공유합니다.</span>
+                        <strong>4. Kafka 비동기 영속화 파이프라인 — Event Persist Worker</strong>
+                        <span>sendMessage 는 DB insert 를 기다리지 않습니다. Snowflake ID 를 채번하고 Kafka durable save(acks=all)까지만 동기로 확인한 뒤 즉시 응답하며, DB 쓰기는 Event Persist Worker 가 소비해 멱등 처리합니다. 실패 메시지는 DLT 로 격리해 재처리합니다.</span>
                     </li>
                     <li>
-                        <strong>5. 신뢰 경계 검증과 타입 모델링</strong>
-                        <span>시스템 피드를 문자열 prefix가 아닌 message_type ENUM으로 분리하고, Gateway에서 클라이언트 전송 타입을 화이트리스트로 제한해 시스템 메시지 위조를 차단했습니다.</span>
+                        <strong>5. gRPC 내부 계약 + 프로세스 간 세션 공유</strong>
+                        <span>Gateway 는 연결 유지와 라우팅만 담당하고, 검증과 오케스트레이션은 Channel Engine 이 맡습니다. 내부 호출은 proto 계약의 gRPC unary, 인증은 Spring Session Redis 로 5개 프로세스가 동일 세션을 공유합니다.</span>
                     </li>
                     <li>
-                        <strong>6. 프로세스 격리와 독립 확장</strong>
-                        <span>연결 유지, 도메인 HTTP, 채팅 오케스트레이션, 이벤트 영속화, AI 호출을 별도 프로세스로 분리해 WebSocket 연결과 DB I/O가 같은 JVM 자원을 경합하지 않도록 구성했습니다.</span>
+                        <strong>6. 신뢰 경계 검증과 타입 모델링</strong>
+                        <span>시스템 피드를 문자열 prefix 가 아닌 message_type ENUM 으로 분리하고, Gateway 에서 클라이언트 전송 타입을 화이트리스트로 제한해 시스템 메시지 위조를 차단했습니다.</span>
                     </li>
                 </ul>`,
                 trouble: `<ul class="detail-cards">
@@ -1381,8 +1376,9 @@
                 const type = button.dataset.detailType;
                 if (!detail || !detail[type]) return;
 
-                document.getElementById("detailTitle").textContent = detail.title;
-                document.getElementById("detailState").textContent = detailTypeLabel[type];
+                // 아키텍처 모달처럼 "프로젝트명 + 종류" 한 줄로 보여준다.
+                document.getElementById("detailTitle").textContent =
+                    `${detail.title} ${detailTypeLabel[type]}`;
                 document.getElementById("detailText").innerHTML = detail[type];
                 const detailDlg = document.getElementById("detailDialog");
                 detailDlg.classList.toggle("detail-arch", type === "architecture");

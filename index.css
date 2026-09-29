@@ -3387,7 +3387,7 @@
         }
 
         .card-shot {
-            width: clamp(180px, 17vw, 270px);
+            width: clamp(215px, 21vw, 330px);
         }
 
         /* '담당 파트' 가 붙어 메뉴가 5개가 됐다. 2열이면 3줄이라 카드를 넘친다. */
@@ -3400,7 +3400,14 @@
            (.card-shot 기본 폭 선언이 이 아래에 있으면 안 되므로 파일 끝에 둔다) */
         @media (min-width: 821px) and (max-height: 700px) {
             .card-shot {
-                width: clamp(150px, 14vw, 205px);
+                width: clamp(185px, 17vw, 270px);
+            }
+
+            /* 폭까지 좁으면 글 칸이 눌려 HPDFS 가 넘친다. 한 단계 더 줄인다. */
+            @media (max-width: 1350px) {
+                .card-shot {
+                    width: clamp(160px, 14vw, 210px);
+                }
             }
 
             /* CastleChat 은 설명문이 카드 맨 아래라 낮은 화면에서 먼저 넘친다. */
@@ -3408,4 +3415,14 @@
                 font-size: 13px;
                 line-height: 1.5;
             }
+        }
+
+        /* 상세 모달 제목을 아키텍처 모달과 같은 크기·위치로. 좌측 상단 한 줄. */
+        .detail-modal-header {
+            align-items: center;
+            min-height: 34px;
+        }
+
+        .detail-modal-header .architecture-modal-title {
+            align-self: center;
         }
