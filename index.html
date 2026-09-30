@@ -159,7 +159,7 @@
                             <h2>HPDFS</h2>
                             <p class="hero-description">SMART 기반으로 저장장치 정보를 얻고, 학습된 ML 모델로 저장장치의 고장을 예측하고 모니터링하는 시스템.</p>
                             <div class="hero-actions">
-                                <a class="button" href="./downloads/hpdfs-agent.zip" download>.bat 파일 다운로드</a>
+                                <a class="button button-primary" href="./downloads/hpdfs-agent.zip" download>.bat 파일 다운로드</a>
                                 <a class="button button-primary" href="http://43.202.208.133:8084" target="_blank"
                                     rel="noopener">웹 접속</a>
                                 <button class="button button-icon" type="button" id="hpdfsCopyLinkButton" aria-label="링크 복사" data-tip="링크 복사"><svg class="icon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg><svg class="icon-check" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path></svg></button>
@@ -720,6 +720,8 @@
             <div class="modal-inner">
                 <header class="modal-header detail-modal-header">
                     <h2 id="detailTitle" class="architecture-modal-title">프로젝트 상세</h2>
+                    <div id="detailViewSwitch" class="architecture-view-switch" role="tablist" aria-label="배포 환경"
+                        hidden></div>
                     <button class="dialog-close" type="button" data-close aria-label="닫기">&times;</button>
                 </header>
                 <div class="detail-body">
@@ -795,7 +797,8 @@
             },
             smartctl: {
                 title: "HPDFS",
-                architecture: `<div class="mini-arch arch-hpdfs" role="img" aria-label="Local Agent가 Nginx를 통해 FastAPI로 SMART 데이터를 보내고, FastAPI가 RandomForest 예측과 PostgreSQL 저장을 수행하며 Streamlit 대시보드가 Nginx를 거쳐 조회하는 구조">
+                architecture: `<div class="architecture-shell arch-shell-embed">
+                    <div class="architecture-panel" data-architecture-panel="onpremise"><div class="mini-arch arch-hpdfs" role="img" aria-label="Local Agent가 Nginx를 통해 FastAPI로 SMART 데이터를 보내고, FastAPI가 RandomForest 예측과 PostgreSQL 저장을 수행하며 Streamlit 대시보드가 Nginx를 거쳐 조회하는 구조">
                     <svg class="mini-lines" viewBox="0 0 1400 600" preserveAspectRatio="none" aria-hidden="true">
                         <defs>
                             <marker id="mArrowH" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
@@ -838,12 +841,70 @@
                         <strong>Streamlit</strong>
                         <small>현황 · 진단 대시보드</small>
                     </article>
+                </div></div>
+                    <div class="architecture-panel lightsail-architecture" data-architecture-panel="lightsail" hidden
+                        role="img" aria-label="로컬에서 빌드한 이미지를 ECR 에 올리고 Lightsail 인스턴스 한 대가 이를 내려받아 NginX 뒤 Docker 네트워크에서 HPDFS 컨테이너를 돌리는 구조">
+                        <div class="ls-row">
+                            <article class="ls-node">
+                                <span class="node-type">Local</span>
+                                <strong>Docker Build</strong>
+                                <small>이미지 빌드</small>
+                            </article>
+                            <span class="ls-arrow" aria-hidden="true">push &rarr;</span>
+                            <article class="ls-node ls-registry">
+                                <span class="node-type">Elastic Container Registry</span>
+                                <strong>castlechat/*</strong>
+                                <div class="ls-image-grid">
+                                <span>hpdfs-web</span>
+                                <span>hpdfs-api</span>
+                                </div>
+                            </article>
+                        </div>
+
+                        <span class="ls-arrow ls-arrow-down" aria-hidden="true">&darr; image pull</span>
+
+                        <div class="ls-row">
+                            <article class="ls-node">
+                                <span class="node-type">Front-End</span>
+                                <strong>Client</strong>
+                                <small>브라우저 · :8084 / 에이전트 · :8085</small>
+                            </article>
+                            <span class="ls-arrow" aria-hidden="true">&rarr;</span>
+                            <section class="ls-instance">
+                                <div class="ls-instance-head">
+                                    <span class="node-type">AWS Lightsail · ap-northeast-2</span>
+                                    <strong>인스턴스 1대 · 2 vCPU / 4GB</strong>
+                                    <small>고정 IP · 6개 프로젝트가 한 대를 나눠 쓴다</small>
+                                </div>
+                                <div class="ls-instance-body">
+                                    <article class="ls-node ls-nginx">
+                                        <span class="node-type">Web Server</span>
+                                        <strong>NginX</strong>
+                                        <small>Reverse Proxy</small>
+                                    </article>
+                                    <span class="ls-arrow" aria-hidden="true">&rarr;</span>
+                                    <section class="ls-network">
+                                        <span class="ls-network-label">docker network · castlechat_default</span>
+                                        <div class="ls-container-grid">
+                                <span>hpdfs-web</span>
+                                <span>hpdfs-api</span>
+                                <span>sqlite-vol</span>
+                                        </div>
+                                    </section>
+                                </div>
+                                <p class="ls-note">수집 에이전트는 면접관 PC 에서 돌고 :8085 API 로 SMART 값을 보낸다. DB 는 볼륨에 붙인 SQLite 다.</p>
+                            </section>
+                        </div>
+                    </div>
                 </div>`,
                 stack: `<div class="stack-groups stack-hpdfs">
                     <section class="stack-group" aria-label="백엔드 기술">
                         <h3>Backend</h3>
                         <div class="stack-item">
-                            <span class="stack-name">FastAPI</span>
+                            <span class="stack-name">Python<span class="stack-version">3.11</span></span>
+                            <span class="stack-note">백엔드 · 모델 서빙 런타임</span>
+                        </div>
+s="stack-name">FastAPI</span>
                             <span class="stack-note">비동기 REST · 진단 API</span>
                         </div>
                         <div class="stack-item">
@@ -965,7 +1026,8 @@
             },
             gas: {
                 title: "G-SAFE",
-                architecture: `<div class="mini-arch arch-gas" role="img" aria-label="Unity GSAFE 클라이언트가 FastAPI로 16채널 센서 데이터를 보내고 RandomForest 위험도와 농도 모델 결과를 받아 밸브 차단과 경고를 시각화하는 구조">
+                architecture: `<div class="architecture-shell arch-shell-embed">
+                    <div class="architecture-panel" data-architecture-panel="onpremise"><div class="mini-arch arch-gas" role="img" aria-label="Unity GSAFE 클라이언트가 FastAPI로 16채널 센서 데이터를 보내고 RandomForest 위험도와 농도 모델 결과를 받아 밸브 차단과 경고를 시각화하는 구조">
                     <svg class="mini-lines" viewBox="0 0 1400 600" preserveAspectRatio="none" aria-hidden="true">
                         <defs>
                             <marker id="mArrowG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
@@ -996,6 +1058,59 @@
                         <strong>PPM RF</strong>
                         <small>RandomForest 농도(ppm) 회귀</small>
                     </article>
+                </div></div>
+                    <div class="architecture-panel lightsail-architecture" data-architecture-panel="lightsail" hidden
+                        role="img" aria-label="로컬에서 빌드한 이미지를 ECR 에 올리고 Lightsail 인스턴스 한 대가 이를 내려받아 NginX 뒤 Docker 네트워크에서 G-SAFE 컨테이너를 돌리는 구조">
+                        <div class="ls-row">
+                            <article class="ls-node">
+                                <span class="node-type">Local</span>
+                                <strong>Docker Build</strong>
+                                <small>이미지 빌드</small>
+                            </article>
+                            <span class="ls-arrow" aria-hidden="true">push &rarr;</span>
+                            <article class="ls-node ls-registry">
+                                <span class="node-type">Elastic Container Registry</span>
+                                <strong>castlechat/*</strong>
+                                <div class="ls-image-grid">
+                                <span>gsafe-api</span>
+                                </div>
+                            </article>
+                        </div>
+
+                        <span class="ls-arrow ls-arrow-down" aria-hidden="true">&darr; image pull</span>
+
+                        <div class="ls-row">
+                            <article class="ls-node">
+                                <span class="node-type">Front-End</span>
+                                <strong>Client</strong>
+                                <small>Unity 클라이언트 · :800</small>
+                            </article>
+                            <span class="ls-arrow" aria-hidden="true">&rarr;</span>
+                            <section class="ls-instance">
+                                <div class="ls-instance-head">
+                                    <span class="node-type">AWS Lightsail · ap-northeast-2</span>
+                                    <strong>인스턴스 1대 · 2 vCPU / 4GB</strong>
+                                    <small>고정 IP · 6개 프로젝트가 한 대를 나눠 쓴다</small>
+                                </div>
+                                <div class="ls-instance-body">
+                                    <article class="ls-node ls-nginx">
+                                        <span class="node-type">Web Server</span>
+                                        <strong>NginX</strong>
+                                        <small>Reverse Proxy</small>
+                                    </article>
+                                    <span class="ls-arrow" aria-hidden="true">&rarr;</span>
+                                    <section class="ls-network">
+                                        <span class="ls-network-label">docker network · castlechat_default</span>
+                                        <div class="ls-container-grid">
+                                <span>gsafe-api</span>
+                                <span>model-vol</span>
+                                        </div>
+                                    </section>
+                                </div>
+                                <p class="ls-note">Unity 클라이언트는 내려받아 실행하고 :800 API 로 센서 값을 보낸다. 별도 DB 가 없다.</p>
+                            </section>
+                        </div>
+                    </div>
                 </div>`,
                 stack: `<div class="stack-groups stack-gas">
                     <section class="stack-group" aria-label="시뮬레이션 기술">
@@ -1012,7 +1127,10 @@
                     <section class="stack-group" aria-label="백엔드 기술">
                         <h3>Backend</h3>
                         <div class="stack-item">
-                            <span class="stack-name">FastAPI</span>
+                            <span class="stack-name">Python<span class="stack-version">3.11</span></span>
+                            <span class="stack-note">백엔드 · 모델 서빙 런타임</span>
+                        </div>
+s="stack-name">FastAPI</span>
                             <span class="stack-note">Gas Prediction API</span>
                         </div>
                         <div class="stack-item">
@@ -1067,7 +1185,8 @@
             },
             fox: {
                 title: "여우책방",
-                architecture: `<div class="mini-arch arch-fox" role="img" aria-label="브라우저와 React가 Spring MVC와 REST API로 요청하고 Service를 거쳐 JPA로 MariaDB에 접근하는 커머스 웹 구조">
+                architecture: `<div class="architecture-shell arch-shell-embed">
+                    <div class="architecture-panel" data-architecture-panel="onpremise"><div class="mini-arch arch-fox" role="img" aria-label="브라우저와 React가 Spring MVC와 REST API로 요청하고 Service를 거쳐 JPA로 MariaDB에 접근하는 커머스 웹 구조">
                     <svg class="mini-lines" viewBox="0 0 1400 600" preserveAspectRatio="none" aria-hidden="true">
                         <defs>
                             <marker id="mArrowF" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
@@ -1111,6 +1230,61 @@
                         <strong>MariaDB</strong>
                         <small>상품 · 주문 · 회원</small>
                     </article>
+                </div></div>
+                    <div class="architecture-panel lightsail-architecture" data-architecture-panel="lightsail" hidden
+                        role="img" aria-label="로컬에서 빌드한 이미지를 ECR 에 올리고 Lightsail 인스턴스 한 대가 이를 내려받아 NginX 뒤 Docker 네트워크에서 여우책방 컨테이너를 돌리는 구조">
+                        <div class="ls-row">
+                            <article class="ls-node">
+                                <span class="node-type">Local</span>
+                                <strong>Docker Build</strong>
+                                <small>이미지 빌드</small>
+                            </article>
+                            <span class="ls-arrow" aria-hidden="true">push &rarr;</span>
+                            <article class="ls-node ls-registry">
+                                <span class="node-type">Elastic Container Registry</span>
+                                <strong>castlechat/*</strong>
+                                <div class="ls-image-grid">
+                                <span>fib-web</span>
+                                <span>fib-app</span>
+                                </div>
+                            </article>
+                        </div>
+
+                        <span class="ls-arrow ls-arrow-down" aria-hidden="true">&darr; image pull</span>
+
+                        <div class="ls-row">
+                            <article class="ls-node">
+                                <span class="node-type">Front-End</span>
+                                <strong>Client</strong>
+                                <small>브라우저 · :8082</small>
+                            </article>
+                            <span class="ls-arrow" aria-hidden="true">&rarr;</span>
+                            <section class="ls-instance">
+                                <div class="ls-instance-head">
+                                    <span class="node-type">AWS Lightsail · ap-northeast-2</span>
+                                    <strong>인스턴스 1대 · 2 vCPU / 4GB</strong>
+                                    <small>고정 IP · 6개 프로젝트가 한 대를 나눠 쓴다</small>
+                                </div>
+                                <div class="ls-instance-body">
+                                    <article class="ls-node ls-nginx">
+                                        <span class="node-type">Web Server</span>
+                                        <strong>NginX</strong>
+                                        <small>Reverse Proxy</small>
+                                    </article>
+                                    <span class="ls-arrow" aria-hidden="true">&rarr;</span>
+                                    <section class="ls-network">
+                                        <span class="ls-network-label">docker network · castlechat_default</span>
+                                        <div class="ls-container-grid">
+                                <span>fib-web</span>
+                                <span>fib-app</span>
+                                <span>legacy-mariadb</span>
+                                        </div>
+                                    </section>
+                                </div>
+                                <p class="ls-note">엔티티 이름이 곧 테이블 이름이라 lower_case_table_names=1 이 필요해 별도 MariaDB 로 분리했다.</p>
+                            </section>
+                        </div>
+                    </div>
                 </div>`,
                 stack: `<div class="stack-groups stack-fox">
                     <section class="stack-group" aria-label="프론트엔드 기술">
@@ -1195,7 +1369,8 @@
             },
             respla: {
                 title: "RESPLA",
-                architecture: `<div class="mini-arch arch-respla" role="img" aria-label="React 화면이 Spring Boot로 요청하고 Service를 거쳐 JPA로 MariaDB에 접근해 좌석 예약과 이용 상태를 관리하는 구조">
+                architecture: `<div class="architecture-shell arch-shell-embed">
+                    <div class="architecture-panel" data-architecture-panel="onpremise"><div class="mini-arch arch-respla" role="img" aria-label="React 화면이 Spring Boot로 요청하고 Service를 거쳐 JPA로 MariaDB에 접근해 좌석 예약과 이용 상태를 관리하는 구조">
                     <svg class="mini-lines" viewBox="0 0 1400 600" preserveAspectRatio="none" aria-hidden="true">
                         <defs>
                             <marker id="mArrowR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
@@ -1232,6 +1407,61 @@
                         <strong>MariaDB</strong>
                         <small>좌석 · 예약 · 이용 이력</small>
                     </article>
+                </div></div>
+                    <div class="architecture-panel lightsail-architecture" data-architecture-panel="lightsail" hidden
+                        role="img" aria-label="로컬에서 빌드한 이미지를 ECR 에 올리고 Lightsail 인스턴스 한 대가 이를 내려받아 NginX 뒤 Docker 네트워크에서 RESPLA 컨테이너를 돌리는 구조">
+                        <div class="ls-row">
+                            <article class="ls-node">
+                                <span class="node-type">Local</span>
+                                <strong>Docker Build</strong>
+                                <small>이미지 빌드</small>
+                            </article>
+                            <span class="ls-arrow" aria-hidden="true">push &rarr;</span>
+                            <article class="ls-node ls-registry">
+                                <span class="node-type">Elastic Container Registry</span>
+                                <strong>castlechat/*</strong>
+                                <div class="ls-image-grid">
+                                <span>respla-web</span>
+                                <span>respla-app</span>
+                                </div>
+                            </article>
+                        </div>
+
+                        <span class="ls-arrow ls-arrow-down" aria-hidden="true">&darr; image pull</span>
+
+                        <div class="ls-row">
+                            <article class="ls-node">
+                                <span class="node-type">Front-End</span>
+                                <strong>Client</strong>
+                                <small>브라우저 · :8081</small>
+                            </article>
+                            <span class="ls-arrow" aria-hidden="true">&rarr;</span>
+                            <section class="ls-instance">
+                                <div class="ls-instance-head">
+                                    <span class="node-type">AWS Lightsail · ap-northeast-2</span>
+                                    <strong>인스턴스 1대 · 2 vCPU / 4GB</strong>
+                                    <small>고정 IP · 6개 프로젝트가 한 대를 나눠 쓴다</small>
+                                </div>
+                                <div class="ls-instance-body">
+                                    <article class="ls-node ls-nginx">
+                                        <span class="node-type">Web Server</span>
+                                        <strong>NginX</strong>
+                                        <small>Reverse Proxy</small>
+                                    </article>
+                                    <span class="ls-arrow" aria-hidden="true">&rarr;</span>
+                                    <section class="ls-network">
+                                        <span class="ls-network-label">docker network · castlechat_default</span>
+                                        <div class="ls-container-grid">
+                                <span>respla-web</span>
+                                <span>respla-app</span>
+                                <span>mariadb</span>
+                                        </div>
+                                    </section>
+                                </div>
+                                <p class="ls-note">castleChat 과 같은 MariaDB 인스턴스를 respla 스키마로 나눠 쓴다. 컨테이너를 따로 띄우지 않아 메모리를 아꼈다.</p>
+                            </section>
+                        </div>
+                    </div>
                 </div>`,
                 stack: `<div class="stack-groups stack-respla">
                     <section class="stack-group" aria-label="클라이언트 기술">
@@ -1277,7 +1507,8 @@
             },
             extra: {
                 title: "외부장비 및 IP 관리",
-                architecture: `<div class="mini-arch arch-extra" role="img" aria-label="브라우저의 React 화면이 NginX 를 거쳐 Spring Boot 로 요청하고, MyBatis XML 매퍼를 통해 MariaDB 의 장비·사원·반출입 로그를 읽고 쓰는 구조">
+                architecture: `<div class="architecture-shell arch-shell-embed">
+                    <div class="architecture-panel" data-architecture-panel="onpremise"><div class="mini-arch arch-extra" role="img" aria-label="브라우저의 React 화면이 NginX 를 거쳐 Spring Boot 로 요청하고, MyBatis XML 매퍼를 통해 MariaDB 의 장비·사원·반출입 로그를 읽고 쓰는 구조">
                     <svg class="mini-lines" viewBox="0 0 1400 600" preserveAspectRatio="none" aria-hidden="true">
                         <defs>
                             <marker id="mArrowE" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
@@ -1314,6 +1545,61 @@
                         <strong>MariaDB</strong>
                         <small>장비 · 사원 · 로그</small>
                     </article>
+                </div></div>
+                    <div class="architecture-panel lightsail-architecture" data-architecture-panel="lightsail" hidden
+                        role="img" aria-label="로컬에서 빌드한 이미지를 ECR 에 올리고 Lightsail 인스턴스 한 대가 이를 내려받아 NginX 뒤 Docker 네트워크에서 외부장비 컨테이너를 돌리는 구조">
+                        <div class="ls-row">
+                            <article class="ls-node">
+                                <span class="node-type">Local</span>
+                                <strong>Docker Build</strong>
+                                <small>이미지 빌드</small>
+                            </article>
+                            <span class="ls-arrow" aria-hidden="true">push &rarr;</span>
+                            <article class="ls-node ls-registry">
+                                <span class="node-type">Elastic Container Registry</span>
+                                <strong>castlechat/*</strong>
+                                <div class="ls-image-grid">
+                                <span>iplist-web</span>
+                                <span>iplist-app</span>
+                                </div>
+                            </article>
+                        </div>
+
+                        <span class="ls-arrow ls-arrow-down" aria-hidden="true">&darr; image pull</span>
+
+                        <div class="ls-row">
+                            <article class="ls-node">
+                                <span class="node-type">Front-End</span>
+                                <strong>Client</strong>
+                                <small>브라우저 · :8083</small>
+                            </article>
+                            <span class="ls-arrow" aria-hidden="true">&rarr;</span>
+                            <section class="ls-instance">
+                                <div class="ls-instance-head">
+                                    <span class="node-type">AWS Lightsail · ap-northeast-2</span>
+                                    <strong>인스턴스 1대 · 2 vCPU / 4GB</strong>
+                                    <small>고정 IP · 6개 프로젝트가 한 대를 나눠 쓴다</small>
+                                </div>
+                                <div class="ls-instance-body">
+                                    <article class="ls-node ls-nginx">
+                                        <span class="node-type">Web Server</span>
+                                        <strong>NginX</strong>
+                                        <small>Reverse Proxy</small>
+                                    </article>
+                                    <span class="ls-arrow" aria-hidden="true">&rarr;</span>
+                                    <section class="ls-network">
+                                        <span class="ls-network-label">docker network · castlechat_default</span>
+                                        <div class="ls-container-grid">
+                                <span>iplist-web</span>
+                                <span>iplist-app</span>
+                                <span>legacy-mariadb</span>
+                                        </div>
+                                    </section>
+                                </div>
+                                <p class="ls-note">여우책방과 같은 legacy-mariadb 를 daelim 스키마로 나눠 쓴다.</p>
+                            </section>
+                        </div>
+                    </div>
                 </div>`,
                 stack: `<div class="stack-groups stack-extra">
                     <section class="stack-group" aria-label="프론트엔드 기술">
@@ -1375,6 +1661,13 @@
             extra: "theme-iplist",
             smartctl: "theme-hpdfs",
             gas: "theme-gas"
+        };
+
+        // 아키텍처 패널 키 → 탭 이름
+        const archViewLabel = {
+            onpremise: "On-Premise",
+            lightsail: "AWS LightSail",
+            cloud: "AWS Kubernetes"
         };
 
         const detailTypeLabel = {
@@ -1480,6 +1773,23 @@
                 document.getElementById("detailText").innerHTML = detail[type];
                 const detailDlg = document.getElementById("detailDialog");
                 detailDlg.classList.toggle("detail-arch", type === "architecture");
+
+                // 아키텍처면 패널 개수만큼 탭을 만든다. 나머지 항목은 탭이 없다.
+                const viewSwitch = document.getElementById("detailViewSwitch");
+                const panels = detailDlg.querySelectorAll("[data-architecture-panel]");
+                viewSwitch.innerHTML = "";
+                viewSwitch.hidden = panels.length < 2;
+                panels.forEach((panel, index) => {
+                    const view = panel.dataset.architecturePanel;
+                    const tab = document.createElement("button");
+                    tab.type = "button";
+                    tab.className = "architecture-view-button" + (index === 0 ? " is-active" : "");
+                    tab.dataset.architectureView = view;
+                    tab.setAttribute("role", "tab");
+                    tab.setAttribute("aria-selected", String(index === 0));
+                    tab.textContent = archViewLabel[view] || view;
+                    viewSwitch.appendChild(tab);
+                });
                 Object.values(detailTheme).forEach(cls => detailDlg.classList.remove(cls));
                 if (detailTheme[button.dataset.detail]) {
                     detailDlg.classList.add(detailTheme[button.dataset.detail]);
@@ -1491,19 +1801,22 @@
             button.addEventListener("click", () => document.getElementById(button.dataset.open).showModal());
         });
 
-        document.querySelectorAll("[data-architecture-view]").forEach(button => {
-            button.addEventListener("click", () => {
-                const selectedView = button.dataset.architectureView;
+        // 탭은 상세 모달에서 innerHTML 로 새로 그려지므로 위임으로 받는다.
+        document.addEventListener("click", event => {
+            const button = event.target.closest("[data-architecture-view]");
+            if (!button) return;
 
-                document.querySelectorAll("[data-architecture-view]").forEach(viewButton => {
-                    const isSelected = viewButton.dataset.architectureView === selectedView;
-                    viewButton.classList.toggle("is-active", isSelected);
-                    viewButton.setAttribute("aria-selected", String(isSelected));
-                });
+            const selectedView = button.dataset.architectureView;
+            const scope = button.closest("dialog") || document;
 
-                document.querySelectorAll("[data-architecture-panel]").forEach(panel => {
-                    panel.hidden = panel.dataset.architecturePanel !== selectedView;
-                });
+            scope.querySelectorAll("[data-architecture-view]").forEach(viewButton => {
+                const isSelected = viewButton.dataset.architectureView === selectedView;
+                viewButton.classList.toggle("is-active", isSelected);
+                viewButton.setAttribute("aria-selected", String(isSelected));
+            });
+
+            scope.querySelectorAll("[data-architecture-panel]").forEach(panel => {
+                panel.hidden = panel.dataset.architecturePanel !== selectedView;
             });
         });
 

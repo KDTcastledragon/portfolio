@@ -599,10 +599,10 @@
 
         /* HPDFS: 회색 계열. 어두운 카드는 이 카드만 예외 규칙을 계속 만들어서 밝은 쪽으로 통일했다. */
         .theme-hpdfs {
-            --t-accent: #5b6b7a;
-            --t-accent-hover: #45535f;
-            --t-border: #d2d9df;
-            --t-tint: #f4f6f8;
+            --t-accent: #4e5c69;
+            --t-accent-hover: #3a4650;
+            --t-border: #b9c3cc;
+            --t-tint: #dfe5ea;
         }
 
         /* 프로젝트 상세 모달용 미니 아키텍처 다이어그램 (castleChat 노드/화살표 스타일 재사용) */
@@ -3491,4 +3491,62 @@
         .mini-project-card[class*="theme-"] .mini-project-menu button,
         .hero-main-box .project-menu button {
             border-color: var(--t-accent, var(--accent));
+        }
+
+        /* ── 아키텍처 모달: 바깥 상자를 없애고 모달 자체를 판으로 쓴다 ──
+           제목·탭 줄은 단색, 그 아래가 격자 배경. 다른 상세 항목에는 적용하지 않는다. */
+        #architectureDialog .modal-inner {
+            padding: 0;
+        }
+
+        #architectureDialog .architecture-shell,
+        .arch-shell-embed {
+            border: none;
+            border-radius: 0;
+            background: none;
+            overflow: hidden;
+        }
+
+        /* 상세 모달(나머지 5개)도 같은 구조. 탭은 헤더 가운데 칸에 들어간다. */
+        .detail-modal-header {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .detail-modal-header .dialog-close {
+            justify-self: end;
+        }
+
+        dialog#detailDialog.detail-arch .modal-inner {
+            padding: 0;
+        }
+
+        dialog#detailDialog.detail-arch .detail-modal-header {
+            margin: 0;
+            padding: 12px clamp(14px, 1.6vw, 22px);
+        }
+
+        dialog#detailDialog.detail-arch .detail-body {
+            padding: 0;
+        }
+
+        /* 임베드된 다이어그램은 모달 폭을 그대로 쓴다. */
+        .arch-shell-embed .mini-arch {
+            margin: 0;
+            border: none;
+            border-radius: 0;
+        }
+
+        .arch-shell-embed .lightsail-architecture {
+            height: clamp(420px, calc(100dvh - 150px), 640px);
+        }
+
+        /* 임베드된 Lightsail 판도 카드 테마색을 깐다. 격자는 강조색을 옅게. */
+        .arch-shell-embed .lightsail-architecture {
+            background-color: var(--t-tint, #edf8f0);
+            background-image:
+                linear-gradient(color-mix(in srgb, var(--t-accent, var(--accent)) 12%, transparent) 1px, transparent 1px),
+                linear-gradient(90deg, color-mix(in srgb, var(--t-accent, var(--accent)) 12%, transparent) 1px, transparent 1px);
         }
