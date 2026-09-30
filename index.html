@@ -1375,39 +1375,39 @@
             respla: {
                 title: "RESPLA",
                 architecture: `<div class="architecture-shell arch-shell-embed">
-                    <div class="architecture-panel" data-architecture-panel="onpremise"><div class="mini-arch arch-respla" role="img" aria-label="React 화면이 Spring Boot로 요청하고 Service를 거쳐 JPA로 MariaDB에 접근해 좌석 예약과 이용 상태를 관리하는 구조">
+                    <div class="architecture-panel" data-architecture-panel="onpremise"><div class="mini-arch arch-respla" role="img" aria-label="React 화면이 NginX 를 거쳐 Spring Boot REST API 로 가고, MyBatis 가 XML 매퍼로 MariaDB 의 좌석·예약·이용 이력 테이블을 읽고 쓰는 구조">
                     <svg class="mini-lines" viewBox="0 0 1400 600" preserveAspectRatio="none" aria-hidden="true">
                         <defs>
                             <marker id="mArrowR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
                                 <path d="M0 0 L10 5 L0 10 z"></path>
                             </marker>
                         </defs>
-                        <path d="M 232 300 L 468 300" marker-start="url(#mArrowR)" marker-end="url(#mArrowR)"></path>
-                        <path d="M 624 300 L 810 300" marker-start="url(#mArrowR)" marker-end="url(#mArrowR)"></path>
-                        <path d="M 958 285 L 1108 200" marker-start="url(#mArrowR)" marker-end="url(#mArrowR)"></path>
-                        <path d="M 1176 218 L 1176 382" marker-start="url(#mArrowR)" marker-end="url(#mArrowR)"></path>
+                        <path d="M 218 330 L 300 330" marker-start="url(#mArrowR)" marker-end="url(#mArrowR)"></path>
+                        <path d="M 484 330 L 566 330" marker-start="url(#mArrowR)" marker-end="url(#mArrowR)"></path>
+                        <path d="M 750 330 L 832 330" marker-start="url(#mArrowR)" marker-end="url(#mArrowR)"></path>
+                        <path d="M 1016 330 L 1098 330" marker-start="url(#mArrowR)" marker-end="url(#mArrowR)"></path>
                     </svg>
-                    <article class="architecture-node resp-electron">
-                        <span class="node-type">Client</span>
-                        <strong>React</strong>
-                        <small>좌석 예약 화면 UI</small>
+                    <article class="architecture-node resp-client">
+                        <span class="node-type">Front-End</span>
+                        <strong>Browser · React</strong>
+                        <small>좌석 · 예약 · 이용권 화면</small>
+                    </article>
+                    <article class="architecture-node resp-nginx">
+                        <span class="node-type">Web Server</span>
+                        <strong>NginX</strong>
+                        <small>정적 파일 · API 프록시</small>
                     </article>
                     <article class="architecture-node resp-spring">
-                        <span class="node-type">Server</span>
+                        <span class="node-type">Backend</span>
                         <strong>Spring Boot</strong>
-                        <small>Controller · JSP · REST</small>
+                        <small>REST API · 세션</small>
                     </article>
-                    <article class="architecture-node resp-service">
-                        <span class="node-type">Service</span>
-                        <strong>Business Logic</strong>
-                        <small>예약 · 이용 상태 관리</small>
-                    </article>
-                    <article class="architecture-node resp-jpa">
+                    <article class="architecture-node resp-mapper">
                         <span class="node-type">Persistence</span>
-                        <strong>Spring Data JPA</strong>
-                        <small>Repository · 엔티티 매핑</small>
+                        <strong>MyBatis</strong>
+                        <small>XML 매퍼 · SQL 직접 관리</small>
                     </article>
-                    <article class="architecture-node resp-mysql">
+                    <article class="architecture-node resp-db">
                         <span class="node-type">Database</span>
                         <strong>MariaDB</strong>
                         <small>좌석 · 예약 · 이용 이력</small>

@@ -862,30 +862,13 @@
             top: 72%;
         }
 
-        .resp-electron {
-            left: 11%;
-            top: 50%;
-        }
-
-        .resp-spring {
-            left: 39%;
-            top: 50%;
-        }
-
-        .resp-service {
-            left: 63%;
-            top: 50%;
-        }
-
-        .resp-jpa {
-            left: 84%;
-            top: 30%;
-        }
-
-        .resp-mysql {
-            left: 84%;
-            top: 70%;
-        }
+        /* 외부장비와 같은 한 줄 배치. Service 노드는 뺐다.
+           비즈니스 로직은 Spring Boot 안에 있는 것이라 따로 그릴 대상이 아니다. */
+        .resp-client { left: 9%;  top: 55%; }
+        .resp-nginx  { left: 28%; top: 55%; }
+        .resp-spring { left: 47%; top: 55%; }
+        .resp-mapper { left: 66%; top: 55%; }
+        .resp-db     { left: 85%; top: 55%; }
 
         .stack-gas h3,
         .stack-gas .stack-version {
