@@ -2630,12 +2630,16 @@
             letter-spacing: -0.01em;
         }
 
-        /* [ 개인 ] [ 팀 ] 라벨은 테마색을 따르지 않고 회색으로 통일한다. */
+        /* [ 개인 ] [ 팀 ] 라벨은 테마색을 따르지 않고 회색으로 통일한다.
+           HPDFS 를 어둡게 만들며 #b3c4ce 로 올렸더니 밝은 카드에서 흐려졌다. 다시 나눈다. */
         .hero-topline,
         .mini-project-card[class*="theme-"] .hero-topline,
-        .mini-project-card.theme-fox .hero-topline,
+        .mini-project-card.theme-fox .hero-topline {
+            color: #5b6675;
+        }
+
         .theme-hpdfs .hero-topline {
-            color: #b3c4ce;
+            color: #c3d2db;
         }
 
         /* ── 6개 프로젝트 요약: 카드마다 테마색 ──────────────── */
@@ -3512,4 +3516,45 @@
             /* 테마색 그대로 쓰면 옅은 바탕에 묻힌다. (HPDFS 1.63, 여우 2.34) 색조는 두고 눌러 쓴다. */
             color: color-mix(in srgb, var(--t-accent, var(--accent)) 55%, #000000);
             background: color-mix(in srgb, var(--t-accent, var(--accent)) 16%, #ffffff);
+        }
+
+        /* ── 외부장비 아키텍처 ──────────────────────────────────
+           브라우저 → NginX → Spring Boot → MyBatis → MariaDB 한 줄 흐름. */
+        .arch-extra {
+            background: #f1f7fc;
+        }
+
+        .arch-extra::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(rgb(59 130 196 / 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgb(59 130 196 / 0.08) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
+        }
+
+        .arch-extra .architecture-node .node-type {
+            color: #3b82c4;
+        }
+
+        .extra-client { left: 10%;  top: 50%; }
+        .extra-nginx  { left: 30%;  top: 50%; }
+        .extra-api    { left: 50%;  top: 50%; }
+        .extra-mapper { left: 70%;  top: 50%; }
+        .extra-db     { left: 90%;  top: 50%; }
+
+        .arch-extra .mini-lines path {
+            stroke: #3b82c4;
+        }
+
+        .arch-extra .mini-lines marker path {
+            fill: #3b82c4;
+            stroke: none;
+        }
+
+        /* 한 줄짜리 흐름이라 다른 다이어그램만큼 높을 필요가 없다. */
+        .arch-extra {
+            height: clamp(300px, 44dvh, 420px);
         }
