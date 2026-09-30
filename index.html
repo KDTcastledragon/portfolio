@@ -1496,7 +1496,7 @@
             extra: {
                 title: "외부장비 및 IP 관리",
                 architecture: `<div class="architecture-shell arch-shell-embed">
-                    <div class="architecture-panel" data-architecture-panel="onpremise"><div class="mini-arch arch-extra" role="img" aria-label="React 화면과 Excel 일괄 등록이 NginX 를 거쳐 Spring Boot 로 가고, 장비·IP·사원 API 와 관리자 로그인 API 로 나뉜 뒤 Service 와 MyBatis 를 통해 MariaDB 의 장비·반출입 이력·자산·사원 테이블을 읽고 쓰는 구조">
+                    <div class="architecture-panel" data-architecture-panel="onpremise"><div class="mini-arch arch-extra" role="img" aria-label="React 화면과 Excel 일괄 등록이 NginX 를 거쳐 Spring Boot REST API 로 가고, MyBatis 가 XML 매퍼와 프로시저를 호출해 MariaDB 의 장비·반출입 이력·자산·사원 테이블을 읽고 쓰는 구조">
                     <svg class="mini-lines" viewBox="0 0 1400 600" preserveAspectRatio="none" aria-hidden="true">
                         <defs>
                             <marker id="mArrowE" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
@@ -1504,13 +1504,10 @@
                             </marker>
                         </defs>
                         <path d="M 126 190 L 126 272" marker-end="url(#mArrowE)"></path>
-                        <path d="M 218 330 L 272 330" marker-start="url(#mArrowE)" marker-end="url(#mArrowE)"></path>
-                        <path d="M 456 312 L 538 204" marker-start="url(#mArrowE)" marker-end="url(#mArrowE)"></path>
-                        <path d="M 456 348 L 538 444" marker-start="url(#mArrowE)" marker-end="url(#mArrowE)"></path>
-                        <path d="M 722 204 L 790 312" marker-start="url(#mArrowE)" marker-end="url(#mArrowE)"></path>
-                        <path d="M 722 444 L 790 348" marker-start="url(#mArrowE)" marker-end="url(#mArrowE)"></path>
-                        <path d="M 974 312 L 1042 204" marker-start="url(#mArrowE)" marker-end="url(#mArrowE)"></path>
-                        <path d="M 1134 238 L 1134 410" marker-start="url(#mArrowE)" marker-end="url(#mArrowE)"></path>
+                        <path d="M 218 330 L 300 330" marker-start="url(#mArrowE)" marker-end="url(#mArrowE)"></path>
+                        <path d="M 484 330 L 566 330" marker-start="url(#mArrowE)" marker-end="url(#mArrowE)"></path>
+                        <path d="M 750 330 L 832 330" marker-start="url(#mArrowE)" marker-end="url(#mArrowE)"></path>
+                        <path d="M 1016 330 L 1098 330" marker-start="url(#mArrowE)" marker-end="url(#mArrowE)"></path>
                     </svg>
                     <article class="architecture-node extra-excel">
                         <span class="node-type">Client Side</span>
@@ -1528,24 +1525,14 @@
                         <small>정적 파일 · API 프록시</small>
                     </article>
                     <article class="architecture-node extra-api">
-                        <span class="node-type">REST API</span>
-                        <strong>ExtDev · Asset · Emp</strong>
-                        <small>조회 · 검색 · 등록 · 수정</small>
-                    </article>
-                    <article class="architecture-node extra-auth">
-                        <span class="node-type">REST API</span>
-                        <strong>Administrator</strong>
-                        <small>관리자 로그인 · 세션</small>
-                    </article>
-                    <article class="architecture-node extra-service">
-                        <span class="node-type">Service</span>
-                        <strong>Business Logic</strong>
-                        <small>검증 · 반출입 이력 기록</small>
+                        <span class="node-type">Backend</span>
+                        <strong>Spring Boot</strong>
+                        <small>REST API · 관리자 세션</small>
                     </article>
                     <article class="architecture-node extra-mapper">
                         <span class="node-type">Persistence</span>
                         <strong>MyBatis</strong>
-                        <small>XML 매퍼 · 동적 SQL</small>
+                        <small>XML 매퍼 · 프로시저 호출</small>
                     </article>
                     <article class="architecture-node extra-db">
                         <span class="node-type">Database</span>
