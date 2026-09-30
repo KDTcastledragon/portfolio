@@ -3483,3 +3483,15 @@
         dialog#detailDialog.theme-hpdfs .dialog-close {
             color: #f2f8fa;
         }
+
+        /* 항목 카드마다 이미 테두리가 있어 바깥 상자가 한 겹 더 겹쳤다. 벗겨낸다. */
+        dialog#detailDialog .detail-body {
+            padding: 0;
+            border: none;
+            background: none;
+        }
+
+        /* 캡처가 너무 커서 글보다 눈에 띄었다. 가로·세로 절반(면적 1/4)으로 줄인다. */
+        .detail-cards-shot li img {
+            width: 50%;
+        }
