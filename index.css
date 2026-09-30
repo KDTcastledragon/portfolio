@@ -3494,3 +3494,22 @@
         .theme-respla .card-shot {
             width: clamp(230px, 21vw, 330px);
         }
+
+        /* ── 상세 메뉴 버튼: 흰 바탕 + 테마색 hover ───────────────
+           HPDFS 는 어두운 카드라 따로 회청색 버튼을 쓰고 있었다. 함께 흰색으로 맞춘다. */
+        .mini-project-card[class*="theme-"] .mini-project-menu button,
+        .theme-hpdfs .mini-project-menu button,
+        .hero-main-box .project-menu button {
+            color: var(--text);
+            border-color: var(--line);
+            background: #ffffff;
+        }
+
+        .mini-project-card[class*="theme-"] .mini-project-menu button:not(:disabled):hover,
+        .theme-hpdfs .mini-project-menu button:not(:disabled):hover,
+        .hero-main-box .project-menu button:not(:disabled):hover {
+            border-color: var(--t-accent, var(--accent));
+            /* 테마색 그대로 쓰면 옅은 바탕에 묻힌다. (HPDFS 1.63, 여우 2.34) 색조는 두고 눌러 쓴다. */
+            color: color-mix(in srgb, var(--t-accent, var(--accent)) 55%, #000000);
+            background: color-mix(in srgb, var(--t-accent, var(--accent)) 16%, #ffffff);
+        }
