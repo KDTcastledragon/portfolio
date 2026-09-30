@@ -3601,3 +3601,25 @@
             border-color: color-mix(in srgb, var(--t-accent, var(--accent)) 55%, #000000);
             background: #ffffff;
         }
+
+        /* ── 탭을 오갈 때 모달 높이가 흔들리지 않게 ─────────────
+           On-Premise(mini-arch) 와 LightSail 판 높이가 달라 매번 크기가 바뀌었다.
+           LightSail 쪽 높이로 맞춰 고정한다. */
+        .arch-shell-embed .architecture-panel {
+            height: clamp(420px, calc(100dvh - 150px), 640px);
+        }
+
+        /* lightsail 판은 .architecture-panel 자신이라 위 높이를 그대로 쓴다.
+           mini-arch 만 패널 안쪽이라 채워 준다. */
+        .arch-shell-embed .mini-arch,
+        .arch-shell-embed .arch-extra {
+            height: 100%;
+        }
+
+        /* CastleChat 모달도 세 탭(On-Premise / LightSail / Kubernetes) 높이가 달랐다. */
+        #architectureDialog .architecture-canvas,
+        #architectureDialog .cloud-architecture,
+        #architectureDialog .lightsail-architecture {
+            height: clamp(560px, calc(100dvh - 130px), 710px);
+            min-height: 0;
+        }
