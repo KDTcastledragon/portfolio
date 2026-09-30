@@ -3467,11 +3467,14 @@
             color: #3b82c4;
         }
 
-        .extra-client { left: 10%;  top: 50%; }
-        .extra-nginx  { left: 30%;  top: 50%; }
-        .extra-api    { left: 50%;  top: 50%; }
-        .extra-mapper { left: 70%;  top: 50%; }
-        .extra-db     { left: 90%;  top: 50%; }
+        .extra-excel   { left: 9%;  top: 22%; }
+        .extra-client  { left: 9%;  top: 55%; }
+        .extra-nginx   { left: 26%; top: 55%; }
+        .extra-api     { left: 45%; top: 30%; }
+        .extra-auth    { left: 45%; top: 78%; }
+        .extra-service { left: 63%; top: 55%; }
+        .extra-mapper  { left: 81%; top: 30%; }
+        .extra-db      { left: 81%; top: 78%; }
 
         .arch-extra .mini-lines path {
             stroke: #3b82c4;
