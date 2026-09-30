@@ -865,9 +865,8 @@
         /* 외부장비와 같은 한 줄 배치. Service 노드는 뺐다.
            비즈니스 로직은 Spring Boot 안에 있는 것이라 따로 그릴 대상이 아니다. */
         .resp-client { left: 9%;  top: 55%; }
-        .resp-nginx  { left: 28%; top: 55%; }
-        .resp-spring { left: 47%; top: 55%; }
-        .resp-mapper { left: 66%; top: 55%; }
+        .resp-nginx  { left: 34%; top: 55%; }
+        .resp-spring { left: 60%; top: 55%; }
         .resp-db     { left: 85%; top: 55%; }
 
         .stack-gas h3,
@@ -3452,9 +3451,8 @@
 
         .extra-excel  { left: 9%;  top: 22%; }
         .extra-client { left: 9%;  top: 55%; }
-        .extra-nginx  { left: 28%; top: 55%; }
-        .extra-api    { left: 47%; top: 55%; }
-        .extra-mapper { left: 66%; top: 55%; }
+        .extra-nginx  { left: 34%; top: 55%; }
+        .extra-api    { left: 60%; top: 55%; }
         .extra-db     { left: 85%; top: 55%; }
 
         .arch-extra .mini-lines path {
