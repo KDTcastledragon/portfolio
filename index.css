@@ -834,35 +834,10 @@
             top: 72%;
         }
 
-        .fox-client {
-            left: 11%;
-            top: 50%;
-        }
-
-        .fox-web {
-            left: 37%;
-            top: 33%;
-        }
-
-        .fox-rest {
-            left: 37%;
-            top: 72%;
-        }
-
-        .fox-service {
-            left: 61%;
-            top: 50%;
-        }
-
-        .fox-jpa {
-            left: 83%;
-            top: 33%;
-        }
-
-        .fox-mysql {
-            left: 83%;
-            top: 72%;
-        }
+        .fox-client { left: 9%;  top: 55%; }
+        .fox-nginx  { left: 34%; top: 55%; }
+        .fox-spring { left: 60%; top: 55%; }
+        .fox-db     { left: 85%; top: 55%; }
 
         /* 외부장비와 같은 한 줄 배치. Service 노드는 뺐다.
            비즈니스 로직은 Spring Boot 안에 있는 것이라 따로 그릴 대상이 아니다. */

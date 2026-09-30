@@ -1190,46 +1190,33 @@
             fox: {
                 title: "여우책방",
                 architecture: `<div class="architecture-shell arch-shell-embed">
-                    <div class="architecture-panel" data-architecture-panel="onpremise"><div class="mini-arch arch-fox" role="img" aria-label="브라우저와 React가 Spring MVC와 REST API로 요청하고 Service를 거쳐 JPA로 MariaDB에 접근하는 커머스 웹 구조">
+                    <div class="architecture-panel" data-architecture-panel="onpremise"><div class="mini-arch arch-fox" role="img" aria-label="React 화면이 NginX 를 거쳐 Spring Boot 로 가고, Spring Boot 가 MariaDB 의 상품·주문·회원 테이블을 읽고 쓰는 커머스 웹 구조">
                     <svg class="mini-lines" viewBox="0 0 1400 600" preserveAspectRatio="none" aria-hidden="true">
                         <defs>
                             <marker id="mArrowF" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
                                 <path d="M0 0 L10 5 L0 10 z"></path>
                             </marker>
                         </defs>
-                        <path d="M 254 272 L 418 226" marker-start="url(#mArrowF)" marker-end="url(#mArrowF)"></path>
-                        <path d="M 253 336 L 419 396" marker-start="url(#mArrowF)" marker-end="url(#mArrowF)"></path>
-                        <path d="M 617 228 L 755 270" marker-start="url(#mArrowF)" marker-end="url(#mArrowF)"></path>
-                        <path d="M 617 393 L 755 339" marker-start="url(#mArrowF)" marker-end="url(#mArrowF)"></path>
-                        <path d="M 953 267 L 1063 231" marker-start="url(#mArrowF)" marker-end="url(#mArrowF)"></path>
-                        <path d="M 1162 252 L 1162 378" marker-start="url(#mArrowF)" marker-end="url(#mArrowF)"></path>
+                        <path d="M 226 300 L 386 300" marker-start="url(#mArrowF)" marker-end="url(#mArrowF)"></path>
+                        <path d="M 576 300 L 740 300" marker-start="url(#mArrowF)" marker-end="url(#mArrowF)"></path>
+                        <path d="M 940 300 L 1100 300" marker-start="url(#mArrowF)" marker-end="url(#mArrowF)"></path>
                     </svg>
                     <article class="architecture-node fox-client">
                         <span class="node-type">Front-End</span>
                         <strong>Browser · React</strong>
                         <small>상품 탐색 · 주문</small>
                     </article>
-                    <article class="architecture-node fox-web">
-                        <span class="node-type">Spring MVC</span>
-                        <strong>Controller</strong>
-                        <small>페이지 요청 처리</small>
+                    <article class="architecture-node fox-nginx">
+                        <span class="node-type">Web Server</span>
+                        <strong>NginX</strong>
+                        <small>정적 파일 · API 프록시</small>
                     </article>
-                    <article class="architecture-node fox-rest">
-                        <span class="node-type">REST API</span>
-                        <strong>Rest Controller</strong>
-                        <small>장바구니 · 리뷰 · 쿠폰</small>
+                    <article class="architecture-node fox-spring">
+                        <span class="node-type">Backend</span>
+                        <strong>Spring Boot</strong>
+                        <small>REST API · JSP 관리자</small>
                     </article>
-                    <article class="architecture-node fox-service">
-                        <span class="node-type">Service</span>
-                        <strong>Business Logic</strong>
-                        <small>주문 · 결제 · 재고</small>
-                    </article>
-                    <article class="architecture-node fox-jpa">
-                        <span class="node-type">Persistence</span>
-                        <strong>Spring Data JPA</strong>
-                        <small>Repository · 엔티티 매핑</small>
-                    </article>
-                    <article class="architecture-node fox-mysql">
+                    <article class="architecture-node fox-db">
                         <span class="node-type">Database</span>
                         <strong>MariaDB</strong>
                         <small>상품 · 주문 · 회원</small>
