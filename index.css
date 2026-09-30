@@ -3495,3 +3495,8 @@
         .detail-cards-shot li img {
             width: 50%;
         }
+
+        /* RESPLA 캡처는 원본이 2.18:1 로 납작해서 같은 폭이어도 유독 작아 보인다. 이 카드만 키운다. */
+        .theme-respla .card-shot {
+            width: clamp(230px, 21vw, 330px);
+        }
