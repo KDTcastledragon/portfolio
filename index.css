@@ -3390,12 +3390,6 @@
             width: clamp(215px, 21vw, 330px);
         }
 
-        /* '담당 파트' 가 붙어 메뉴가 5개가 됐다. 2열이면 3줄이라 카드를 넘친다. */
-        .theme-hpdfs .mini-project-menu,
-        .theme-gas .mini-project-menu {
-            grid-template-columns: repeat(3, max-content);
-        }
-
         /* 낮은 화면에서는 카드도 낮아진다. 스크린샷을 줄여 글 칸을 확보한다.
            (.card-shot 기본 폭 선언이 이 아래에 있으면 안 되므로 파일 끝에 둔다) */
         @media (min-width: 821px) and (max-height: 700px) {
