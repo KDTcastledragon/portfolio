@@ -597,67 +597,12 @@
             --t-tint: #f1f7fc;
         }
 
-        /* HPDFS: 다크 대시보드 느낌 */
-        /* 밝게 갔더니 외장(연한 파랑)과 구분이 안 됐다.
-           거의 검정(#1a2233)보다는 밝고 지금보다는 어두운 슬레이트 청록으로 잡는다. */
+        /* HPDFS: 회색 계열. 어두운 카드는 이 카드만 예외 규칙을 계속 만들어서 밝은 쪽으로 통일했다. */
         .theme-hpdfs {
-            --t-accent: #7ecfe3;
-            --t-accent-hover: #a3e0ef;
-            --t-border: #43606f;
-            --t-tint: #2f4858;
-        }
-
-        .theme-hpdfs h2 {
-            color: #f2f8fa;
-        }
-
-        .theme-hpdfs .hero-description {
-            color: #b9cdd6;
-        }
-
-        .theme-hpdfs .mini-project-menu button,
-        .theme-hpdfs .hero-actions .button:not(.button-primary) {
-            color: #d5e5ec;
-            border-color: #4d6d7e;
-            background: #3a5666;
-        }
-
-        .theme-hpdfs .mini-project-menu button:hover,
-        .theme-hpdfs .hero-actions .button:not(.button-primary):hover {
-            color: var(--t-accent);
-            border-color: var(--t-accent);
-            background: #436075;
-        }
-
-        .theme-hpdfs .button-primary {
-            color: #12303c;
-        }
-
-        .theme-hpdfs .card-tech span {
-            border-color: #4a6a7a;
-            color: #cfe3ec;
-            background: #274050;
-        }
-
-        .theme-hpdfs .card-shot {
-            border-color: #4d6d7e;
-        }
-
-        .theme-hpdfs .project-year {
-            color: #b3c4ce;
-        }
-
-        .project-summary-list li.theme-hpdfs strong {
-            color: #f2f8fa;
-        }
-
-        .project-summary-list li.theme-hpdfs p {
-            color: #b9cdd6;
-        }
-
-        .project-summary-list li.theme-hpdfs .project-summary-number {
-            border-color: #4a6a7a;
-            background: #243a47;
+            --t-accent: #5b6b7a;
+            --t-accent-hover: #45535f;
+            --t-border: #d2d9df;
+            --t-tint: #f4f6f8;
         }
 
         /* 프로젝트 상세 모달용 미니 아키텍처 다이어그램 (castleChat 노드/화살표 스타일 재사용) */
@@ -2638,12 +2583,6 @@
             color: #5b6675;
         }
 
-        /* 어두운 카드라 밝은 카드와 같은 #5b6675 를 쓰면 안 보인다.
-           대비를 같은 수준으로 맞추려면 반대쪽(밝은 쪽)으로 같은 만큼 가야 한다. */
-        .theme-hpdfs .hero-topline {
-            color: #e6eef3;
-        }
-
         /* ── 6개 프로젝트 요약: 카드마다 테마색 ──────────────── */
         .project-summary-list li[class*="theme-"] {
             border-color: var(--t-border, var(--line-soft));
@@ -3033,19 +2972,6 @@
             background: color-mix(in srgb, var(--t-accent, var(--accent)) 20%, var(--surface));
         }
 
-        /* 위 .theme-hpdfs .hero-actions .button 규칙이 더 구체적이라 복사 아이콘까지
-           회색으로 덮는다. 아이콘만 테마색으로 되돌린다. */
-        .theme-hpdfs .hero-actions .button.button-icon:not(.button-primary) {
-            border-color: var(--t-accent);
-            color: var(--t-accent);
-        }
-
-        .theme-hpdfs .hero-actions .button.button-icon:not(.button-primary):hover {
-            border-color: var(--t-accent-hover);
-            color: var(--t-accent-hover);
-            background: color-mix(in srgb, var(--t-accent) 26%, #3a5666);
-        }
-
         .hero-actions .button.button-icon.is-copied {
             border-color: var(--t-accent, var(--accent));
             color: var(--t-accent, var(--accent));
@@ -3063,10 +2989,19 @@
         .hero-main-box .hero-actions { order: 4; }
         .hero-main-box .hero-shot { order: 5; }
 
+        /* 설명을 부제 바로 아래로. 예전엔 카드 맨 아래에 붙여 뒀다. */
         .hero-main-box .hero-description {
+            order: 4;
+            margin-top: 10px;
+            padding-top: 0;
+        }
+
+        .hero-main-box .hero-actions {
+            order: 5;
+        }
+
+        .hero-main-box .project-menu {
             order: 6;
-            margin-top: auto;
-            padding-top: 18px;
         }
 
         /* 부제가 혼자 굵고 간격도 넓어 튀었다. 다른 카드(제목→설명 10px, 설명→버튼 12px)에 맞춘다. */
@@ -3105,14 +3040,13 @@
         }
 
         .hero-main-box .project-menu {
-            order: 5;
+            order: 6;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             max-width: 560px;
             margin-top: 18px;
         }
 
-        .hero-main-box .hero-shot { order: 6; }
-        .hero-main-box .hero-description { order: 7; }
+        .hero-main-box .hero-shot { order: 7; }
 
         /* 메뉴 버튼은 글자 폭만큼만. 가로로 늘어질 이유가 없다. */
         .hero-main-box .project-menu {
@@ -3478,11 +3412,6 @@
             scrollbar-width: thin;
         }
 
-        /* HPDFS 는 카드가 어두우므로 모달도 같이 뒤집는다. */
-        dialog#detailDialog.theme-hpdfs .architecture-modal-title,
-        dialog#detailDialog.theme-hpdfs .dialog-close {
-            color: #f2f8fa;
-        }
 
         /* 항목 카드마다 이미 테두리가 있어 바깥 상자가 한 겹 더 겹쳤다. 벗겨낸다. */
         dialog#detailDialog .detail-body {
@@ -3504,15 +3433,12 @@
         /* ── 상세 메뉴 버튼: 흰 바탕 + 테마색 hover ───────────────
            HPDFS 는 어두운 카드라 따로 회청색 버튼을 쓰고 있었다. 함께 흰색으로 맞춘다. */
         .mini-project-card[class*="theme-"] .mini-project-menu button,
-        .theme-hpdfs .mini-project-menu button,
         .hero-main-box .project-menu button {
             color: var(--text);
-            border-color: var(--line);
             background: #ffffff;
         }
 
         .mini-project-card[class*="theme-"] .mini-project-menu button:not(:disabled):hover,
-        .theme-hpdfs .mini-project-menu button:not(:disabled):hover,
         .hero-main-box .project-menu button:not(:disabled):hover {
             border-color: var(--t-accent, var(--accent));
             /* 테마색 그대로 쓰면 옅은 바탕에 묻힌다. (HPDFS 1.63, 여우 2.34) 색조는 두고 눌러 쓴다. */
@@ -3561,9 +3487,8 @@
             height: clamp(300px, 44dvh, 420px);
         }
 
-        /* 메뉴 버튼 테두리는 기본 선색(#aecfba, 초록기)이라 카드마다 초록빛이 돌았다. */
+        /* 메뉴 버튼 테두리는 카드 테마색으로. 기본 선색(#aecfba)은 초록기가 돈다. */
         .mini-project-card[class*="theme-"] .mini-project-menu button,
-        .theme-hpdfs .mini-project-menu button,
         .hero-main-box .project-menu button {
-            border-color: #262626;
+            border-color: var(--t-accent, var(--accent));
         }
