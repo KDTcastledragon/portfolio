@@ -1295,6 +1295,16 @@
                 copy: "해당 프로젝트의 링크 복사 기능을 연결할 예정."
             }
         };
+        // 상세 모달 배경을 프로젝트 테마색으로 맞춘다. 키 이름이 테마 클래스와 달라 표로 잇는다.
+        const detailTheme = {
+            castlechat: "theme-castlechat",
+            respla: "theme-respla",
+            fox: "theme-fox",
+            extra: "theme-iplist",
+            smartctl: "theme-hpdfs",
+            gas: "theme-gas"
+        };
+
         const detailTypeLabel = {
             architecture: "아키텍처",
             stack: "기술 스택",
@@ -1398,6 +1408,10 @@
                 document.getElementById("detailText").innerHTML = detail[type];
                 const detailDlg = document.getElementById("detailDialog");
                 detailDlg.classList.toggle("detail-arch", type === "architecture");
+                Object.values(detailTheme).forEach(cls => detailDlg.classList.remove(cls));
+                if (detailTheme[button.dataset.detail]) {
+                    detailDlg.classList.add(detailTheme[button.dataset.detail]);
+                }
                 detailDlg.showModal();
             });
         });

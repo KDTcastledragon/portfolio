@@ -3441,3 +3441,45 @@
             display: flex;
             flex-direction: column;
         }
+
+        /* ── 상세 모달: 크기 확대 · 테마 배경 · 스크롤 ───────────── */
+
+        /* 1020px 은 캡처가 들어가니 좁다. 화면을 거의 다 쓴다. */
+        dialog.modal.modal-narrow,
+        dialog.modal.detail-arch {
+            width: min(calc(100% - 32px), 1680px);
+            max-height: calc(100dvh - 32px);
+        }
+
+        /* 카드와 같은 테마 변수를 쓴다. theme-castlechat 은 요약 목록에만 있어 여기서 정의한다. */
+        dialog#detailDialog.theme-castlechat {
+            --t-accent: #12846d;
+            --t-border: #cfe6dc;
+            --t-tint: #f1f8f4;
+        }
+
+        dialog#detailDialog[class*="theme-"] {
+            border-color: var(--t-border, var(--line));
+            background: var(--t-tint, var(--page));
+        }
+
+        /* 내용이 길면 본문만 스크롤한다. 제목 줄은 위에 고정. */
+        dialog#detailDialog .modal-inner {
+            display: flex;
+            max-height: calc(100dvh - 32px);
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        dialog#detailDialog .detail-body {
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
+            scrollbar-width: thin;
+        }
+
+        /* HPDFS 는 카드가 어두우므로 모달도 같이 뒤집는다. */
+        dialog#detailDialog.theme-hpdfs .architecture-modal-title,
+        dialog#detailDialog.theme-hpdfs .dialog-close {
+            color: #f2f8fa;
+        }
