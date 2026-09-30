@@ -3550,3 +3550,54 @@
                 linear-gradient(color-mix(in srgb, var(--t-accent, var(--accent)) 12%, transparent) 1px, transparent 1px),
                 linear-gradient(90deg, color-mix(in srgb, var(--t-accent, var(--accent)) 12%, transparent) 1px, transparent 1px);
         }
+
+        /* ── 아키텍처 모달 테마 적용 ─────────────────────────────
+           CastleChat 초록을 그대로 쓰던 부분을 각 카드 색으로 바꾼다. */
+        .architecture-view-button.is-active {
+            background: var(--t-accent, var(--accent));
+        }
+
+        /* 제목·탭 줄을 판과 분명히 구분되게. */
+        #architectureDialog .architecture-toolbar,
+        dialog#detailDialog.detail-arch .detail-modal-header {
+            border-bottom: 1px solid var(--t-accent, var(--accent));
+            background: color-mix(in srgb, var(--t-accent, var(--accent)) 12%, #ffffff);
+        }
+
+        .architecture-view-switch {
+            border-color: var(--t-accent, var(--accent));
+            background: #ffffff;
+        }
+
+        /* Lightsail 판 내부 요소들 */
+        .arch-shell-embed .ls-node,
+        .arch-shell-embed .ls-network {
+            border-color: var(--t-border, var(--line));
+            background: color-mix(in srgb, var(--t-accent, var(--accent)) 6%, #ffffff);
+        }
+
+        .arch-shell-embed .ls-node .node-type,
+        .arch-shell-embed .ls-network-label,
+        .arch-shell-embed .ls-instance-head .node-type {
+            color: color-mix(in srgb, var(--t-accent, var(--accent)) 70%, #000000);
+        }
+
+        .arch-shell-embed .ls-arrow {
+            color: color-mix(in srgb, var(--t-accent, var(--accent)) 70%, #000000);
+        }
+
+        .arch-shell-embed .ls-instance {
+            border-color: var(--t-accent, var(--accent));
+            background: color-mix(in srgb, #ffffff 70%, transparent);
+        }
+
+        .arch-shell-embed .ls-image-grid,
+        .arch-shell-embed .ls-container-grid {
+            background: color-mix(in srgb, var(--t-accent, var(--accent)) 60%, #000000);
+        }
+
+        .arch-shell-embed .ls-image-grid span,
+        .arch-shell-embed .ls-container-grid span {
+            border-color: color-mix(in srgb, var(--t-accent, var(--accent)) 55%, #000000);
+            background: #ffffff;
+        }
