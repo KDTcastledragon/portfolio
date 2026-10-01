@@ -3358,6 +3358,30 @@
             background: var(--t-tint, var(--page));
         }
 
+        /* 트러블 슈팅은 판을 흰색으로 비우고 항목 박스에만 테마색을 깐다.
+           항목이 여럿이라 바탕까지 색이면 글이 뭉개져 보였다. */
+        dialog#detailDialog.detail-trouble[class*="theme-"] {
+            background: #ffffff;
+        }
+
+        dialog#detailDialog.detail-trouble .detail-cards li {
+            border-color: var(--t-border, var(--line));
+            background: var(--t-tint, var(--surface-soft));
+        }
+
+        /* 박스에 테마색을 깔면서 본문 대비가 4.5 아래로 떨어졌다(HPDFS 3.76).
+           이 판에서는 설명 글자를 본문색으로 올린다. */
+        dialog#detailDialog.detail-trouble .detail-cards span {
+            color: var(--text);
+        }
+
+        /* 진단 · 원인 · 문제 · 해결 배지. 프로젝트마다 색이 달라 눈에 걸려서 통일한다. */
+        dialog#detailDialog.detail-trouble .detail-cards em {
+            border-color: #000000;
+            color: #000000;
+            background: #ffffff;
+        }
+
         /* 내용이 길면 본문만 스크롤한다. 제목 줄은 위에 고정. */
         dialog#detailDialog .modal-inner {
             display: flex;
