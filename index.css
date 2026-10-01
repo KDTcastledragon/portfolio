@@ -3369,6 +3369,13 @@
             background: var(--t-tint, var(--surface-soft));
         }
 
+        /* 담당 파트는 트러블 슈팅과 반대로 간다. 판에 테마색을 깔고 카드를 비운다.
+           테두리는 기본값이 초록 계열이라 빨강·회색 테마에서 겉돌아 테마색을 쓴다. */
+        dialog#detailDialog.detail-part .detail-cards li {
+            border-color: var(--t-border, var(--line-soft));
+            background: #ffffff;
+        }
+
         /* 박스에 테마색을 깔면서 본문 대비가 4.5 아래로 떨어졌다(HPDFS 3.76).
            이 판에서는 설명 글자를 본문색으로 올린다. */
         dialog#detailDialog.detail-trouble .detail-cards span {

@@ -1829,6 +1829,7 @@
                 const detailDlg = document.getElementById("detailDialog");
                 detailDlg.classList.toggle("detail-arch", type === "architecture");
                 detailDlg.classList.toggle("detail-trouble", type === "trouble");
+                detailDlg.classList.toggle("detail-part", type === "part");
 
                 // 아키텍처면 패널 개수만큼 탭을 만든다. 나머지 항목은 탭이 없다.
                 const viewSwitch = document.getElementById("detailViewSwitch");
