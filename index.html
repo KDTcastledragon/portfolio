@@ -966,11 +966,17 @@
                 part: `<ul class="detail-cards">
                     <li>
                         <strong>FastAPI API 설계</strong>
-                        <span>진단 요청, 디스크 조회, 진단 이력 조회, 조치 상태 변경 엔드포인트와 Pydantic 입력 스키마를 설계했습니다.</span>
+                        <span>진단 요청, 디스크 조회, 진단 이력 조회, 조치 상태 변경 엔드포인트를 설계하고 Pydantic 으로 입력 스키마를 고정했습니다.</span>
+                        <span class="detail-code">POST   /api/diagnose               SMART 값을 받아 고장 확률 판정
+GET    /api/disks                  디스크 현황 목록
+GET    /api/disks/{serial}         해당 디스크 진단 이력
+PATCH  /api/disks/{serial}/status  조치 상태 변경</span>
                     </li>
                     <li>
                         <strong>PostgreSQL 스키마 설계</strong>
-                        <span>매 진단 결과를 쌓는 diagnosis_log 와 디스크별 최신 상태만 두는 disks 로 테이블 책임을 나눴습니다.</span>
+                        <span>한 테이블로 이력과 현황을 같이 담으면 목록 집계와 상세 조회의 책임이 섞이고, 같은 디스크를 반복 진단할 때 현황에 중복 행이 생깁니다. 두 가지로 나눴습니다.</span>
+                        <span class="detail-code">diagnosis_log   진단할 때마다 한 줄씩 쌓는 append-only 이력
+disks           디스크별 최신 상태만 두는 스냅샷 (serial 이 식별자)</span>
                     </li>
                     <li>
                         <strong>담당 범위</strong>
@@ -1172,11 +1178,17 @@
                 part: `<ul class="detail-cards">
                     <li>
                         <strong>센서 수신 API</strong>
-                        <span>Unity 클라이언트가 보내는 16채널 센서 값을 받아 위험도 판정 결과를 돌려주는 FastAPI 서버를 맡았습니다.</span>
+                        <span>Unity 클라이언트가 보내는 16채널 센서 값을 받아 농도와 위험 등급을 돌려주는 FastAPI 서버를 맡았습니다. 배열과 개별 필드 두 입력 형식을 모두 받되 학습 시점의 열 순서로 정규화해 모델에 넘깁니다.</span>
+                        <span class="detail-code">요청  { "target_gas": "CO", "time_s": 120.0,
+        "sensors": [ 2267.88, 1607.13, ... 16채널 ] }
+
+응답  { "predicted_ppm": 52.3712,
+        "risk_level": "WARNING", "risk_confidence": 0.88,
+        "recommended_action": "WARN_USER" }</span>
                     </li>
                     <li>
                         <strong>예측 모델 서빙</strong>
-                        <span>RandomForest 위험도 모델과 농도 추정 결과를 API 응답으로 묶어 밸브 차단·경고 판단에 쓰이게 했습니다.</span>
+                        <span>농도 회귀와 위험도 분류 두 RandomForest 모델을 한 응답으로 묶고, 클라이언트가 바로 쓸 수 있도록 밸브 차단·경고 같은 권장 조치까지 결정해 내려줍니다.</span>
                     </li>
                     <li>
                         <strong>담당 범위</strong>
