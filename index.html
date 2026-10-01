@@ -1499,23 +1499,17 @@
             extra: {
                 title: "외부장비 및 IP 관리",
                 architecture: `<div class="architecture-shell arch-shell-embed">
-                    <div class="architecture-panel" data-architecture-panel="onpremise"><div class="mini-arch arch-extra" role="img" aria-label="React 화면과 Excel 일괄 등록이 NginX 를 거쳐 Spring Boot REST API 로 가고, Spring Boot 가 MariaDB 의 장비·반출입 이력·자산·사원 테이블을 읽고 쓰는 구조">
+                    <div class="architecture-panel" data-architecture-panel="onpremise"><div class="mini-arch arch-extra" role="img" aria-label="React 화면이 NginX 를 거쳐 Spring Boot REST API 로 가고, Spring Boot 가 MariaDB 의 장비·반출입 이력·자산·사원 테이블을 읽고 쓰는 구조">
                     <svg class="mini-lines" viewBox="0 0 1400 600" preserveAspectRatio="none" aria-hidden="true">
                         <defs>
                             <marker id="mArrowE" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
                                 <path d="M0 0 L10 5 L0 10 z"></path>
                             </marker>
                         </defs>
-                        <path d="M 126 190 L 126 272" marker-end="url(#mArrowE)"></path>
                         <path d="M 218 330 L 384 330" marker-start="url(#mArrowE)" marker-end="url(#mArrowE)"></path>
                         <path d="M 568 330 L 748 330" marker-start="url(#mArrowE)" marker-end="url(#mArrowE)"></path>
                         <path d="M 932 330 L 1098 330" marker-start="url(#mArrowE)" marker-end="url(#mArrowE)"></path>
                     </svg>
-                    <article class="architecture-node extra-excel">
-                        <span class="node-type">Client Side</span>
-                        <strong>Excel 일괄 등록</strong>
-                        <small>xlsx 파싱 · 다건 등록</small>
-                    </article>
                     <article class="architecture-node extra-client">
                         <span class="node-type">Front-End</span>
                         <strong>Browser · React</strong>
