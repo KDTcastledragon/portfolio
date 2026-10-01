@@ -1005,22 +1005,22 @@
                 </ul>`,
                 trouble: `<ul class="detail-cards">
                     <li>
-                        <strong>누적 이력과 현재 현황의 충돌</strong>
+                        <strong>1. 누적 이력과 현재 현황의 충돌</strong>
                         <span><em>문제</em>하나의 테이블로 이력과 최신 상태를 함께 표현하면 목록 집계와 상세 이력 조회의 책임이 섞였습니다.</span>
                         <span><em>해결</em>diagnosis_log는 append-only 이력, disks는 최신 스냅샷으로 분리해 조회 목적을 명확히 했습니다.</span>
                     </li>
                     <li>
-                        <strong>반복 진단 시 디스크 중복</strong>
+                        <strong>2. 반복 진단 시 디스크 중복</strong>
                         <span><em>문제</em>같은 디스크를 주기적으로 진단할 때마다 현황 목록에 새 행이 생길 수 있었습니다.</span>
                         <span><em>해결</em>serial을 식별자로 사용해 최초 요청은 INSERT, 이후 요청은 최신 상태 UPDATE로 처리했습니다.</span>
                     </li>
                     <li>
-                        <strong>수동 테스트 데이터의 운영 기록 혼입</strong>
+                        <strong>3. 수동 테스트 데이터의 운영 기록 혼입</strong>
                         <span><em>문제</em>대시보드에서 입력한 수동 진단값이 실제 장치 이력과 섞이면 현황과 통계의 신뢰도가 낮아졌습니다.</span>
                         <span><em>해결</em>MANUAL 요청은 예측 결과만 응답하고 DB 저장 경로에서는 제외했습니다.</span>
                     </li>
                     <li>
-                        <strong>DB 연결 수명주기 관리</strong>
+                        <strong>4. DB 연결 수명주기 관리</strong>
                         <span><em>문제</em>API 요청이 반복되는 환경에서 세션 종료가 누락되면 연결 자원이 쌓일 수 있었습니다.</span>
                         <span><em>해결</em>get_db 의존성에서 세션을 생성하고 finally에서 반드시 close하도록 공통화했습니다.</span>
                     </li>

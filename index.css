@@ -656,8 +656,10 @@
         }
 
         /* HPDFS 다크 대시보드 테마 */
+        /* 카드 테마를 회색 계열로 바꿨는데 이 판만 예전 남색이 남아 겉돌았다.
+           같은 계열로 옮기고 한 단계 옅게 한다. */
         .arch-hpdfs {
-            background: #1a2233;
+            background: #38424e;
         }
 
         .arch-hpdfs::after {
@@ -666,15 +668,15 @@
             inset: 0;
             z-index: -1;
             background-image:
-                linear-gradient(rgb(95 176 201 / 0.09) 1px, transparent 1px),
-                linear-gradient(90deg, rgb(95 176 201 / 0.09) 1px, transparent 1px);
+                linear-gradient(rgb(173 194 211 / 0.10) 1px, transparent 1px),
+                linear-gradient(90deg, rgb(173 194 211 / 0.10) 1px, transparent 1px);
             background-size: 26px 26px;
         }
 
         .arch-hpdfs .architecture-node {
-            border-color: #33415c;
-            background: #243049;
-            box-shadow: 0 10px 24px rgb(0 0 0 / 0.32);
+            border-color: #5b6878;
+            background: #475464;
+            box-shadow: 0 10px 24px rgb(0 0 0 / 0.22);
         }
 
         .arch-hpdfs .architecture-node strong {
@@ -682,19 +684,19 @@
         }
 
         .arch-hpdfs .architecture-node small {
-            color: #9fb0c6;
+            color: #c6d1dd;
         }
 
         .arch-hpdfs .architecture-node .node-type {
-            color: #5fb0c9;
+            color: #8fd0e4;
         }
 
         .arch-hpdfs .mini-lines path {
-            stroke: #5fb0c9;
+            stroke: #9ddcee;
         }
 
         .arch-hpdfs .mini-lines marker path {
-            fill: #5fb0c9;
+            fill: #9ddcee;
             stroke: none;
         }
 
@@ -3488,6 +3490,9 @@
 
         dialog#detailDialog.detail-arch .detail-body {
             padding: 0;
+            /* 이 radius 가 다이어그램 판의 네 모서리를 깎아 제목 줄 아래로 흰 자국이 났다.
+               바닥은 모달 곡면과 맞아야 하므로 위쪽만 각지게 둔다. */
+            border-radius: 0 0 var(--radius) var(--radius);
         }
 
         /* 임베드된 다이어그램은 모달 폭을 그대로 쓴다. */
