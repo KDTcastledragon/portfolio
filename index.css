@@ -3492,6 +3492,17 @@
             font-weight: 700;
         }
 
+        /* 제목 아래 한 줄. 왼쪽은 단점, 오른쪽은 이점을 적어 양쪽 높이를 맞춘다. */
+        .detail-core .ci-side-sub {
+            display: block;
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 500;
+            line-height: 1.5;
+            word-break: keep-all;
+        }
+
         .detail-core .ci-bad {
             border-color: #e0bdbd;
             background: #fdf7f7;
