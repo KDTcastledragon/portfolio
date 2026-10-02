@@ -3546,9 +3546,26 @@
         /* 동기 구간과 비동기 구간을 가르는 세로선. Kafka 항목의 핵심. */
         .detail-core .ci-cut {
             position: relative;
-            height: 1px;
-            margin: 15px 0;
+            width: 1px;
+            margin: 0 42px;
             background: var(--t-accent, var(--accent));
+        }
+
+        /* 흐름이 긴 두 항목만 두 칸을 다 쓴다. 절반 폭에서는 박스가 60px 까지 눌린다. */
+        .detail-core .ci-wide {
+            grid-column: 1 / -1;
+        }
+
+        .detail-core .ci-stage {
+            display: flex;
+            min-width: 0;
+            flex: 1 1 0;
+            flex-direction: column;
+        }
+
+        /* 동기 구간이 3단계라 더 넓어야 한다. 기준선이 가운데보다 오른쪽에 선다. */
+        .detail-core .ci-stage-async {
+            flex: 0 1 420px;
         }
 
         .detail-core .ci-cut span {
@@ -3665,6 +3682,12 @@
                 width: 1px;
                 height: 26px;
                 align-self: center;
+            }
+
+            .detail-core .ci-cut {
+                width: auto;
+                height: 1px;
+                margin: 16px 0;
             }
 
             .detail-core .ci-link-line::after {
