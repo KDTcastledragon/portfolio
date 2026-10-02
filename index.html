@@ -754,7 +754,7 @@
                 core: `<ul class="detail-cards">
                     <li>
                         <strong>1. 프로세스 격리와 독립 확장</strong>
-                        <span>흔한 구성은 Spring Boot 하나에 전부 올리는 것이라 JVM 도 하나입니다. 그러면 소켓을 붙잡고 있는 코드와 DB 쓰기를 하는 코드가 같은 힙과 같은 스레드풀을 두고 경합합니다. 책임별로 프로세스를 나눠 JVM 을 다섯 개로 띄웠습니다.</span>
+                        <span>책임별로 프로세스를 나눠 JVM 을 다섯 개로 띄웠습니다. 프로세스 5개 = <b>독립된 JVM 5개</b>. 힙 · GC · 스레드풀 · 장애 범위가 서로 나뉩니다. LLM 응답이 수 초 걸려도 소켓 연결은 다른 JVM 이라 영향이 없고, 부하가 몰리는 프로세스만 따로 늘릴 수 있습니다.</span>
                         <div class="ci-figure">
                             <div class="ci-jvm-row">
                                 <article class="ci-box">
@@ -783,7 +783,6 @@
                                     <small>외부 LLM 호출 · 메시지 추천</small>
                                 </article>
                             </div>
-                            <span class="ci-note">프로세스 5개 = <b>독립된 JVM 5개</b>. 힙 · GC · 스레드풀 · 장애 범위가 서로 나뉩니다. LLM 응답이 수 초 걸려도 소켓 연결은 다른 JVM 이라 영향이 없고, 부하가 몰리는 프로세스만 따로 늘릴 수 있습니다.</span>
                         </div>
                     </li>
                     <li>
@@ -862,41 +861,35 @@
                         <strong>4. Kafka 비동기 영속화 파이프라인 — Event Persist Worker</strong>
                         <span>메시지 전송 응답이 DB insert 를 기다리면, DB 가 느려지는 순간 채팅이 통째로 느려집니다. <b>어디까지 기다리고 어디부터 넘길지</b>를 가르는 것이 이 항목의 전부입니다.</span>
                         <div class="ci-figure">
+                            <span class="ci-phase">동기 &mdash; 여기까지만 기다린다</span>
                             <div class="ci-flow">
-                                <div style="flex: 1 1 0; min-width: 0;">
-                                    <span class="ci-phase">동기 — 여기까지만 기다린다</span>
-                                    <div class="ci-flow">
-                                        <article class="ci-box">
-                                            <strong>sendMessage</strong>
-                                            <small>클라이언트 전송</small>
-                                        </article>
-                                        <span class="ci-arrow">&rarr;</span>
-                                        <article class="ci-box">
-                                            <strong>Snowflake 채번</strong>
-                                            <small>응답에 쓸 messageId 를 앱에서 즉시 발급</small>
-                                        </article>
-                                        <span class="ci-arrow">&rarr;</span>
-                                        <article class="ci-box">
-                                            <strong>Kafka durable save</strong>
-                                            <small>acks=all 로 복제까지 확인</small>
-                                        </article>
-                                    </div>
-                                </div>
-                                <div class="ci-cut"><span>응답 반환</span></div>
-                                <div style="flex: 0 1 300px; min-width: 0;">
-                                    <span class="ci-phase">비동기 — 응답 뒤에 처리</span>
-                                    <div class="ci-flow">
-                                        <article class="ci-box">
-                                            <strong>Event Persist Worker</strong>
-                                            <small>소비 후 멱등 DB 쓰기 · 실패분은 DLT 로 격리해 재처리</small>
-                                        </article>
-                                        <span class="ci-arrow">&rarr;</span>
-                                        <article class="ci-box">
-                                            <strong>MariaDB</strong>
-                                            <small>메시지 영속화</small>
-                                        </article>
-                                    </div>
-                                </div>
+                                <article class="ci-box">
+                                    <strong>sendMessage</strong>
+                                    <small>클라이언트 전송</small>
+                                </article>
+                                <span class="ci-arrow">&rarr;</span>
+                                <article class="ci-box">
+                                    <strong>Snowflake 채번</strong>
+                                    <small>응답에 쓸 messageId 를 앱에서 즉시 발급</small>
+                                </article>
+                                <span class="ci-arrow">&rarr;</span>
+                                <article class="ci-box">
+                                    <strong>Kafka durable save</strong>
+                                    <small>acks=all 로 복제까지 확인</small>
+                                </article>
+                            </div>
+                            <div class="ci-cut"><span>응답 반환</span></div>
+                            <span class="ci-phase">비동기 &mdash; 응답 뒤에 처리</span>
+                            <div class="ci-flow">
+                                <article class="ci-box">
+                                    <strong>Event Persist Worker</strong>
+                                    <small>소비 후 멱등 DB 쓰기 · 실패분은 DLT 로 격리해 재처리</small>
+                                </article>
+                                <span class="ci-arrow">&rarr;</span>
+                                <article class="ci-box">
+                                    <strong>MariaDB</strong>
+                                    <small>메시지 영속화</small>
+                                </article>
                             </div>
                             <span class="ci-note">DB 가 아니라 <b>Kafka 가 내구성의 기준점</b>입니다. acks=all 응답을 받은 시점에 메시지는 이미 유실되지 않는 상태이므로 그때 응답해도 안전합니다. Worker 가 잠시 죽어도 메시지는 토픽에 남아 있고, 재기동 후 이어서 소비합니다.</span>
                         </div>

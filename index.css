@@ -3377,24 +3377,31 @@
         }
 
         /* ==== 핵심 구현 모달 전용 도식 ====================================
-           항목마다 그림이 들어가므로 한 줄에 하나씩 세로로 쌓는다. 스크롤은 허용. */
-        dialog#detailDialog.detail-core .detail-cards {
-            grid-template-columns: 1fr;
+           2열로 두고 도식을 절반 폭에 맞춰 조인다. 세로 스크롤은 허용. */
+
+        /* 1. 판은 조금 진하게, 카드는 흰색으로. */
+        dialog#detailDialog.detail-core[class*="theme-"] {
+            background: color-mix(in srgb, var(--t-accent, var(--accent)) 11%, #ffffff);
+        }
+
+        dialog#detailDialog.detail-core .detail-cards li {
+            border-color: var(--t-border, var(--line-soft));
+            background: #ffffff;
         }
 
         .detail-core .ci-note {
             display: block;
-            margin-top: 10px;
+            margin-top: 9px;
             color: var(--muted);
-            font-size: 13px;
-            line-height: 1.7;
+            font-size: 12px;
+            line-height: 1.65;
             word-break: keep-all;
         }
 
         /* 도식 바깥 테두리. 설명 글과 그림을 눈으로 분리한다. */
         .detail-core .ci-figure {
-            margin-top: 12px;
-            padding: 16px;
+            margin-top: 10px;
+            padding: 11px;
             border: 1px solid var(--t-border, var(--line-soft));
             border-radius: 12px;
             background: color-mix(in srgb, var(--t-accent, var(--accent)) 4%, #ffffff);
@@ -3403,7 +3410,7 @@
         .detail-core .ci-box {
             display: flex;
             min-width: 0;
-            padding: 10px 12px;
+            padding: 8px 9px;
             flex-direction: column;
             border: 1px solid var(--t-border, var(--line));
             border-radius: 10px;
@@ -3411,15 +3418,15 @@
         }
 
         .detail-core .ci-box strong {
-            margin: 0 0 3px;
-            font-size: 13.5px;
+            margin: 0 0 2px;
+            font-size: 12px;
             letter-spacing: -0.02em;
         }
 
         .detail-core .ci-box small {
             color: var(--muted);
-            font-size: 11px;
-            line-height: 1.55;
+            font-size: 10px;
+            line-height: 1.5;
             word-break: keep-all;
         }
 
@@ -3438,17 +3445,18 @@
             letter-spacing: 0.04em;
         }
 
+        /* 절반 폭에서는 5개가 한 줄에 안 들어간다. 칸 수를 폭에 맡긴다. */
         .detail-core .ci-jvm-row {
             display: grid;
-            grid-template-columns: repeat(5, minmax(0, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
+            gap: 7px;
         }
 
         /* 가로 흐름. 박스와 화살표를 번갈아 놓는다. */
         .detail-core .ci-flow {
             display: flex;
             align-items: stretch;
-            gap: 8px;
+            gap: 6px;
         }
 
         .detail-core .ci-flow > .ci-box {
@@ -3459,7 +3467,7 @@
             display: flex;
             align-items: center;
             color: var(--t-accent, var(--accent));
-            font-size: 17px;
+            font-size: 14px;
             font-weight: 700;
         }
 
@@ -3467,11 +3475,11 @@
         .detail-core .ci-split {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 14px;
+            gap: 8px;
         }
 
         .detail-core .ci-side {
-            padding: 12px;
+            padding: 9px;
             border: 1px solid var(--line-soft);
             border-radius: 10px;
             background: #ffffff;
@@ -3509,7 +3517,7 @@
         }
 
         .detail-core .ci-conn {
-            padding: 5px 9px;
+            padding: 4px 7px;
             border: 1px dashed #c89a9a;
             border-radius: 7px;
             color: #8a3a3a;
@@ -3527,8 +3535,8 @@
         /* 동기 구간과 비동기 구간을 가르는 세로선. Kafka 항목의 핵심. */
         .detail-core .ci-cut {
             position: relative;
-            width: 1px;
-            margin: 0 48px;
+            height: 1px;
+            margin: 15px 0;
             background: var(--t-accent, var(--accent));
         }
 
@@ -3549,7 +3557,7 @@
 
         .detail-core .ci-phase {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 7px;
             color: var(--muted);
             font-size: 11px;
             font-weight: 700;
@@ -3559,7 +3567,7 @@
         /* 화살표 위에 올리는 계약 꼬리표. gRPC proto 용. */
         .detail-core .ci-link {
             display: flex;
-            min-width: 150px;
+            min-width: 108px;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -3659,11 +3667,6 @@
                 transform: translateX(50%);
             }
 
-            .detail-core .ci-cut {
-                width: auto;
-                height: 1px;
-                margin: 18px 0;
-            }
         }
 
         /* 백엔드 담당은 보여줄 화면이 없다. 엔드포인트와 테이블 구조를 글로 두되
