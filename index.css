@@ -3376,6 +3376,296 @@
             background: #ffffff;
         }
 
+        /* ==== 핵심 구현 모달 전용 도식 ====================================
+           항목마다 그림이 들어가므로 한 줄에 하나씩 세로로 쌓는다. 스크롤은 허용. */
+        dialog#detailDialog.detail-core .detail-cards {
+            grid-template-columns: 1fr;
+        }
+
+        .detail-core .ci-note {
+            display: block;
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.7;
+            word-break: keep-all;
+        }
+
+        /* 도식 바깥 테두리. 설명 글과 그림을 눈으로 분리한다. */
+        .detail-core .ci-figure {
+            margin-top: 12px;
+            padding: 16px;
+            border: 1px solid var(--t-border, var(--line-soft));
+            border-radius: 12px;
+            background: color-mix(in srgb, var(--t-accent, var(--accent)) 4%, #ffffff);
+        }
+
+        .detail-core .ci-box {
+            display: flex;
+            min-width: 0;
+            padding: 10px 12px;
+            flex-direction: column;
+            border: 1px solid var(--t-border, var(--line));
+            border-radius: 10px;
+            background: #ffffff;
+        }
+
+        .detail-core .ci-box strong {
+            margin: 0 0 3px;
+            font-size: 13.5px;
+            letter-spacing: -0.02em;
+        }
+
+        .detail-core .ci-box small {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.55;
+            word-break: keep-all;
+        }
+
+        /* 각 프로세스가 별도 JVM 이라는 점이 이 항목의 핵심이다. 배지로 못박는다. */
+        .detail-core .ci-jvm {
+            display: inline-block;
+            align-self: flex-start;
+            margin-bottom: 6px;
+            padding: 1px 7px;
+            border: 1px solid var(--t-accent, var(--accent));
+            border-radius: 999px;
+            color: var(--t-accent, var(--accent));
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        .detail-core .ci-jvm-row {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        /* 가로 흐름. 박스와 화살표를 번갈아 놓는다. */
+        .detail-core .ci-flow {
+            display: flex;
+            align-items: stretch;
+            gap: 8px;
+        }
+
+        .detail-core .ci-flow > .ci-box {
+            flex: 1 1 0;
+        }
+
+        .detail-core .ci-arrow {
+            display: flex;
+            align-items: center;
+            color: var(--t-accent, var(--accent));
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        /* 잘못된 예시 | 채택한 방식 2단 비교 */
+        .detail-core .ci-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .detail-core .ci-side {
+            padding: 12px;
+            border: 1px solid var(--line-soft);
+            border-radius: 10px;
+            background: #ffffff;
+        }
+
+        .detail-core .ci-side-head {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .detail-core .ci-bad {
+            border-color: #e0bdbd;
+            background: #fdf7f7;
+        }
+
+        .detail-core .ci-bad .ci-side-head {
+            color: #a33c3c;
+        }
+
+        .detail-core .ci-good {
+            border-color: var(--t-accent, var(--accent));
+            background: color-mix(in srgb, var(--t-accent, var(--accent)) 6%, #ffffff);
+        }
+
+        .detail-core .ci-good .ci-side-head {
+            color: var(--t-accent, var(--accent));
+        }
+
+        .detail-core .ci-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .detail-core .ci-conn {
+            padding: 5px 9px;
+            border: 1px dashed #c89a9a;
+            border-radius: 7px;
+            color: #8a3a3a;
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 11px;
+        }
+
+        .detail-core .ci-conn-one {
+            border-style: solid;
+            border-color: var(--t-accent, var(--accent));
+            color: var(--t-accent, var(--accent));
+            font-weight: 700;
+        }
+
+        /* 동기 구간과 비동기 구간을 가르는 세로선. Kafka 항목의 핵심. */
+        .detail-core .ci-cut {
+            position: relative;
+            width: 1px;
+            margin: 0 48px;
+            background: var(--t-accent, var(--accent));
+        }
+
+        .detail-core .ci-cut span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            padding: 3px 8px;
+            border: 1px solid var(--t-accent, var(--accent));
+            border-radius: 999px;
+            background: #ffffff;
+            color: var(--t-accent, var(--accent));
+            font-size: 10.5px;
+            font-weight: 700;
+            white-space: nowrap;
+            transform: translate(-50%, -50%);
+        }
+
+        .detail-core .ci-phase {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        /* 화살표 위에 올리는 계약 꼬리표. gRPC proto 용. */
+        .detail-core .ci-link {
+            display: flex;
+            min-width: 150px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .detail-core .ci-link-tag {
+            padding: 4px 10px;
+            border: 1px solid var(--t-accent, var(--accent));
+            border-radius: 8px;
+            background: #ffffff;
+            color: var(--t-accent, var(--accent));
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 11px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .detail-core .ci-link-line {
+            position: relative;
+            width: 100%;
+            height: 1px;
+            background: var(--t-accent, var(--accent));
+        }
+
+        .detail-core .ci-link-line::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 8px solid var(--t-accent, var(--accent));
+            transform: translateY(-50%);
+        }
+
+        /* 53bit 구성. 각 칸 너비를 비트 수에 비례시킨다. */
+        .detail-core .ci-bits {
+            display: flex;
+            overflow: hidden;
+            border: 1px solid var(--t-accent, var(--accent));
+            border-radius: 8px;
+        }
+
+        .detail-core .ci-bit {
+            padding: 9px 6px;
+            border-right: 1px solid var(--t-accent, var(--accent));
+            background: #ffffff;
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 11px;
+            text-align: center;
+        }
+
+        .detail-core .ci-bit:last-child {
+            border-right: none;
+        }
+
+        .detail-core .ci-bit b {
+            display: block;
+            margin-bottom: 2px;
+            color: var(--t-accent, var(--accent));
+            font-size: 12px;
+        }
+
+        @media (max-width: 900px) {
+
+            .detail-core .ci-jvm-row,
+            .detail-core .ci-split {
+                grid-template-columns: 1fr;
+            }
+
+            /* 좁은 화면에서 좌우 비교는 위아래로 쌓인다. 흐름도 같이 세로로 돌린다. */
+            .detail-core .ci-flow {
+                flex-direction: column;
+            }
+
+            .detail-core .ci-arrow {
+                align-self: center;
+                transform: rotate(90deg);
+            }
+
+            /* 선을 회전시키면 가로폭 100% 가 길이가 되어 글을 뚫는다. 짧은 세로선으로 다시 그린다. */
+            .detail-core .ci-link-line {
+                width: 1px;
+                height: 26px;
+                align-self: center;
+            }
+
+            .detail-core .ci-link-line::after {
+                top: auto;
+                right: 50%;
+                bottom: -1px;
+                border-top: 8px solid var(--t-accent, var(--accent));
+                border-right: 5px solid transparent;
+                border-bottom: none;
+                border-left: 5px solid transparent;
+                transform: translateX(50%);
+            }
+
+            .detail-core .ci-cut {
+                width: auto;
+                height: 1px;
+                margin: 18px 0;
+            }
+        }
+
         /* 백엔드 담당은 보여줄 화면이 없다. 엔드포인트와 테이블 구조를 글로 두되
            등폭 블록으로 묶어 훑는 눈에 한 번 걸리게 한다. */
         dialog#detailDialog.detail-part .detail-code {
