@@ -824,7 +824,7 @@
                             <span class="ci-note">커널 소켓과 세션 메모리 비용이 참여 방 수와 무관하게 <b>1 로 고정</b>됩니다. 푸시 전용인 소켓 위에서 요청·응답을 쓰기 위해 requestId 를 봉투에 넣고, 응답이 오면 대기 중인 요청과 짝지어 돌려줍니다.</span>
                         </div>
                     </li>
-                    <li class="ci-wide">
+                    <li>
                         <strong>3. 읽음 위치 Write-Behind — Read Flush Worker</strong>
                         <span>채팅방을 스크롤하는 동안 읽음 위치는 계속 올라갑니다. 요청마다 DB 를 치면 쓰기가 사용자 수 × 스크롤 횟수만큼 발생합니다. 읽음 위치는 <b>항상 커지기만 하는 값</b>이라 중간값을 모두 기록할 이유가 없습니다.</span>
                         <div class="ci-figure">
@@ -836,12 +836,12 @@
                                 <span class="ci-arrow">&rarr;</span>
                                 <article class="ci-box">
                                     <strong>Redis · Lua</strong>
-                                    <small>새 값이 클 때만 덮어쓰는 비교-교체를 한 스크립트 안에서 원자 실행</small>
+                                    <small>큰 값일 때만 덮어쓰는 원자 교체</small>
                                 </article>
                                 <span class="ci-arrow">&rarr;</span>
                                 <article class="ci-box">
                                     <strong>dirty 표시</strong>
-                                    <small>바뀐 (방, 유저)만 따로 모아둔다</small>
+                                    <small>바뀐 (방, 유저)만 모아둔다</small>
                                 </article>
                                 <span class="ci-arrow">&rarr;</span>
                                 <article class="ci-box">
@@ -850,54 +850,47 @@
                                 </article>
                                 <span class="ci-arrow">&rarr;</span>
                                 <article class="ci-box">
-                                    <strong>MariaDB 쓰기 1 건</strong>
+                                    <strong>MariaDB 1 건</strong>
                                     <small>마지막 위치만 남는다</small>
                                 </article>
                             </div>
-                            <span class="ci-note">요청 대비 DB 쓰기가 <b>N : 1</b> 로 줄어듭니다. 대신 flush 전에 Redis 가 죽으면 그 구간이 사라지므로, 목록을 조회할 때 Redis 위치가 더 최신이면 그 값으로 다시 계산하는 방어를 함께 뒀습니다. 유실 창의 크기 자체가 설계의 일부입니다.</span>
+                            <span class="ci-note">요청 대비 DB 쓰기가 <b>N : 1</b> 로 줄어듭니다. 대신 flush 전에 Redis 가 죽으면 그 구간이 사라지므로, 목록을 조회할 때 Redis 위치가 더 최신이면 그 값으로 다시 계산하는 방어를 함께 뒀습니다. 유실 창의 크기 자체가 설계의 일부입니다. 비교와 교체는 Lua 스크립트 한 번에 넣어 원자성을 확보했습니다.</span>
                         </div>
                     </li>
-                    <li class="ci-wide">
+                    <li>
                         <strong>4. Kafka 비동기 영속화 파이프라인 — Event Persist Worker</strong>
                         <span>메시지 전송 응답이 DB insert 를 기다리면, DB 가 느려지는 순간 채팅이 통째로 느려집니다. <b>어디까지 기다리고 어디부터 넘길지</b>를 가르는 것이 이 항목의 전부입니다.</span>
                         <div class="ci-figure">
                             <div class="ci-flow">
-                                <div class="ci-stage">
-                                    <span class="ci-phase">동기 &mdash; 여기까지만 기다린다</span>
-                                    <div class="ci-flow">
-                                        <article class="ci-box">
-                                            <strong>sendMessage</strong>
-                                            <small>클라이언트 전송</small>
-                                        </article>
-                                        <span class="ci-arrow">&rarr;</span>
-                                        <article class="ci-box">
-                                            <strong>Snowflake 채번</strong>
-                                            <small>응답에 쓸 messageId 를 앱에서 즉시 발급</small>
-                                        </article>
-                                        <span class="ci-arrow">&rarr;</span>
-                                        <article class="ci-box">
-                                            <strong>Kafka durable save</strong>
-                                            <small>acks=all 로 복제까지 확인</small>
-                                        </article>
-                                    </div>
-                                </div>
-                                <div class="ci-cut"><span>응답 반환</span></div>
-                                <div class="ci-stage ci-stage-async">
-                                    <span class="ci-phase">비동기 &mdash; 응답 뒤에 처리</span>
-                                    <div class="ci-flow">
-                                        <article class="ci-box">
-                                            <strong>Event Persist Worker</strong>
-                                            <small>소비 후 멱등 DB 쓰기 · 실패분은 DLT 로 격리해 재처리</small>
-                                        </article>
-                                        <span class="ci-arrow">&rarr;</span>
-                                        <article class="ci-box">
-                                            <strong>MariaDB</strong>
-                                            <small>메시지 영속화</small>
-                                        </article>
-                                    </div>
-                                </div>
+                                <article class="ci-box">
+                                    <strong>sendMessage</strong>
+                                    <small>클라이언트 전송</small>
+                                </article>
+                                <span class="ci-arrow">&rarr;</span>
+                                <article class="ci-box">
+                                    <strong>Snowflake</strong>
+                                    <small>messageId 즉시 채번</small>
+                                </article>
+                                <span class="ci-arrow">&rarr;</span>
+                                <article class="ci-box">
+                                    <strong>Kafka 저장</strong>
+                                    <small>acks=all 복제 확인</small>
+                                </article>
+                                <span class="ci-gate">
+                                    <span class="ci-gate-tag">응답 반환</span>
+                                    <span class="ci-arrow">&rarr;</span>
+                                </span>
+                                <article class="ci-box ci-async">
+                                    <strong>Persist Worker</strong>
+                                    <small>멱등 DB 쓰기 · DLT</small>
+                                </article>
+                                <span class="ci-arrow">&rarr;</span>
+                                <article class="ci-box ci-async">
+                                    <strong>MariaDB</strong>
+                                    <small>메시지 영속화</small>
+                                </article>
                             </div>
-                            <span class="ci-note">DB 가 아니라 <b>Kafka 가 내구성의 기준점</b>입니다. acks=all 응답을 받은 시점에 메시지는 이미 유실되지 않는 상태이므로 그때 응답해도 안전합니다. Worker 가 잠시 죽어도 메시지는 토픽에 남아 있고, 재기동 후 이어서 소비합니다.</span>
+                            <span class="ci-note">DB 가 아니라 <b>Kafka 가 내구성의 기준점</b>입니다. acks=all 응답을 받은 시점에 메시지는 이미 유실되지 않는 상태이므로 그때 응답해도 안전합니다. Worker 가 잠시 죽어도 메시지는 토픽에 남아 있고, 재기동 후 이어서 소비합니다. <b>응답 반환</b> 왼쪽이 동기 구간, 점선 박스가 응답 뒤에 도는 비동기 구간입니다. 실패한 메시지는 DLT 로 격리해 따로 재처리합니다.</span>
                         </div>
                     </li>
                     <li>
